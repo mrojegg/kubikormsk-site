@@ -1,0 +1,1446 @@
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<title>Кубикор — IT-решения для вашего бизнеса</title>
+  <meta name="description" content="Кубикор — IT-решения для бизнеса. Проектирование, разработка и программное обеспечение." />
+
+  <!-- Fonts (online). If offline, fallbacks will be used. -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+  
+.reviews-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:14px;
+}
+.review-card{
+  background: rgba(12,15,22,.70);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  padding:16px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.25);
+}
+.review-card p{margin:0 0 10px; color: rgba(238,242,255,.92); line-height:1.55}
+.review-company{
+  font-weight:800;
+  color: rgba(143,233,255,.98);
+  font-family: Space Grotesk, Inter, system-ui, sans-serif;
+}
+.pill.ghost{
+  background: transparent;
+  border:1px solid rgba(69,199,255,.45);
+}
+
+
+.headerActions{
+  display:flex;
+  align-items:center;
+  gap:36px; /* ~1cm on typical screens */
+}
+@media (max-width: 920px){
+  .headerActions{gap:16px}
+}
+
+/* Request form */
+.reqForm{margin-top:10px}
+.reqGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.reqField{display:grid;gap:6px}
+.reqField span{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.2px}
+.reqField input, .reqField textarea{
+  width:100%;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  outline:none;
+}
+.reqField input:focus, .reqField textarea:focus{
+  border-color: rgba(69,199,255,.45);
+}
+.reqActions{display:flex;gap:12px;align-items:center;margin-top:12px;flex-wrap:wrap}
+@media (max-width: 920px){
+  .reqGrid{grid-template-columns:1fr}
+}
+
+/* Reviews slider (smaller, one at a time) */
+.reviewsSlider{
+  position:relative;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(12,15,22,.70);
+  box-shadow: 0 16px 40px rgba(0,0,0,.25);
+  padding:14px 16px; /* smaller */
+  overflow:visible;
+}
+.reviewSlide{
+  opacity:0;
+  transform: translateY(6px);
+  transition: opacity .35s ease, transform .35s ease;
+  position:absolute;
+  inset:14px 16px 38px 16px;
+}
+.reviewSlide.is-active{
+  opacity:1;
+  transform: translateY(0);
+  position:relative;
+  inset:auto;
+}
+.reviewSlide p{
+  margin:0 0 10px;
+  color: rgba(238,242,255,.92);
+  line-height:1.55;
+  font-size:14px; /* smaller text */
+}
+.reviewDots{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  margin-top:10px;
+  position:relative;
+}
+.reviewDot{
+  width:9px;
+  height:9px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  padding:0;
+  appearance:none;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+
+.reviewDot.on{
+  border-color: rgba(69,199,255,.55);
+  background: rgba(69,199,255,.22);
+}
+.reviewDot:focus-visible{
+  outline:2px solid rgba(69,199,255,.45);
+  outline-offset:2px;
+}
+
+
+/* Mobile-first tweaks (no redesign) */
+@media (max-width: 560px){
+  .wrap{padding:0 14px}
+  header .nav{
+    height:auto;
+    padding:10px 0;
+    flex-wrap:wrap;
+    row-gap:10px;
+  }
+  header nav ul{
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  header nav a{padding:10px 12px}
+  .headerActions{
+    width:100%;
+    justify-content:center;
+    gap:12px;
+  }
+  .headerActions .pill{flex:1 1 auto; text-align:center}
+  .hero{padding:40px 0 12px}
+  h1{font-size:32px; line-height:1.12}
+  .sub{font-size:16px}
+  .cubeStage{min-height:210px}
+
+  .reviewsSlider{padding:12px 12px}
+  .reviewSlide{inset:12px 12px 34px 12px}
+  .reviewSlide p{font-size:15px; line-height:1.5}
+  .reviewDots{gap:10px; margin-top:12px}
+  .reviewDot{width:10px; height:10px}
+
+  .modalBackdrop{padding:10px}
+  .modal{border-radius:16px}
+  .modalTop .title{font-size:15px}
+}
+@media (max-width: 380px){
+  h1{font-size:28px}
+  .reviewSlide p{font-size:14px}
+}
+
+
+.consent{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  margin-top:12px;
+  font-size:12px;
+  color:rgba(238,242,255,.82);
+}
+.consent input{margin-top:3px}
+.consent a{color:rgba(143,233,255,.98); text-decoration:none}
+.consent a:hover{text-decoration:underline}
+
+
+.footerDetails{
+  margin-top:10px;
+  font-size:12px;
+  color:rgba(170,179,197,.9);
+  line-height:1.45;
+}
+
+
+footer{
+  margin-top:40px;
+}
+.footerRow{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.footerLeft{
+  font-size:13px;
+  color:rgba(238,242,255,.9);
+}
+.footerRight a{
+  color:#4fd2ff;
+  text-decoration:none;
+  font-size:13px;
+}
+.footerRight a:hover{text-decoration:underline}
+
+
+
+/* === QUBYcore vivid shimmer === */
+#wordStageSimple{
+  position:relative;
+  width:100%;
+  min-height:260px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+#brandWordSimple{
+  font-family: Space Grotesk, Inter, system-ui, sans-serif;
+  font-weight:900;
+  font-size:72px;
+  letter-spacing:4px;
+  background: linear-gradient(120deg,
+    #eaf4ff 0%,
+    #7dd3ff 20%,
+    #4fd2ff 40%,
+    #9fdcff 60%,
+    #eaf4ff 80%,
+    #ffffff 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    0 0 18px rgba(79,210,255,.45),
+    0 0 36px rgba(79,210,255,.25);
+  animation: qubycoreGradient 6s ease-in-out infinite;
+
+  line-height: 1.05;
+}
+@keyframes qubycoreGradient{
+  0%{ background-position: 0% 50%; }
+  50%{ background-position: 100% 50%; }
+  100%{ background-position: 0% 50%; }
+}
+@media (max-width:900px){
+  #brandWordSimple{ font-size:54px; }
+}
+
+/* Per-letter shimmer + JS bounce (Safari-safe) */
+#brandWordSimple{
+  line-height: 1.05;
+}
+#brandWordSimple span{
+  display:inline-block;
+  will-change: transform;
+  transform: translate3d(0,0,0);
+  background: linear-gradient(120deg,
+    #eaf4ff 0%,
+    #7dd3ff 20%,
+    #4fd2ff 40%,
+    #9fdcff 60%,
+    #eaf4ff 80%,
+    #ffffff 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    0 0 18px rgba(79,210,255,.45),
+    0 0 36px rgba(79,210,255,.25);
+  animation: qubycoreGradient 6s ease-in-out infinite;
+}
+
+</style>
+
+  <style>
+    :root{
+      --bg:#07080b;
+      --text:#eef2ff;
+      --muted:#aab3c5;
+      --line:rgba(255,255,255,.10);
+      /* Blue-only energy palette */
+      --blue:#45c7ff;
+      --blue2:#8fe9ff;
+      --blueGlow: rgba(69,199,255,.55);
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --radius:18px;
+      --panel: rgba(12,15,22,.78);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background:
+        radial-gradient(1000px 700px at 70% 10%, rgba(69,199,255,.14), transparent 60%),
+        radial-gradient(900px 600px at 20% 30%, rgba(143,233,255,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+
+    .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+    /* subtle grid */
+    .bg-grid:before{
+      content:"";
+      position:fixed; inset:0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(900px 700px at 60% 20%, rgba(0,0,0,1), transparent 65%);
+      pointer-events:none;
+      opacity:.50;
+      z-index:-3;
+    }
+
+    /* particles canvas */
+    #spark{
+      position:fixed;
+      inset:0;
+      width:100vw;
+      height:100vh;
+      z-index:-2;
+      opacity:.92;
+      pointer-events:none;
+    }
+
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,8,11,.60);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      height:72px;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      font-weight:700;
+      letter-spacing:.2px;
+      min-width: 140px; /* prevent shifting */
+    }
+    .logo{
+      width:34px; height:34px; border-radius:10px;
+      background:
+        linear-gradient(135deg, rgba(69,199,255,.22), rgba(255,255,255,.06));
+      border:1px solid rgba(69,199,255,.40);
+      box-shadow: 0 0 28px rgba(69,199,255,.16);
+      position:relative;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:8px;
+      border:1px solid rgba(255,255,255,.20);
+      transform:skew(-8deg,-8deg);
+      opacity:.9;
+    }
+    nav ul{
+      list-style:none;margin:0;padding:0;
+      display:flex;gap:22px;align-items:center;
+    }
+    nav a{
+      color:var(--muted);
+      font-weight:700;
+      cursor:pointer;
+      padding:8px 10px;
+      border-radius:999px;
+    }
+    nav a:hover{
+      color:var(--text);
+      background: rgba(255,255,255,.04);
+    }
+    .pill{
+      border:1px solid rgba(69,199,255,.40);
+      background: rgba(69,199,255,.10);
+      border-radius: 999px;
+      padding:10px 14px;
+      color:var(--text);
+      font-weight:800;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.30);
+      white-space:nowrap;
+    }
+    .pill:hover{background: rgba(69,199,255,.14)}
+
+    main{padding:44px 0 0}
+    section{padding:26px 0}
+
+    /* hero */
+    .hero{padding:54px 0 22px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:28px;
+      align-items:center;
+    }
+    h1{
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      font-size:44px;line-height:1.04;margin:0 0 14px;
+      letter-spacing:-.6px;
+    }
+    .sub{color:rgba(238,242,255,.92);font-size:18px;line-height:1.5;margin:0 0 10px}
+    .hint{color:var(--muted);font-size:14px;margin:0;line-height:1.45}
+
+    /* Energy ribbon that continues down the page (subtle) */
+    .energyRibbon{
+      margin-top:18px;
+      height:2px;
+      border-radius:999px;
+      background: linear-gradient(90deg, transparent, rgba(69,199,255,.55), rgba(143,233,255,.65), rgba(69,199,255,.55), transparent);
+      background-size: 220% 100%;
+      animation: ribbon 4.2s linear infinite;
+      opacity:.85;
+    }
+    @keyframes ribbon{
+      from{background-position:0% 0%}
+      to{background-position:220% 0%}
+    }
+
+    /* Floating cube (no frame) */
+    .cubeStage{
+      position:relative;
+      min-height:300px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    #cubeSvg{
+      width:min(360px, 95%);
+      height:auto;
+      filter: drop-shadow(0 22px 70px rgba(0,0,0,.62));
+      opacity:.98;
+      user-select:none;
+    }
+
+    /* content blocks */
+    .sectionTitle{
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      font-size:22px;margin:0 0 14px
+    }
+    .cards{display:grid;grid-template-columns:repeat(2, 1fr); gap:14px}
+    .card{
+      background: rgba(12,15,22,.70);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-70px;
+      background: radial-gradient(320px 200px at 20% 30%, rgba(69,199,255,.10), transparent 65%);
+      opacity:.85;
+      pointer-events:none;
+    }
+    .card h3{
+      margin:0 0 8px; position:relative;
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      letter-spacing:-.2px;
+    }
+    .card p{margin:0; color:var(--muted); line-height:1.35; position:relative}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr; gap:14px}
+    .panel{
+      background: rgba(12,15,22,.70);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .panel:before{
+      content:"";
+      position:absolute; inset:-100px;
+      background: radial-gradient(420px 260px at 10% 15%, rgba(69,199,255,.08), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .steps{display:grid; gap:10px; position:relative}
+    .step{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .num{
+      width:28px; height:28px; border-radius:10px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900;
+      border:1px solid rgba(69,199,255,.30);
+      background: rgba(69,199,255,.08);
+      flex:0 0 auto;
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+    }
+    .metric{
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      font-weight:800; font-size:28px;
+      background: linear-gradient(135deg, rgba(143,233,255,.95), rgba(69,199,255,.85));
+      -webkit-background-clip: text; background-clip:text; color:transparent;
+      position:relative;
+    }
+
+    /* reveal */
+    .reveal{opacity:0;transform: translateY(10px);transition: .6s ease}
+    .reveal.on{opacity:1;transform: translateY(0)}
+    .reveal.delay1{transition-delay:.08s}
+    .reveal.delay2{transition-delay:.16s}
+
+    footer{
+      padding:26px 0 46px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      margin-top:30px;
+    }
+
+    /* Modal */
+    .modalBackdrop{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.62);
+      display:none; align-items:center; justify-content:center;
+      padding:18px; z-index:100;
+    }
+    .modalBackdrop.open{display:flex}
+    .modal{
+      width:min(1020px, 100%);
+      border-radius: 22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      background: rgba(12,15,22,.94);
+      transform: translateY(6px) scale(.985);
+      opacity:0;
+      transition: .18s ease;
+      position:relative;
+    }
+    .modalBackdrop.open .modal{transform: translateY(0) scale(1);opacity:1}
+    .modalBackdrop.contactCompact .modal{width:min(560px, 100%)}
+
+    /* Blue-only depth */
+    .modal:before{
+      content:"";
+      position:absolute; inset:-90px;
+      background:
+        radial-gradient(560px 340px at 20% 20%, rgba(69,199,255,.16), transparent 65%),
+        radial-gradient(560px 340px at 80% 80%, rgba(143,233,255,.10), transparent 65%);
+      opacity:.95;
+      pointer-events:none;
+    }
+    .modalTop{
+      position:relative;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 16px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      backdrop-filter: blur(8px);
+    }
+    .modalTop .title{
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      font-weight:700;
+      letter-spacing:.2px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .modalTop .title:before{
+      content:"";
+      width:10px;height:10px;
+      border-radius:3px;
+      transform: rotate(10deg);
+      background: linear-gradient(135deg, rgba(143,233,255,.95), rgba(69,199,255,.90));
+      box-shadow: 0 0 18px rgba(69,199,255,.22);
+      opacity:.95;
+    }
+    .x{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color:var(--text);
+      border-radius: 12px;
+      padding:8px 10px;
+      cursor:pointer;
+      font-weight:900;
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+    }
+    .modalBody{
+      position:relative;
+      padding:18px;
+      max-height: min(72vh, 760px);
+      overflow:auto;
+    }
+    .mTitle{
+      margin:0 0 10px;
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      font-size:24px;
+      letter-spacing:-.3px;
+    }
+    .lead{
+      margin:0 0 14px;
+      color:rgba(238,242,255,.92);
+      line-height:1.6;
+      font-size:15px;
+    }
+    .p{margin:0 0 12px; color:var(--muted); line-height:1.62}
+    .accent{
+      background: linear-gradient(135deg, rgba(143,233,255,.98), rgba(69,199,255,.88));
+      -webkit-background-clip: text; background-clip:text; color:transparent;
+      font-weight:800;
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+    }
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:10px;
+    }
+    .mini{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 18px;
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .mini:before{
+      content:"";
+      position:absolute; inset:-85px;
+      background: radial-gradient(340px 240px at 20% 25%, rgba(69,199,255,.12), transparent 60%);
+      opacity:.85;
+      pointer-events:none;
+    }
+    .mini h3{
+      margin:0 0 6px;
+      font-size:14px;
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      letter-spacing:.1px;
+      position:relative;
+      padding-left:18px;
+    }
+    .mini h3:before{
+      content:"";
+      position:absolute;
+      left:0; top:5px;
+      width:10px; height:10px;
+      border-radius:3px;
+      border:1px solid rgba(69,199,255,.35);
+      background: rgba(69,199,255,.10);
+      transform: rotate(12deg);
+      box-shadow: 0 0 14px rgba(69,199,255,.14);
+    }
+    .mini p{margin:0; color:var(--muted); line-height:1.58; position:relative}
+    .listTitle{
+      margin:16px 0 8px;
+      font-size:14px;
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      letter-spacing:.1px;
+      color:rgba(238,242,255,.92);
+    }
+    ul.cubes{
+      margin:0 0 10px;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    ul.cubes li{
+      position:relative;
+      padding-left:20px;
+      color:var(--muted);
+      line-height:1.6;
+    }
+    ul.cubes li:before{
+      content:"";
+      position:absolute;
+      left:0; top:.48em;
+      width:10px; height:10px;
+      border-radius:3px;
+      transform: rotate(10deg);
+      background: rgba(69,199,255,.10);
+      border:1px solid rgba(69,199,255,.28);
+      box-shadow: 0 0 16px rgba(69,199,255,.14);
+    }
+    .callout{
+      margin-top:14px;
+      padding:14px;
+      border-radius:18px;
+      border:1px solid rgba(69,199,255,.28);
+      background: linear-gradient(135deg, rgba(69,199,255,.10), rgba(255,255,255,.02));
+      line-height:1.6;
+      color:rgba(238,242,255,.92);
+    }
+    .email{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      font-weight:900;
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(69,199,255,.40);
+      background: rgba(69,199,255,.12);
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+    }
+    .mutedSmall{color:var(--muted);font-size:12px;line-height:1.45;margin-top:10px}
+
+    @media (max-width: 920px){
+      .heroGrid{grid-template-columns:1fr; gap:18px}
+      .cards{grid-template-columns:1fr}
+      .grid2{grid-template-columns:1fr}
+      .split{grid-template-columns:1fr}
+      h1{font-size:36px}
+      .cubeStage{min-height:250px}
+      nav ul{gap:10px}
+    }
+  
+    /* Mobile usability */
+    .modalBody{-webkit-overflow-scrolling:touch}
+    body.modal-open{overflow:hidden; touch-action:none}
+    @media (max-width:560px){
+      .pill{padding:12px 14px}
+      .reqField input, .reqField textarea{font-size:16px} /* prevent iOS zoom */
+      .modalTop{padding:14px 14px}
+      .modalBody{padding:16px}
+      #wordStageSimple{min-height:200px}
+    }
+
+  </style>
+</head>
+
+<body class="bg-grid">
+  <canvas id="spark"></canvas>
+
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="На главную">
+          <span>ООО "КУБИКОР"</span>
+        </a>
+
+        <nav aria-label="Меню">
+          <ul>
+            <li><a role="button" data-modal="about">О нас</a></li>
+            <li><a role="button" data-modal="services">Услуги</a></li>
+            <li><a role="button" data-modal="contact">Контакты</a></li>
+          </ul>
+        </nav>
+</div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap">
+      <section class="hero">
+        <div class="heroGrid">
+          <div>
+            <h1 class="reveal on">Кубикор — IT-решения для вашего бизнеса</h1>
+            <p class="sub reveal on delay1">Мы создаём цифровые сервисы от идеи до запуска — кубик за кубиком.</p>
+            <p class="hint reveal on delay2">Разработка программного обеспечения, автоматизация бизнес-процессов и техническое сопровождение.</p>
+            <div class="energyRibbon" aria-hidden="true"></div>
+          </div>
+
+          <!-- Floating cube (re-built visuals) -->
+          <div class="cubeStage" id="cubeStage" aria-label="Интерактивный куб">
+      <div id="wordStageSimple">
+        <div id="brandWordSimple">QUBYcore</div>
+      </div>
+    </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <h2 class="sectionTitle">Чем мы занимаемся</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Аналитика</h3>
+            <p>Стартуем с целей и процессов: формируем требования, метрики и план работ без лишней бюрократии.</p>
+          </article>
+          <article class="card">
+            <h3>Проектирование</h3>
+            <p>Превращаем бизнес-цели в решение: UX/UI и архитектура, готовая к росту.</p>
+          </article>
+          <article class="card">
+            <h3>Разработка</h3>
+            <p>MVP и итерации для быстрого запуска: Agile, CI/CD, стабильные релизы и развитие без рисков.</p>
+          </article>
+          <article class="card">
+            <h3>Продукт и поддержка</h3>
+            <p>Развиваем готовые решения и сопровождаем после запуска: обновления, стабильность и техчасть без простоев.</p>
+          </article>
+</div>
+      </section>
+
+      <section class="reveal">
+        <div class="grid2">
+          <div class="panel">
+            <h2 class="sectionTitle">Почему выбирают Кубикор</h2>
+            <div class="steps">
+              <div class="step"><div class="num">1</div><div><b>Инженерный подход</b><div class="hint">Архитектура, прозрачные этапы, ответственность за результат.</div></div></div>
+              <div class="step"><div class="num">2</div><div><b>Ориентация на бизнес</b><div class="hint">Понимаем процессы компании и говорим без «айтишного тумана».</div></div></div>
+              <div class="step"><div class="num">3</div><div><b>Полный цикл</b><div class="hint">От идеи до запуска и дальнейшего развития.</div></div></div>
+              <div class="step"><div class="num">4</div><div><b>Россия</b><div class="hint">Работаем с бизнесом в Москве и подключаемся быстро.</div></div></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h2 class="sectionTitle">Кубик за кубиком</h2>
+            <div class="steps">
+              <div class="step"><div class="num">1</div><div><b>Анализ задачи</b><div class="hint">Понимаем цели бизнеса и ограничения.</div></div></div>
+              <div class="step"><div class="num">2</div><div><b>Проектирование</b><div class="hint">UX/UI, метрики, архитектура.</div></div></div>
+              <div class="step"><div class="num">3</div><div><b>Разработка</b><div class="hint">MVP, Agile, CI/CD, релизы.</div></div></div>
+              <div class="step"><div class="num">4</div><div><b>Запуск и развитие</b><div class="hint">Сопровождение и масштабирование.</div></div></div>
+            </div>
+            <div style="margin-top:14px; position:relative">
+              <div class="metric">+30%</div>
+              <div class="hint">Экономия времени на задачах за счёт автоматизации.</div>
+              <div class="energyRibbon" style="margin-top:12px;opacity:.65" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="reviews" class="reveal">
+  <h2 class="sectionTitle">Отзывы клиентов</h2>
+
+  <div class="reviewsSlider" aria-label="Отзывы клиентов">
+  <div class="reviewSlide is-active">
+    <p>«Обратились в Кубикор, когда стало ясно, что ручная обработка заявок тормозит продажи. Команда быстро разобрала наш процесс, предложила понятный план внедрения и не затягивала согласования. Уже в первый месяц после запуска мы сократили время обработки обращений и получили меньше ошибок в данных. Отдельно отмечу спокойную и деловую коммуникацию на каждом этапе.»</p>
+  </div>
+
+  <div class="reviewSlide">
+    <p>«Нам нужно было запустить внутренний сервис в сжатые сроки, и Кубикор собрали рабочий MVP без лишней сложности. По ходу проекта они объясняли технические решения на языке бизнеса, поэтому у команды не было ощущения, что нас "грузят" деталями. После релиза не исчезли, а помогли стабилизировать систему и доработать приоритетные функции. В итоге получили удобный инструмент, который реально используют сотрудники.»</p>
+  </div>
+
+  <div class="reviewSlide">
+    <p>«До старта работ провели с нами подробную диагностику процессов и сразу показали, где мы теряем время. Предложенное решение оказалось практичным: без дорогих лишних модулей, но с заделом на масштабирование. В процессе разработки были промежуточные демонстрации, поэтому результат не стал сюрпризом в конце. Видно, что команда берёт ответственность и за код, и за конечный эффект для бизнеса.»</p>
+  </div>
+
+  <div class="reviewSlide">
+    <p>«У нас было много разрозненных таблиц и ручных операций, из-за чего регулярно возникали ошибки в отчётности. После внедрения системы от Кубикор данные стали собираться централизованно, а контроль показателей стал быстрее и прозрачнее. Проект вели аккуратно: фиксировали договорённости, предупреждали о рисках и предлагали варианты. Работа выполнена качественно, без хаоса и авралов.»</p>
+  </div>
+
+  <div class="reviewSlide">
+    <p>«Понравился подход к планированию: сначала сформировали чёткие этапы и критерии готовности, затем двигались по ним без постоянных переносов. Все ключевые решения обсуждались заранее, поэтому не возникало спорных моментов в финале. После запуска получили инструктаж для сотрудников и нормальную техническую поддержку. Проект окупил себя быстрее, чем мы изначально ожидали.»</p>
+  </div>
+
+  <div class="reviewSlide">
+    <p>«Мы искали подрядчика, который не просто напишет код, а поймёт особенности нашей отрасли. Команда Кубикор внимательно отнеслась к деталям, предложила несколько сценариев реализации и помогла выбрать оптимальный по бюджету. Сроки соблюдены, качество интерфейса и логики на хорошем уровне. Сейчас продолжаем сотрудничество уже по следующему этапу развития продукта.»</p>
+  </div>
+
+  <div class="reviewSlide">
+    <p>«На проекте было важно быстро интегрировать новую систему с уже действующей инфраструктурой. Кубикор аккуратно провели интеграцию, протестировали критичные сценарии и предусмотрели механизм отката на случай рисков. Запуск прошёл спокойно, без простоев для команды и клиентов. Отдельная благодарность за то, что всегда были на связи и оперативно закрывали вопросы.»</p>
+  </div>
+
+  <div class="reviewSlide">
+    <p>«Ранее у нас был неудачный опыт с подрядчиками, поэтому к новому проекту подходили осторожно. Здесь приятно удивили прозрачные отчёты по прогрессу, понятные сроки и адекватная реакция на изменения в требованиях. Результат получился именно таким, как обсуждали на старте, без неприятных "дополнений" в конце. Команда работает профессионально и предсказуемо.»</p>
+  </div>
+
+  <div class="reviewSlide">
+    <p>«Кубикор помогли навести порядок в процессе обработки клиентских запросов и автоматизировать повторяющиеся операции. После внедрения снизилась нагрузка на сотрудников поддержки, а скорость ответа клиентам заметно выросла. Во время проекта нам регулярно показывали промежуточные результаты, поэтому мы могли корректировать приоритеты без потери темпа. Получили практичное решение, которое легко развивать дальше.»</p>
+  </div>
+
+  <div class="reviewSlide">
+    <p>«Сильная сторона команды - умение сочетать техническую экспертизу с нормальной деловой коммуникацией. Нам не приходилось "выбивать" статус: всё фиксировалось заранее, по срокам и задачам была прозрачность. После релиза специалисты помогли с обучением сотрудников и быстро закрыли первые вопросы по эксплуатации. Работа построена системно, без лишней бюрократии.»</p>
+  </div>
+
+  <div class="reviewSlide">
+    <p>«Проект стартовал с непростых вводных и ограниченного бюджета, но команда предложила реалистичный путь запуска по этапам. Благодаря этому мы получили рабочий результат в разумные сроки и смогли постепенно расширять функциональность. Все изменения обсуждались заранее, поэтому бюджет оставался под контролем. Сотрудничеством довольны, планируем новые задачи в том же формате.»</p>
+  </div>
+
+  <div class="reviewDots"></div>
+</div>
+</section>
+
+
+
+      <footer>
+  <div class="footerRow">
+    <div class="footerLeft">© ООО "КУБИКОР", <span id="year">2025</span></div>
+    <div class="footerRight"></div>
+  </div>
+  <div class="footerDetails">
+    ИНН: 7720941149 · ОГРН: 1247700766972 · Юр. адрес: 111397, г. Москва, пр-кт Зелёный, дом 20
+  </div>
+</footer>
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div class="modalBackdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Окно информации">
+      <div class="modalTop">
+        <div class="title" id="modalTopTitle">О нас</div>
+        <button class="x" id="closeModal" type="button" aria-label="Закрыть">✕</button>
+      </div>
+      <div class="modalBody" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const y=document.getElementById('year');
+    if(y) y.textContent = '2025';
+
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isSmall = window.matchMedia && window.matchMedia('(max-width: 560px)').matches;
+    
+
+// reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      for(const e of entries){ if(e.isIntersecting) e.target.classList.add('on'); }
+    }, {threshold: 0.12});
+    document.querySelectorAll('.reveal').forEach(el=>{
+      if(!el.classList.contains('on')) io.observe(el);
+    });
+
+    // modals
+    const MODALS = {
+      about: {
+        title: "О компании Кубикор",
+        html: `
+          <h2 class="mTitle">О компании Кубикор</h2>
+          <p class="lead">Мы — молодая IT-компания, которая любит сложные задачи и не верит в шаблонные решения. Для нас технологии — не цель, а инструмент, который должен работать на людей и бизнес, а не наоборот.</p>
+
+          <p class="p">Мы создаём цифровые продукты, которые понятны, быстры и масштабируемы. От идеи до релиза — думаем головой, пишем код аккуратно и всегда задаём вопрос: <span class="accent">«А будет ли это реально удобно?»</span></p>
+
+          <div class="listTitle">Нам важно:</div>
+          <ul class="cubes">
+            <li>делать решения, которые приносят результат, а не просто выглядят красиво</li>
+            <li>говорить с клиентами на одном языке, без лишнего «айтишного тумана»</li>
+            <li>развиваться самим и помогать расти тем, кто работает с нами</li>
+          </ul>
+
+          <p class="p">Мы не гонимся за модными словами и громкими обещаниями. Мы просто делаем свою работу хорошо, честно и с интересом — потому что любим то, чем занимаемся.</p>
+
+          <div class="callout"><b>Если коротко:</b> мы про технологии с человеческим лицом.</div>
+        `
+      },
+      services: {
+        title: "Услуги Кубикор",
+        html: `
+          <h2 class="mTitle">Услуги компании Кубикор</h2>
+          <p class="lead">Мы разрабатываем цифровые решения, которые помогают бизнесу расти, автоматизироваться и зарабатывать больше. Берём на себя весь цикл работ — от идеи и аналитики до запуска и поддержки продукта.</p>
+
+          <div class="listTitle">Ключевые направления</div>
+          <div class="split">
+            <div class="mini">
+              <h3><span class="accent">Проектирование</span></h3>
+              <p>Проектирование — это этап, на котором мы превращаем бизнес-цели в работающий цифровой продукт. Мы анализируем задачи, процессы и метрики, чтобы решение приносило измеримый результат.</p>
+              <p style="margin-top:10px;margin-bottom:0;color:var(--muted);line-height:1.58;position:relative">
+                UX/UI проектируется с фокусом на удобство пользователей, конверсии и скорость выполнения ключевых действий. Архитектура системы закладывается с учётом масштабирования, нагрузки и дальнейшего развития — без дорогих переделок в будущем.
+              </p>
+              <div class="callout" style="margin-top:12px">
+                <span class="accent">Грамотное проектирование</span> снижает риски, экономит бюджет и помогает запустить продукт, который работает на рост бизнеса с первого дня.
+              </div>
+            </div>
+
+            <div class="mini">
+              <h3><span class="accent">Разработка</span></h3>
+              <p>Мы разрабатываем цифровые продукты с фокусом на быстрый запуск и сокращение <span class="accent">time-to-market</span>. Работаем через MVP, чтобы вы могли как можно раньше выйти на рынок, проверить гипотезы и начать получать результат.</p>
+              <p style="margin-top:10px;margin-bottom:0;color:var(--muted);line-height:1.58;position:relative">
+                Используем Agile-подход и итеративную разработку — продукт развивается поэтапно, с прозрачными сроками и постоянной обратной связью. Это позволяет быстро адаптироваться к изменениям и приоритетам бизнеса.
+              </p>
+              <div class="callout" style="margin-top:12px">
+                <span class="accent">CI/CD</span> обеспечивает стабильные релизы и быструю доставку обновлений без простоев и рисков — с архитектурой, готовой к масштабированию.
+              </div>
+            </div>
+          </div>
+
+          <div style="height:12px"></div>
+
+          <div class="mini" style="padding:16px">
+            <h3><span class="accent">Программное обеспечение</span></h3>
+            <p class="p" style="margin-bottom:10px">Мы разрабатываем программное обеспечение для бизнеса, стартапов и цифровых продуктов. Создаём решения для автоматизации процессов, управления данными, онлайн-сервисов и пользовательских платформ.</p>
+
+            <div class="split" style="margin-top:8px">
+              <div class="mini" style="background:rgba(255,255,255,.035)">
+                <h3>Сферы и типы систем</h3>
+                <p>Работаем с B2B-системами, финтех-решениями, веб- и мобильными продуктами, а также внутренними корпоративными сервисами.</p>
+              </div>
+              <div class="mini" style="background:rgba(255,255,255,.035)">
+                <h3>Быстрый запуск</h3>
+                <p>Запускаем проекты через MVP, чтобы сократить <span class="accent">time-to-market</span> и быстрее получить практический результат.</p>
+              </div>
+            </div>
+
+            <div class="callout">
+              Мы закладываем надёжную и масштабируемую архитектуру, используем <span class="accent">Agile</span> и <span class="accent">CI/CD</span>, чтобы выпускать стабильные обновления и развивать продукт без потери качества по мере роста бизнеса.
+            </div>
+          </div>
+
+          <p class="p" style="margin-top:14px">
+            Мы работаем прозрачно, погружаемся в задачи клиента и предлагаем решения, которые действительно имеют смысл.
+            <span class="accent">Наша цель</span> — не просто написать код, а создать продукт, который работает и приносит результат.
+          </p>
+        `
+      },
+      request: {
+        title: "Оставить заявку",
+        html: `
+          <h2 class="mTitle">Оставить заявку</h2>
+          <p class="lead">Оставьте контакты и коротко опишите задачу — мы свяжемся с вами и предложим лучший формат работы.</p>
+
+          <form id="requestForm" class="reqForm" autocomplete="on">
+            <div class="reqGrid">
+              <label class="reqField">
+                <span>Имя</span>
+                <input name="name" type="text" required>
+              </label>
+
+              <label class="reqField">
+                <span>Компания</span>
+                <input name="company" type="text">
+              </label>
+
+              <label class="reqField">
+                <span>Email</span>
+                <input name="email" type="email" required>
+              </label>
+
+              <label class="reqField">
+                <span>Телефон</span>
+                <input name="phone" type="tel">
+              </label>
+            </div>
+
+            <label class="reqField" style="margin-top:12px">
+              <span>Коротко о задаче</span>
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+
+            <div class="reqActions">
+              <button class="pill" type="submit">Отправить заявку</button>
+              <a class="pill ghost" href="mailto:kubikormsk@mail.ru">Написать на почту</a>
+            </div>
+
+            
+            <label class="consent">
+              <input type="checkbox" id="consentPdn" required>
+              <span>
+                Я даю согласие на обработку персональных данных в соответствии с
+                <a href="#" data-modal="privacy">Политикой конфиденциальности</a>.
+              </span>
+            </label>
+            <div id="reqStatus" class="mutedSmall" style="margin-top:10px"></div>
+          </form>
+        `
+      },
+
+      privacy: {
+        title: "Политика конфиденциальности",
+        html: `
+          <h2 class="mTitle">Политика конфиденциальности</h2>
+          <p>Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей сайта «Кубикор».</p>
+
+          <div class="listTitle">Оператор персональных данных</div>
+          <ul class="cubes">
+            <li>ООО "КУБИКОР"</li>
+            <li>ИНН: 7720941149</li>
+            <li>ОГРН: 1247700766972</li>
+            <li>Юр. адрес: 111397, г. Москва, вн. тер. г. Муниципальный округ Новогиреево, пр-кт Зелёный, дом 20</li>
+            <li>Контакт: <a class="email" href="mailto:kubikormsk@mail.ru">kubikormsk@mail.ru</a></li>
+          </ul>
+
+          <div class="listTitle">Какие данные мы обрабатываем</div>
+          <p>Имя, email, телефон и сведения, которые вы указываете в сообщении формы заявки.</p>
+
+          <div class="listTitle">Цели обработки</div>
+          <p>Обработка обращений и заявок, обратная связь, подготовка предложений и согласование условий работ.</p>
+
+          <div class="listTitle">Права пользователя</div>
+          <p>Вы можете запросить уточнение, обновление или удаление данных, написав на <a class="email" href="mailto:kubikormsk@mail.ru">kubikormsk@mail.ru</a>.</p>
+        `
+      },
+contact: {
+  title: "Контакты",
+  html: `
+    <div style="max-width:440px; margin:2px auto 0; text-align:center; line-height:1.55; color:var(--muted)">
+      <p style="margin:0 0 6px; color:var(--text)">ООО \"КУБИКОР\"</p>
+      <p style="margin:0">ИНН: 7720941149</p>
+      <p style="margin:0">ОГРН: 1247700766972</p>
+      <p style="margin:0">111397, г. Москва, пр-кт Зелёный, дом 20</p>
+      <p style="margin:8px 0 0">Email: <a href="mailto:kubikormsk@mail.ru" style="color:inherit; text-decoration:underline; font-weight:500">kubikormsk@mail.ru</a></p>
+    </div>
+  `
+}
+    };
+
+    const backdrop = document.getElementById('modalBackdrop');
+    const modalBody = document.getElementById('modalBody');
+    const modalTopTitle = document.getElementById('modalTopTitle');
+    const closeModal = document.getElementById('closeModal');
+
+    function openModal(key){
+      const m = MODALS[key];
+      if(!m) return;
+      backdrop.classList.toggle('contactCompact', key === 'contact');
+      modalTopTitle.textContent = m.title;
+      modalBody.innerHTML = m.html;
+      backdrop.classList.add('open');
+      backdrop.setAttribute('aria-hidden','false');
+      document.body.classList.add('modal-open');
+      // Focus close button for accessibility (especially mobile)
+      setTimeout(()=>{ try{ closeModal.focus(); }catch(_){} }, 0);
+    }
+    function hideModal(){
+      backdrop.classList.remove('open','contactCompact');
+      backdrop.setAttribute('aria-hidden','true');
+      document.body.classList.remove('modal-open');
+      // Clear modal content to reduce memory on mobile
+      modalBody.innerHTML = '';
+    }
+
+    // Delegated handler for all current and future [data-modal] elements (incl. inside modals)
+    document.addEventListener('click', (e)=>{
+      const t = e.target.closest('[data-modal]');
+      if(!t) return;
+      e.preventDefault();
+      openModal(t.getAttribute('data-modal'));
+    });
+    closeModal.addEventListener('click', hideModal);
+    backdrop.addEventListener('click', (e)=>{ if(e.target===backdrop) hideModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') hideModal(); });
+    // background particles (blue-only, softer)
+    const c = document.getElementById('spark');
+    const ctx = c.getContext('2d');
+    const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+    let W=0,H=0,particles=[];
+    function resize(){
+      W = Math.floor(window.innerWidth);
+      H = Math.floor(window.innerHeight);
+      c.width = Math.floor(W * DPR);
+      c.height = Math.floor(H * DPR);
+      c.style.width = W + "px";
+      c.style.height = H + "px";
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+
+            const base = (W*H)/32000;
+      const cap = isSmall ? 65 : 90;
+      const floorN = isSmall ? 34 : 50;
+      const count = Math.floor(Math.min(cap, Math.max(floorN, base)));
+      particles = Array.from({length:count}, ()=>({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        r: Math.random()*1.4 + 0.4,
+        vx: (Math.random()*0.14 + 0.03) * (Math.random()<0.5?-1:1),
+        vy: (Math.random()*0.10 + 0.02) * (Math.random()<0.5?-1:1),
+        t: Math.random()*Math.PI*2,
+        a: Math.random()*0.20 + 0.06
+      }));
+    }
+    window.addEventListener('resize', resize, {passive:true});
+    resize();
+
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+
+      // cursor glow (subtle) — disable on mobile to save GPU
+      if(!isSmall){
+        const gx = (tx*0.5+0.5)*W;
+        const gy = (ty*0.5+0.5)*H;
+        const g0 = ctx.createRadialGradient(gx, gy, 0, gx, gy, 270);
+        g0.addColorStop(0, "rgba(69,199,255,0.08)");
+        g0.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = g0;
+        ctx.fillRect(0,0,W,H);
+      }
+
+      for(const p of particles){
+        p.t += 0.01;
+        p.x += p.vx + Math.sin(p.t)*0.02;
+        p.y += p.vy + Math.cos(p.t)*0.02;
+
+        if(p.x < -10) p.x = W+10;
+        if(p.x > W+10) p.x = -10;
+        if(p.y < -10) p.y = H+10;
+        if(p.y > H+10) p.y = -10;
+
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(143,233,255,${p.a})`;
+        ctx.arc(p.x + tx*6, p.y + ty*5, p.r, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      // near connections (very subtle) — disable on small screens / reduced motion
+      if(!isSmall && !prefersReduced){
+        ctx.lineWidth = 1;
+        for(let i=0;i<particles.length;i++){
+          const a = particles[i];
+          for(let j=i+1;j<particles.length;j++){
+            const b = particles[j];
+            const dx=a.x-b.x, dy=a.y-b.y;
+            const d2 = dx*dx + dy*dy;
+            if(d2 < 115*115){
+              const alpha = (1 - Math.sqrt(d2)/115) * 0.06;
+              ctx.strokeStyle = `rgba(69,199,255,${alpha})`;
+              ctx.beginPath();
+              ctx.moveTo(a.x + tx*6, a.y + ty*5);
+              ctx.lineTo(b.x + tx*6, b.y + ty*5);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    if(!prefersReduced){
+      let rafId = 0;
+      const run = ()=>{ if(!rafId) rafId = requestAnimationFrame(draw); };
+      const stop = ()=>{ if(rafId){ cancelAnimationFrame(rafId); rafId=0; } };
+      document.addEventListener('visibilitychange', ()=>{ document.hidden ? stop() : run(); }, {passive:true});
+      run();
+    }
+// Mail client opener with web fallback (Chrome/Yandex/Edge safe)
+function openMailWithFallback(to, subject, body){
+  const safeTo = (to || 'kubikormsk@mail.ru').trim();
+  const safeSubject = subject || '';
+  const safeBody = body || '';
+
+  const mailto = 'mailto:' + encodeURIComponent(safeTo)
+    + '?subject=' + encodeURIComponent(safeSubject)
+    + '&body=' + encodeURIComponent(safeBody);
+
+  const mailru = 'https://e.mail.ru/compose/?To=' + encodeURIComponent(safeTo)
+    + '&Subject=' + encodeURIComponent(safeSubject)
+    + '&Body=' + encodeURIComponent(safeBody);
+
+  let switchedApp = false;
+  const onVisibility = () => {
+    if(document.hidden) switchedApp = true;
+  };
+
+  document.addEventListener('visibilitychange', onVisibility, { passive: true });
+
+  setTimeout(() => {
+    document.removeEventListener('visibilitychange', onVisibility);
+    if(!switchedApp && document.visibilityState === 'visible'){
+      window.location.href = mailru;
+    }
+  }, 1200);
+
+  window.location.href = mailto;
+}
+
+// Request form handler (mailto)
+document.addEventListener('submit', (e) => {
+  const form = e.target;
+  if(!form || form.id !== 'requestForm') return;
+  e.preventDefault();
+
+  const fd = new FormData(form);
+  const name = (fd.get('name') || '').toString().trim();
+  const company = (fd.get('company') || '').toString().trim();
+  const email = (fd.get('email') || '').toString().trim();
+  const phone = (fd.get('phone') || '').toString().trim();
+  const message = (fd.get('message') || '').toString().trim();
+
+  const status = document.getElementById('reqStatus');
+  const errors = [];
+  if(!name) errors.push('Введите имя');
+  if(!email) errors.push('Введите email');
+  if(!message) errors.push('Опишите задачу');
+
+  if(errors.length){
+    if(status) status.textContent = 'Проверьте форму: ' + errors.join(', ');
+    return;
+  }
+
+  const subject = 'Заявка с сайта Кубикор';
+  const bodyLines = [
+    'Имя: ' + name,
+    'Компания: ' + (company || '—'),
+    'Email: ' + email,
+    'Телефон: ' + (phone || '—'),
+    '',
+    'Задача:',
+    message
+  ];
+  const body = bodyLines.join('\n');
+
+  if(status) status.textContent = 'Открываю письмо…';
+  openMailWithFallback('kubikormsk@mail.ru', subject, body);
+});
+
+// Mail links with prefilled template + fallback
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[href^="mailto:"]');
+  if(!link) return;
+
+  const href = link.getAttribute('href') || '';
+  if(!href) return;
+  e.preventDefault();
+
+  const to = (href.replace(/^mailto:/i, '').split('?')[0] || 'kubikormsk@mail.ru').trim();
+  const subject = 'Обращение с сайта Кубикор';
+  const body = 'Здравствуйте!\n\nОпишите, пожалуйста, вашу задачу.';
+  openMailWithFallback(to, subject, body);
+});
+
+// Reviews rotator (fade + clickable dots with 7s pause)
+(function(){
+  const slider = document.querySelector('.reviewsSlider');
+  if(!slider) return;
+
+  const slides = Array.from(slider.querySelectorAll('.reviewSlide'));
+  const dotsWrap = slider.querySelector('.reviewDots');
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(dotsWrap){
+    dotsWrap.innerHTML = '';
+    slides.forEach((_, i)=>{
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'reviewDot' + (i===0 ? ' on' : '');
+      d.setAttribute('aria-label', `Показать отзыв ${i + 1}`);
+      d.setAttribute('title', `Отзыв ${i + 1}`);
+      dotsWrap.appendChild(d);
+    });
+  }
+  const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('.reviewDot')) : [];
+
+  let idx = 0;
+  let autoTimer = null;
+  let resumeTimer = null;
+  const AUTO_MS = 4200;
+  const RESUME_AFTER_MANUAL_MS = 7000;
+
+  function show(i){
+    slides.forEach((s, k)=>s.classList.toggle('is-active', k===i));
+    dots.forEach((d, k)=>d.classList.toggle('on', k===i));
+    idx = i;
+  }
+
+  function showNext(){
+    show((idx + 1) % slides.length);
+  }
+
+  function stopAuto(){
+    if(autoTimer){
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+  }
+
+  function startAuto(){
+    if(prefersReduced || slides.length < 2) return;
+    stopAuto();
+    autoTimer = setInterval(showNext, AUTO_MS);
+  }
+
+  function pauseAfterManual(){
+    stopAuto();
+    if(resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(startAuto, RESUME_AFTER_MANUAL_MS);
+  }
+
+  dots.forEach((dot, i)=>{
+    dot.addEventListener('click', ()=>{
+      show(i);
+      pauseAfterManual();
+    });
+  });
+
+  if(prefersReduced) return;
+  startAuto();
+})();
+
+  </script>
+
+<script>
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const el = document.getElementById('brandWordSimple');
+  if(!el) return;
+
+  // Wrap letters if not wrapped yet
+  if(!el.dataset.wrapped){
+    el.dataset.wrapped = '1';
+    const text = el.textContent;
+    el.textContent = '';
+    [...text].forEach((ch)=>{
+      const s = document.createElement('span');
+      s.textContent = ch;
+      el.appendChild(s);
+    });
+  }
+
+  const spans = Array.from(el.querySelectorAll('span'));
+  const state = spans.map(() => ({
+    y: 0,
+    vy: 0,
+    target: 0,
+    nextSwitch: performance.now() + 300 + Math.random()*900
+  }));
+
+  // ~2mm in px: 2mm ≈ 7.6px at 96dpi; use a safe visible range for Retina as well.
+  const AMP = 8; // px peak
+
+  function retarget(i, now){
+    // random "hop" upward (negative y), then drift back
+    state[i].target = - (2 + Math.random()*AMP); // between -2px and -10px
+    state[i].nextSwitch = now + 250 + Math.random()*900;
+  }
+
+  function tick(now){
+    for(let i=0;i<spans.length;i++){
+      const s = spans[i];
+      const st = state[i];
+
+      if(now > st.nextSwitch){
+        // sometimes choose rest position too (chaos)
+        st.target = (Math.random() < 0.35) ? 0 : - (2 + Math.random()*AMP);
+        st.nextSwitch = now + 250 + Math.random()*900;
+      }
+
+      // spring toward target (critically damped-ish)
+      const k = 0.08;      // stiffness
+      const damp = 0.78;   // damping
+      const ay = (st.target - st.y) * k;
+      st.vy = (st.vy + ay) * damp;
+      st.y += st.vy;
+
+      // apply transform with GPU-friendly translate3d
+      s.style.transform = `translate3d(0, ${st.y.toFixed(2)}px, 0)`;
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+
+</body>
+</html>
