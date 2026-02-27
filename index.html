@@ -228,19 +228,19 @@ footer{
   font-size:72px;
   letter-spacing:4px;
   background: linear-gradient(120deg,
-    #eaf4ff 0%,
-    #7dd3ff 20%,
-    #4fd2ff 40%,
-    #9fdcff 60%,
-    #eaf4ff 80%,
-    #ffffff 100%);
+    #dff8ff 0%,
+    #33d6ff 20%,
+    #00bfff 40%,
+    #3aa0ff 60%,
+    #7ce3ff 80%,
+    #e9fdff 100%);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   text-shadow:
-    0 0 18px rgba(79,210,255,.45),
-    0 0 36px rgba(79,210,255,.25);
+    0 0 18px rgba(0,191,255,.55),
+    0 0 36px rgba(51,214,255,.30);
   animation: qubycoreGradient 6s ease-in-out infinite;
 
   line-height: 1.05;
@@ -263,19 +263,19 @@ footer{
   will-change: transform;
   transform: translate3d(0,0,0);
   background: linear-gradient(120deg,
-    #eaf4ff 0%,
-    #7dd3ff 20%,
-    #4fd2ff 40%,
-    #9fdcff 60%,
-    #eaf4ff 80%,
-    #ffffff 100%);
+    #dff8ff 0%,
+    #33d6ff 20%,
+    #00bfff 40%,
+    #3aa0ff 60%,
+    #7ce3ff 80%,
+    #e9fdff 100%);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   text-shadow:
-    0 0 18px rgba(79,210,255,.45),
-    0 0 36px rgba(79,210,255,.25);
+    0 0 18px rgba(0,191,255,.55),
+    0 0 36px rgba(51,214,255,.30);
   animation: qubycoreGradient 6s ease-in-out infinite;
 }
 
@@ -301,8 +301,9 @@ footer{
       margin:0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
       background:
-        radial-gradient(1000px 700px at 70% 10%, rgba(69,199,255,.14), transparent 60%),
-        radial-gradient(900px 600px at 20% 30%, rgba(143,233,255,.10), transparent 60%),
+        radial-gradient(1200px 820px at 72% 12%, rgba(69,199,255,.10), transparent 72%),
+        radial-gradient(1050px 760px at 22% 34%, rgba(143,233,255,.08), transparent 74%),
+        radial-gradient(900px 620px at 50% 78%, rgba(69,199,255,.05), transparent 76%),
         var(--bg);
       color:var(--text);
       overflow-x:hidden;
@@ -315,13 +316,9 @@ footer{
     .bg-grid:before{
       content:"";
       position:fixed; inset:0;
-      background-image:
-        linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 56px 56px;
-      mask-image: radial-gradient(900px 700px at 60% 20%, rgba(0,0,0,1), transparent 65%);
+      background: radial-gradient(1200px 900px at 55% 22%, rgba(69,199,255,.05), transparent 70%);
       pointer-events:none;
-      opacity:.50;
+      opacity:.35;
       z-index:-3;
     }
 
@@ -453,22 +450,18 @@ footer{
       font-size:22px;margin:0 0 14px
     }
     .cards{display:grid;grid-template-columns:repeat(2, 1fr); gap:14px}
+    .services3{grid-template-columns:repeat(3, minmax(0, 1fr));}
+    .services3 .card{background:transparent; padding:0; border-radius:0; overflow:visible}
     .card{
-      background: rgba(12,15,22,.70);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius: var(--radius);
-      padding:16px;
-      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+      background: linear-gradient(180deg, rgba(69,199,255,.07), rgba(69,199,255,0) 84%);
+      border:none;
+      border-radius: 14px;
+      padding:14px 12px;
+      box-shadow:none;
       position:relative;
       overflow:hidden;
     }
-    .card:before{
-      content:"";
-      position:absolute; inset:-70px;
-      background: radial-gradient(320px 200px at 20% 30%, rgba(69,199,255,.10), transparent 65%);
-      opacity:.85;
-      pointer-events:none;
-    }
+    .card:before{display:none}
     .card h3{
       margin:0 0 8px; position:relative;
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
@@ -476,37 +469,62 @@ footer{
     }
     .card p{margin:0; color:var(--muted); line-height:1.35; position:relative}
 
+    .cardList{margin:0; padding:0; list-style:none; display:grid; gap:6px}
+    .cardList li{color:var(--muted); line-height:1.35}
+    .serviceLogoWrap{display:flex; flex-direction:column; align-items:center; gap:0; margin:0}
+    .serviceLogoImg{width:132px; height:132px; object-fit:cover; object-position:center; display:block; filter: drop-shadow(0 8px 20px rgba(0,0,0,.35)); border-radius:12px;}
+    .serviceLogoImg.noAlpha{mix-blend-mode:multiply; filter: brightness(.78) contrast(1.35) saturate(1.2) drop-shadow(0 8px 20px rgba(0,0,0,.35));}
+    .servicePrimaryBody{display:flex; flex-direction:column; align-items:center; text-align:center; gap:0}
+    .servicePrimaryBody .cardList{margin:-14px 0 0; justify-items:center}
+    .servicePrimaryBody .cardList li{white-space:normal}
+    .servicesCtaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .servicesCtaRow .pill{padding:10px 14px}
+
     .grid2{display:grid;grid-template-columns:1fr 1fr; gap:14px}
     .panel{
-      background: rgba(12,15,22,.70);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius: var(--radius);
-      padding:18px;
-      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+      background: transparent;
+      border:none;
+      border-radius: 18px;
+      padding:16px 14px;
+      box-shadow:none;
       position:relative;
-      overflow:hidden;
+      overflow:visible;
     }
-    .panel:before{
-      content:"";
-      position:absolute; inset:-100px;
-      background: radial-gradient(420px 260px at 10% 15%, rgba(69,199,255,.08), transparent 60%);
-      opacity:.9;
-      pointer-events:none;
-    }
-    .steps{display:grid; gap:10px; position:relative}
+    .panel:before{display:none}
+    .steps{display:grid; gap:8px; position:relative}
     .step{
-      display:flex; gap:12px; align-items:flex-start;
-      padding:12px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      display:flex; gap:10px; align-items:flex-start;
+      padding:8px 2px;
+      border:none;
+      background:transparent;
     }
+    .whyPanel .steps{
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:6px 16px;
+    }
+    .whyPanel .step{padding:4px 0}
+    .whyPanel{position:relative; border-radius:22px; isolation:isolate}
+    .whyPanel:before{
+      content:"";
+      position:absolute;
+      inset:-36px -28px -30px -28px;
+      background:
+        radial-gradient(70% 55% at 52% 8%, rgba(69,199,255,.13), rgba(69,199,255,0) 74%),
+        radial-gradient(58% 42% at 20% 82%, rgba(69,199,255,.06), rgba(69,199,255,0) 78%),
+        radial-gradient(58% 42% at 80% 84%, rgba(69,199,255,.06), rgba(69,199,255,0) 78%);
+      filter: blur(22px);
+      opacity:.72;
+      pointer-events:none;
+      z-index:0;
+    }
+    .whyPanel > *{position:relative; z-index:1}
     .num{
-      width:28px; height:28px; border-radius:10px;
+      min-width:12px;
       display:flex; align-items:center; justify-content:center;
-      font-weight:900;
-      border:1px solid rgba(69,199,255,.30);
-      background: rgba(69,199,255,.08);
+      font-weight:700;
+      color:rgba(238,242,255,.9);
+      background:transparent;
+      border:none;
       flex:0 0 auto;
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
     }
@@ -718,6 +736,26 @@ footer{
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
     }
     .mutedSmall{color:var(--muted);font-size:12px;line-height:1.45;margin-top:10px}
+    .contactsItem{position:relative}
+    .contactMenu{
+      position:absolute;
+      top:calc(100% + 8px);
+      right:0;
+      min-width:320px;
+      max-width:min(92vw, 420px);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(12,15,22,.96);
+      border-radius:14px;
+      padding:12px 14px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.45);
+      display:none;
+      z-index:120;
+    }
+    .contactMenu.open{display:block}
+    .contactList{margin:0; padding:0; list-style:none; display:grid; gap:6px; color:var(--muted); line-height:1.45}
+    .contactList li{margin:0}
+    .contactList a{color:var(--text); text-decoration:underline}
+
     .internalPage{
       padding:24px 0 20px;
     }
@@ -735,11 +773,15 @@ footer{
     @media (max-width: 920px){
       .heroGrid{grid-template-columns:1fr; gap:18px}
       .cards{grid-template-columns:1fr}
+      .services3{grid-template-columns:1fr}
       .grid2{grid-template-columns:1fr}
+      .servicesCtaRow{justify-content:flex-start}
       .split{grid-template-columns:1fr}
+      .whyPanel .steps{grid-template-columns:1fr}
       h1{font-size:36px}
       .cubeStage{min-height:250px}
       nav ul{gap:10px}
+      .contactMenu{left:0; right:auto; min-width:260px}
     }
   
     /* Mobile usability */
@@ -770,7 +812,7 @@ footer{
           <ul>
             <li><a href="#about" data-page="about">О нас</a></li>
             <li><a href="#services" data-page="services">Услуги</a></li>
-            <li><a role="button" data-modal="contact">Контакты</a></li>
+            <li class="contactsItem"><a role="button" id="contactToggle" data-modal="contact">Контакты</a><div id="contactMenu" class="contactMenu" aria-hidden="true"></div></li>
           </ul>
         </nav>
 </div>
@@ -807,56 +849,65 @@ footer{
         </div>
       </section>
 
-      <section class="reveal">
-        <h2 class="sectionTitle">Чем мы занимаемся</h2>
-        <div class="cards">
+            <section class="reveal">
+        <div class="cards services3">
           <article class="card">
-            <h3>Аналитика</h3>
-            <p>Стартуем с целей и процессов: формируем требования, метрики и план работ без лишней бюрократии.</p>
+            <div class="servicePrimaryBody">
+              <div class="serviceLogoWrap">
+                <img class="serviceLogoImg" src="assets/dev-logo.png" alt="Разработка ПО" loading="lazy">
+              </div>
+              <ul class="cardList">
+                <li>• MVP за 4-8 недель</li>
+                <li>• Прозрачные этапы и сроки</li>
+              </ul>
+            </div>
           </article>
           <article class="card">
-            <h3>Проектирование</h3>
-            <p>Превращаем бизнес-цели в решение: UX/UI и архитектура, готовая к росту.</p>
+            <div class="servicePrimaryBody">
+              <div class="serviceLogoWrap">
+                <img class="serviceLogoImg" src="assets/automation-logo.png" alt="Автоматизация процессов" loading="lazy">
+              </div>
+              <ul class="cardList">
+                <li>• Меньше ручных операций</li>
+                <li>• Быстрее обработка заявок</li>
+              </ul>
+            </div>
           </article>
           <article class="card">
-            <h3>Разработка</h3>
-            <p>MVP и итерации для быстрого запуска: Agile, CI/CD, стабильные релизы и развитие без рисков.</p>
+            <div class="servicePrimaryBody">
+              <div class="serviceLogoWrap">
+                <img class="serviceLogoImg" src="assets/support-logo.png" alt="Поддержка и развитие" loading="lazy">
+              </div>
+              <ul class="cardList">
+                <li>• Сопровождение после запуска</li>
+                <li>• План доработок по приоритетам</li>
+              </ul>
+            </div>
           </article>
-          <article class="card">
-            <h3>Продукт и поддержка</h3>
-            <p>Развиваем готовые решения и сопровождаем после запуска: обновления, стабильность и техчасть без простоев.</p>
-          </article>
-</div>
+        </div>
       </section>
 
-      <section class="reveal">
-        <div class="grid2">
-          <div class="panel">
-            <h2 class="sectionTitle">Почему выбирают Кубикор</h2>
-            <div class="steps">
-              <div class="step"><div class="num">1</div><div><b>Инженерный подход</b><div class="hint">Архитектура, прозрачные этапы, ответственность за результат.</div></div></div>
-              <div class="step"><div class="num">2</div><div><b>Ориентация на бизнес</b><div class="hint">Понимаем процессы компании и говорим без «айтишного тумана».</div></div></div>
-              <div class="step"><div class="num">3</div><div><b>Полный цикл</b><div class="hint">От идеи до запуска и дальнейшего развития.</div></div></div>
-              <div class="step"><div class="num">4</div><div><b>Россия</b><div class="hint">Работаем с бизнесом в Москве и подключаемся быстро.</div></div></div>
-            </div>
-          </div>
 
-          <div class="panel">
-            <h2 class="sectionTitle">Кубик за кубиком</h2>
+      <section class="reveal">
+        <div class="grid2" style="grid-template-columns:1fr;">
+          <div class="panel whyPanel">
+            <h2 class="sectionTitle">Почему мы ?</h2>
             <div class="steps">
-              <div class="step"><div class="num">1</div><div><b>Анализ задачи</b><div class="hint">Понимаем цели бизнеса и ограничения.</div></div></div>
-              <div class="step"><div class="num">2</div><div><b>Проектирование</b><div class="hint">UX/UI, метрики, архитектура.</div></div></div>
-              <div class="step"><div class="num">3</div><div><b>Разработка</b><div class="hint">MVP, Agile, CI/CD, релизы.</div></div></div>
-              <div class="step"><div class="num">4</div><div><b>Запуск и развитие</b><div class="hint">Сопровождение и масштабирование.</div></div></div>
-            </div>
-            <div style="margin-top:14px; position:relative">
-              <div class="metric">+30%</div>
-              <div class="hint">Экономия времени на задачах за счёт автоматизации.</div>
-              <div class="energyRibbon" style="margin-top:12px;opacity:.65" aria-hidden="true"></div>
+              <div class="step"><div class="num">-</div><div><b>Анализ задачи</b><div class="hint">Понимаем цели бизнеса и ограничения.</div></div></div>
+              <div class="step"><div class="num">-</div><div><b>Ориентация на бизнес</b><div class="hint">Понимаем процессы компании и говорим без «айтишного тумана».</div></div></div>
+              <div class="step"><div class="num">-</div><div><b>Инженерный подход</b><div class="hint">Архитектура, прозрачные этапы, ответственность за результат.</div></div></div>
+              <div class="step"><div class="num">-</div><div><b>Проектирование</b><div class="hint">UX/UI, метрики, архитектура.</div></div></div>
+              <div class="step"><div class="num">-</div><div><b>Полный цикл</b><div class="hint">От идеи до запуска и дальнейшего развития.</div></div></div>
+              <div class="step"><div class="num">-</div><div><b>Разработка</b><div class="hint">MVP, Agile, CI/CD, релизы.</div></div></div>
+              <div class="step"><div class="num">-</div><div><b>Запуск и развитие</b><div class="hint">Сопровождение и масштабирование.</div></div></div>
+              <div class="step"><div class="num">-</div><div><b>Поддержка</b><div class="hint">Поддержка на всех этапах развития продукта.</div></div></div>
+              <div class="step"><div class="num">-</div><div><b>Автоматизация</b><div class="hint">+ 30% экономия времени на задачах.</div></div></div>
+              <div class="step"><div class="num">-</div><div><b>Россия</b><div class="hint">Работаем с бизнесом в Москве и подключаемся быстро.</div></div></div>
             </div>
           </div>
         </div>
       </section>
+
       <section id="reviews" class="reveal">
   <h2 class="sectionTitle">Отзывы клиентов</h2>
 
@@ -955,7 +1006,6 @@ footer{
       about: {
         title: "О компании Кубикор",
         html: `
-          <h2 class="mTitle">О компании Кубикор</h2>
           <p class="lead">Мы — молодая IT-компания, которая любит сложные задачи и не верит в шаблонные решения. Для нас технологии — не цель, а инструмент, который должен работать на людей и бизнес, а не наоборот.</p>
 
           <p class="p">Мы создаём цифровые продукты, которые понятны, быстры и масштабируемы. От идеи до релиза — думаем головой, пишем код аккуратно и всегда задаём вопрос: <span class="accent">«А будет ли это реально удобно?»</span></p>
@@ -975,7 +1025,6 @@ footer{
       services: {
         title: "Услуги Кубикор",
         html: `
-          <h2 class="mTitle">Услуги компании Кубикор</h2>
           <p class="lead">Мы разрабатываем цифровые решения, которые помогают бизнесу расти, автоматизироваться и зарабатывать больше. Берём на себя весь цикл работ — от идеи и аналитики до запуска и поддержки продукта.</p>
 
           <div class="listTitle">Ключевые направления</div>
@@ -1126,6 +1175,8 @@ contact: {
     const modalBody = document.getElementById('modalBody');
     const modalTopTitle = document.getElementById('modalTopTitle');
 const closeModal = document.getElementById('closeModal');
+const contactToggle = document.getElementById('contactToggle');
+const contactMenu = document.getElementById('contactMenu');
 const internalPage = document.getElementById('internalPage');
 const internalTitle = document.getElementById('internalTitle');
 const internalContent = document.getElementById('internalContent');
@@ -1142,6 +1193,7 @@ function renderPage(key){
   internalTitle.textContent = p.title;
   internalContent.innerHTML = p.html;
   internalPage.hidden = false;
+  hideContactMenu();
   document.body.classList.add('page-open');
   window.scrollTo(0, 0);
   return true;
@@ -1158,7 +1210,32 @@ function syncRoute(){
   if(!renderPage(key)) hidePage();
 }
 
+function openContactMenu(){
+  if(!contactMenu) return;
+  const m = MODALS.contact;
+  contactMenu.innerHTML = m ? m.html : '';
+  contactMenu.classList.add('open');
+  contactMenu.setAttribute('aria-hidden','false');
+}
+
+function hideContactMenu(){
+  if(!contactMenu) return;
+  contactMenu.classList.remove('open');
+  contactMenu.setAttribute('aria-hidden','true');
+}
+
+function toggleContactMenu(){
+  if(!contactMenu) return;
+  if(contactMenu.classList.contains('open')) hideContactMenu();
+  else openContactMenu();
+}
+
     function openModal(key){
+      if(key === 'contact'){
+        openContactMenu();
+        return;
+      }
+      hideContactMenu();
       const m = MODALS[key];
       if(!m) return;
       backdrop.classList.toggle('contactCompact', key === 'contact');
@@ -1179,6 +1256,12 @@ function syncRoute(){
     }
 // Delegated handler for all current and future [data-page]/[data-modal] elements
 document.addEventListener('click', (e)=>{
+  const clickOnToggle = e.target.closest('#contactToggle');
+
+  if(!clickOnToggle){
+    hideContactMenu();
+  }
+
   const p = e.target.closest('[data-page]');
   if(p){
     e.preventDefault();
@@ -1189,8 +1272,14 @@ document.addEventListener('click', (e)=>{
 
   const t = e.target.closest('[data-modal]');
   if(!t) return;
+  const key = t.getAttribute('data-modal');
+  if(key === 'contact'){
+    e.preventDefault();
+    toggleContactMenu();
+    return;
+  }
   e.preventDefault();
-  openModal(t.getAttribute('data-modal'));
+  openModal(key);
 });
 if(internalBackBtn){
   internalBackBtn.addEventListener('click', ()=>{ window.location.hash = ''; });
@@ -1200,7 +1289,7 @@ syncRoute();
 closeModal.addEventListener('click', hideModal);
 
     backdrop.addEventListener('click', (e)=>{ if(e.target===backdrop) hideModal(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') hideModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ hideModal(); hideContactMenu(); } });
     // background particles (blue-only, softer)
     const c = document.getElementById('spark');
     const ctx = c.getContext('2d');
