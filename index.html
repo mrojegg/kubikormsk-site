@@ -718,6 +718,19 @@ footer{
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
     }
     .mutedSmall{color:var(--muted);font-size:12px;line-height:1.45;margin-top:10px}
+    .internalPage{
+      padding:24px 0 20px;
+    }
+    .internalPageCard{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(12,15,22,.70);
+      border-radius: 18px;
+      padding:16px;
+    }
+    .internalBack{
+      margin-bottom:12px;
+    }
+    .page-open main{display:none}
 
     @media (max-width: 920px){
       .heroGrid{grid-template-columns:1fr; gap:18px}
@@ -755,14 +768,24 @@ footer{
 
         <nav aria-label="Меню">
           <ul>
-            <li><a role="button" data-modal="about">О нас</a></li>
-            <li><a role="button" data-modal="services">Услуги</a></li>
+            <li><a href="#about" data-page="about">О нас</a></li>
+            <li><a href="#services" data-page="services">Услуги</a></li>
             <li><a role="button" data-modal="contact">Контакты</a></li>
           </ul>
         </nav>
 </div>
     </div>
   </header>
+
+  <section id="internalPage" class="internalPage" hidden>
+    <div class="wrap">
+      <div class="internalPageCard">
+        <button class="pill ghost internalBack" id="internalBackBtn" type="button">Назад</button>
+        <h2 class="sectionTitle" id="internalTitle">Раздел</h2>
+        <div id="internalContent"></div>
+      </div>
+    </div>
+  </section>
 
   <main id="top">
     <div class="wrap">
@@ -1102,7 +1125,38 @@ contact: {
     const backdrop = document.getElementById('modalBackdrop');
     const modalBody = document.getElementById('modalBody');
     const modalTopTitle = document.getElementById('modalTopTitle');
-    const closeModal = document.getElementById('closeModal');
+const closeModal = document.getElementById('closeModal');
+const internalPage = document.getElementById('internalPage');
+const internalTitle = document.getElementById('internalTitle');
+const internalContent = document.getElementById('internalContent');
+const internalBackBtn = document.getElementById('internalBackBtn');
+
+const PAGES = {
+  about: { title: MODALS.about.title, html: MODALS.about.html },
+  services: { title: MODALS.services.title, html: MODALS.services.html }
+};
+
+function renderPage(key){
+  const p = PAGES[key];
+  if(!p) return false;
+  internalTitle.textContent = p.title;
+  internalContent.innerHTML = p.html;
+  internalPage.hidden = false;
+  document.body.classList.add('page-open');
+  window.scrollTo(0, 0);
+  return true;
+}
+
+function hidePage(){
+  internalPage.hidden = true;
+  internalContent.innerHTML = '';
+  document.body.classList.remove('page-open');
+}
+
+function syncRoute(){
+  const key = (window.location.hash || '').replace('#','');
+  if(!renderPage(key)) hidePage();
+}
 
     function openModal(key){
       const m = MODALS[key];
@@ -1123,15 +1177,28 @@ contact: {
       // Clear modal content to reduce memory on mobile
       modalBody.innerHTML = '';
     }
+// Delegated handler for all current and future [data-page]/[data-modal] elements
+document.addEventListener('click', (e)=>{
+  const p = e.target.closest('[data-page]');
+  if(p){
+    e.preventDefault();
+    const key = p.getAttribute('data-page');
+    if(key) window.location.hash = key;
+    return;
+  }
 
-    // Delegated handler for all current and future [data-modal] elements (incl. inside modals)
-    document.addEventListener('click', (e)=>{
-      const t = e.target.closest('[data-modal]');
-      if(!t) return;
-      e.preventDefault();
-      openModal(t.getAttribute('data-modal'));
-    });
-    closeModal.addEventListener('click', hideModal);
+  const t = e.target.closest('[data-modal]');
+  if(!t) return;
+  e.preventDefault();
+  openModal(t.getAttribute('data-modal'));
+});
+if(internalBackBtn){
+  internalBackBtn.addEventListener('click', ()=>{ window.location.hash = ''; });
+}
+window.addEventListener('hashchange', syncRoute);
+syncRoute();
+closeModal.addEventListener('click', hideModal);
+
     backdrop.addEventListener('click', (e)=>{ if(e.target===backdrop) hideModal(); });
     document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') hideModal(); });
     // background particles (blue-only, softer)
