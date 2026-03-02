@@ -137,6 +137,11 @@
     .section p{margin:0 0 10px;color:var(--muted);line-height:1.6}
 
     footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted)}
+    .footerRow{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+    .footerLeft{font-size:13px;color:rgba(238,242,255,.9)}
+    .footerRight{font-size:13px;color:rgba(238,242,255,.9)}
+    .footerRight a{color:#4fd2ff;text-decoration:none}
+    .footerRight a:hover{text-decoration:underline}
 
     @media (max-width: 920px){
       .grid{grid-template-columns:1fr}
@@ -163,7 +168,7 @@
         <a class="brand" href="index.html">ООО "КУБИКОР"</a>
         <nav aria-label="Меню">
           <ul>
-            <li class="contactsItem"><span class="navLabel" id="contactToggle">О нас</span><div id="contactMenu" class="contactMenu aboutUnified" aria-hidden="false"><div class="contactBody"><p>Мы любим сложные задачи и не верим в шаблонные решения. Для нас технологии — не цель, а инструмент, который должен работать на людей и бизнес, а не наоборот.</p><p>Создаём цифровые продукты, которые понятны, быстры и масштабируемы. От идеи до релиза — думаем головой, пишем код аккуратно и всегда задаём вопрос: «А будет ли это реально удобно?»</p><p><b>Нам важно:</b></p><ul><li>Делать решения, которые приносят результат, а не просто выглядят красиво!</li><li>Говорить на понятном языке, без лишнего «айтишного тумана».</li><li>Развиваться самим и помогать расти тем, кто работает с нами.</li></ul><p>Это не гонка за модными словами и громкими обещаниями, просто Мы - делаем свою работу хорошо, честно и с интересом — потому что любим то, чем занимаемся.</p><p><b>Если коротко:</b> PRO - технологии с человеческим лицом.</p><p>ИНН: 7720941149<br>ОГРН: 1247700766972<br>111397, г. Москва, пр-кт Зелёный, дом 20</p><p>Email: <a href="mailto:kubikormsk@mail.ru">kubikormsk@mail.ru</a></p></div></div></li>
+            <li class="contactsItem"><span class="navLabel" id="contactToggle">О нас</span><div id="contactMenu" class="contactMenu aboutUnified" aria-hidden="false"><div class="contactBody"><p>Мы любим сложные задачи и не верим в шаблонные решения. Для нас технологии — не цель, а инструмент, который должен работать на людей и бизнес, а не наоборот.</p><p>Создаём цифровые продукты, которые понятны, быстры и масштабируемы. От идеи до релиза — думаем головой, пишем код аккуратно и всегда задаём вопрос: «А будет ли это реально удобно?»</p><p><b>Нам важно:</b></p><ul><li>Делать решения, которые приносят результат, а не просто выглядят красиво!</li><li>Говорить на понятном языке, без лишнего «айтишного тумана».</li><li>Развиваться самим и помогать расти тем, кто работает с нами.</li></ul><p>Это не гонка за модными словами и громкими обещаниями, просто Мы - делаем свою работу хорошо, честно и с интересом — потому что любим то, чем занимаемся.</p><p><b>Если коротко:</b> PRO - технологии с человеческим лицом.</p></div></div></li>
           </ul>
         </nav>
       </div>
@@ -213,12 +218,7 @@
         <p>Практический результат: +30% экономии времени на операционных задачах за счёт автоматизации.</p>
       </section>
 
-      <section class="section">
-        <h3>Связаться по задаче</h3>
-        <p>Email: <a href="mailto:kubikormsk@mail.ru">kubikormsk@mail.ru</a></p>
-      </section>
-
-      <footer>© ООО "КУБИКОР", 2025</footer>
+      <footer><div class="footerRow"><div class="footerLeft">© ООО "КУБИКОР", 2025</div><div class="footerRight">Написать нам: <a href="mailto:kubikormsk@mail.ru">kubikormsk@mail.ru</a></div></div></footer>
     </div>
   </main>
 
