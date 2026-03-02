@@ -1235,6 +1235,8 @@ footer{
 const closeModal = document.getElementById('closeModal');
 const contactItem = document.querySelector('.contactsItem');
 const aboutItem = document.querySelector('.aboutItem');
+const contactToggle = document.getElementById('contactToggle');
+const aboutToggle = document.getElementById('aboutToggle');
 const internalPage = document.getElementById('internalPage');
 const internalTitle = document.getElementById('internalTitle');
 const internalContent = document.getElementById('internalContent');
@@ -1309,11 +1311,19 @@ window.addEventListener('hashchange', syncRoute);
 syncRoute();
 closeModal.addEventListener('click', hideModal);
 
+function closeTopMenus(except){
+  [contactItem, aboutItem].forEach((item)=>{
+    if(!item || item===except) return;
+    item.classList.remove('menu-open');
+  });
+}
+
 function bindHoverMenu(item){
   if(!item) return;
   let menuTimer = null;
   const openMenu = ()=>{
     if(menuTimer){ clearTimeout(menuTimer); menuTimer = null; }
+    closeTopMenus(item);
     item.classList.add('menu-open');
   };
   const closeMenu = ()=>{
@@ -1328,8 +1338,43 @@ function bindHoverMenu(item){
   item.addEventListener('mouseleave', closeMenu);
 }
 
-bindHoverMenu(contactItem);
-bindHoverMenu(aboutItem);
+const mobileMenuMode = window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+if(mobileMenuMode){
+  [contactToggle, aboutToggle].forEach((el)=>{
+    if(!el) return;
+    el.setAttribute('role', 'button');
+    el.setAttribute('tabindex', '0');
+    el.style.cursor = 'pointer';
+  });
+
+  const toggleByTap = (item)=>{
+    if(!item) return;
+    const isOpen = item.classList.contains('menu-open');
+    closeTopMenus();
+    if(!isOpen) item.classList.add('menu-open');
+  };
+
+  if(contactToggle){
+    contactToggle.addEventListener('click', (e)=>{ e.preventDefault(); e.stopPropagation(); toggleByTap(contactItem); });
+  }
+  if(aboutToggle){
+    aboutToggle.addEventListener('click', (e)=>{ e.preventDefault(); e.stopPropagation(); toggleByTap(aboutItem); });
+  }
+
+  document.addEventListener('click', (e)=>{
+    const withinTopMenu = e.target.closest('.contactsItem, .aboutItem');
+    if(withinTopMenu) return;
+    closeTopMenus();
+  });
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') closeTopMenus();
+  });
+}else{
+  bindHoverMenu(contactItem);
+  bindHoverMenu(aboutItem);
+}
 
     backdrop.addEventListener('click', (e)=>{ if(e.target===backdrop) hideModal(); });
     document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ hideModal(); } });
