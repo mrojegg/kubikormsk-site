@@ -774,8 +774,8 @@ footer{
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
     }
     .mutedSmall{color:var(--muted);font-size:12px;line-height:1.45;margin-top:10px}
-    .contactsItem,.aboutItem{position:relative; padding-bottom:0}
-    .contactsItem::after,.aboutItem::after{content:""; position:absolute; left:0; right:0; top:100%; height:10px}
+    .contactsItem{position:relative; padding-bottom:0}
+    .contactsItem::after{content:""; position:absolute; left:0; right:0; top:100%; height:10px}
      .contactMenu{
       position:absolute;
       top:100%;
@@ -796,10 +796,7 @@ footer{
     }
     .contactsItem.menu-open .contactMenu,
     .contactsItem:hover .contactMenu,
-    .contactsItem:focus-within .contactMenu,
-    .aboutItem.menu-open .contactMenu,
-    .aboutItem:hover .contactMenu,
-    .aboutItem:focus-within .contactMenu{
+    .contactsItem:focus-within .contactMenu{
       opacity:1;
       visibility:visible;
       transform:translateY(0);
@@ -836,11 +833,9 @@ footer{
       text-shadow: 0 0 10px rgba(69,199,255,.22);
       font-weight: 800;
     }
-    .aboutBody p:last-child{margin-bottom:0}
-    .aboutHeadAccent{color:#63b9e6; text-shadow:0 0 10px rgba(58,160,255,.16)}
-    .aboutBody ul{margin:0 0 14px 22px; padding:0; color:var(--muted); display:block}
-    .aboutBody li{margin:0 0 8px; line-height:1.5; font-size:17px; color:#ffffff; display:list-item}
-    .aboutBody p{font-size:17px; line-height:1.55; text-align:left; color:#ffffff}
+    .aboutUnified .contactBody p{font-size:17px; line-height:1.55; color:#ffffff}
+    .aboutUnified .contactBody ul{margin:0 0 14px 22px; padding:0; color:#ffffff; display:block}
+    .aboutUnified .contactBody li{margin:0 0 8px; line-height:1.5; font-size:17px; color:#ffffff; display:list-item}
 
     .internalPage{
       padding:24px 0 20px;
@@ -882,9 +877,6 @@ footer{
         overflow-y:auto;
         -webkit-overflow-scrolling:touch;
       }
-      #aboutMenu .contactBody{padding-right:8px}
-      #aboutMenu .aboutBody p,
-      #aboutMenu .aboutBody li{font-size:16px; line-height:1.45}
       .reqField input, .reqField textarea{font-size:16px} /* prevent iOS zoom */
       .modalTop{padding:14px 14px}
       .modalBody{padding:16px}
@@ -907,8 +899,8 @@ footer{
         <nav aria-label="Меню">
           <ul>
             <li><a href="services.html">Услуги</a></li>
-            <li class="aboutItem"><span class="navLabel" id="aboutToggle">О нас</span><div id="aboutMenu" class="contactMenu" aria-hidden="false"><div class="contactHead"><span class="aboutHeadAccent">О компании Кубикор</span></div><div class="contactBody aboutBody"><p>Мы — молодая IT-компания, которая любит сложные задачи и не верит в шаблонные решения. Для нас технологии — не цель, а инструмент, который должен работать на людей и бизнес, а не наоборот.</p><p>Мы создаём цифровые продукты, которые понятны, быстры и масштабируемы. От идеи до релиза — думаем головой, пишем код аккуратно и всегда задаём вопрос: «А будет ли это реально удобно?»</p><p>Нам важно:</p><ul><li>делать решения, которые приносят результат, а не просто выглядят красиво</li><li>говорить с клиентами на одном языке, без лишнего «айтишного тумана»</li><li>развиваться самим и помогать расти тем, кто работает с нами</li></ul><p>Мы не гонимся за модными словами и громкими обещаниями. Мы просто делаем свою работу хорошо, честно и с интересом — потому что любим то, чем занимаемся.</p><p><b>Если коротко:</b> мы про технологии с человеческим лицом.</p></div></div></li>
-            <li class="contactsItem"><span class="navLabel" id="contactToggle">Контакты</span><div id="contactMenu" class="contactMenu" aria-hidden="false"><div class="contactHead">ООО "КУБИКОР"</div><div class="contactBody"><p>ИНН: 7720941149</p><p>ОГРН: 1247700766972</p><p>111397, г. Москва, пр-кт Зелёный, дом 20</p><p>Email: <a href="mailto:kubikormsk@mail.ru">kubikormsk@mail.ru</a></p></div></div></li>
+            <li>говорить с клиентами на одном языке, без лишнего «айтишного тумана»</li><li>развиваться самим и помогать расти тем, кто работает с нами</li></ul><p>Мы не гонимся за модными словами и громкими обещаниями. Мы просто делаем свою работу хорошо, честно и с интересом — потому что любим то, чем занимаемся.</p><p><b>Если коротко:</b> мы про технологии с человеческим лицом.</p></div></div></li>
+            <li class="contactsItem"><span class="navLabel" id="contactToggle">О нас</span><div id="contactMenu" class="contactMenu aboutUnified" aria-hidden="false"><div class="contactHead">О компании Кубикор</div><div class="contactBody"><p>Мы любим сложные задачи и не верим в шаблонное решение задач. Для нас технологии — не цель, а инструмент, который должен работать на людей и бизнес, а не наоборот.</p><p>Мы создаём цифровые продукты, которые понятны, быстры и масштабируемы. От идеи до релиза — думаем головой, пишем код аккуратно и всегда задаём вопрос: «А будет ли это реально удобно?»</p><p><b>Нам важно:</b></p><ul><li>Делать решения, которые приносят результат, а не просто выглядят красиво!</li><li>Говорить с клиентами на одном языке, без лишнего «айтишного тумана».</li><li>Развиваться самим и помогать расти тем, кто работает с нами.</li></ul><p>Мы не гонимся за модными словами и громкими обещаниями. Мы просто делаем свою работу хорошо, честно и с интересом — потому что любим то, чем занимаемся.</p><p><b>Если коротко:</b> мы про технологии с человеческим лицом.</p><p>ИНН: 7720941149<br>ОГРН: 1247700766972<br>111397, г. Москва, пр-кт Зелёный, дом 20</p><p>Email: <a href="mailto:kubikormsk@mail.ru">kubikormsk@mail.ru</a></p></div></div></li>
           </ul>
         </nav>
 </div>
@@ -1257,9 +1249,7 @@ footer{
     const modalTopTitle = document.getElementById('modalTopTitle');
 const closeModal = document.getElementById('closeModal');
 const contactItem = document.querySelector('.contactsItem');
-const aboutItem = document.querySelector('.aboutItem');
 const contactToggle = document.getElementById('contactToggle');
-const aboutToggle = document.getElementById('aboutToggle');
 const internalPage = document.getElementById('internalPage');
 const internalTitle = document.getElementById('internalTitle');
 const internalContent = document.getElementById('internalContent');
@@ -1335,7 +1325,7 @@ syncRoute();
 closeModal.addEventListener('click', hideModal);
 
 function closeTopMenus(except){
-  [contactItem, aboutItem].forEach((item)=>{
+  [contactItem].forEach((item)=>{
     if(!item || item===except) return;
     item.classList.remove('menu-open');
   });
@@ -1364,7 +1354,7 @@ function bindHoverMenu(item){
 const mobileMenuMode = window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
 if(mobileMenuMode){
-  [contactToggle, aboutToggle].forEach((el)=>{
+  [contactToggle].forEach((el)=>{
     if(!el) return;
     el.setAttribute('role', 'button');
     el.setAttribute('tabindex', '0');
@@ -1381,12 +1371,8 @@ if(mobileMenuMode){
   if(contactToggle){
     contactToggle.addEventListener('click', (e)=>{ e.preventDefault(); e.stopPropagation(); toggleByTap(contactItem); });
   }
-  if(aboutToggle){
-    aboutToggle.addEventListener('click', (e)=>{ e.preventDefault(); e.stopPropagation(); toggleByTap(aboutItem); });
-  }
-
   document.addEventListener('click', (e)=>{
-    const withinTopMenu = e.target.closest('.contactsItem, .aboutItem');
+    const withinTopMenu = e.target.closest('.contactsItem');
     if(withinTopMenu) return;
     closeTopMenus();
   });
@@ -1396,7 +1382,6 @@ if(mobileMenuMode){
   });
 }else{
   bindHoverMenu(contactItem);
-  bindHoverMenu(aboutItem);
 }
 
     backdrop.addEventListener('click', (e)=>{ if(e.target===backdrop) hideModal(); });
