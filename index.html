@@ -135,7 +135,7 @@
     flex-wrap:wrap;
     row-gap:10px;
   }
-  header nav ul{
+  header nav > ul{
     width:100%;
     justify-content:center;
     flex-wrap:wrap;
@@ -350,6 +350,8 @@ footer{
       font-weight:700;
       letter-spacing:.2px;
       min-width: 140px; /* prevent shifting */
+      color:#ffffff;
+      text-shadow: 0 0 10px rgba(255,255,255,.18)
     }
     .logo{
       width:34px; height:34px; border-radius:10px;
@@ -366,16 +368,40 @@ footer{
       transform:skew(-8deg,-8deg);
       opacity:.9;
     }
-    nav ul{
+    nav > ul{
       list-style:none;margin:0;padding:0;
       display:flex;gap:22px;align-items:center;
+      height:40px;
+    }
+    nav > ul > li{
+      display:flex;
+      align-items:center;
+      height:40px;
     }
     nav a{
-      color:var(--muted);
-      font-weight:700;
+      color:#ffffff;
+      font-weight:800;
+      text-shadow: 0 0 8px rgba(255,255,255,.16);
       cursor:pointer;
       padding:8px 10px;
       border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      height:40px;
+      line-height:1;
+    }
+    .navLabel{
+      color:#ffffff;
+      font-weight:800;
+      text-shadow: 0 0 8px rgba(255,255,255,.16);
+      padding:8px 10px;
+      border-radius:999px;
+      cursor:default;
+      user-select:none;
+      display:inline-flex;
+      align-items:center;
+      height:40px;
+      line-height:1;
     }
     nav a:hover{
       color:var(--text);
@@ -409,6 +435,10 @@ footer{
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
       font-size:44px;line-height:1.04;margin:0 0 14px;
       letter-spacing:-.6px;
+    }
+    .hero h1{
+      color:#63b9e6;
+      text-shadow: 0 0 14px rgba(58,160,255,.18);
     }
     .sub{color:rgba(238,242,255,.92);font-size:18px;line-height:1.5;margin:0 0 10px}
     .hint{color:var(--muted);font-size:14px;margin:0;line-height:1.45}
@@ -471,11 +501,11 @@ footer{
 
     .cardList{margin:0; padding:0; list-style:none; display:grid; gap:6px}
     .cardList li{color:var(--muted); line-height:1.35}
-    .serviceLogoWrap{display:flex; flex-direction:column; align-items:center; gap:0; margin:0}
+    .serviceLogoWrap{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; margin:0; width:min(100%, 320px)}
     .serviceLogoImg{width:132px; height:132px; object-fit:contain; object-position:center; display:block; filter: drop-shadow(0 8px 20px rgba(0,0,0,.35)); border-radius:12px;}
     .serviceLogoImg.noAlpha{mix-blend-mode:multiply; filter: brightness(.78) contrast(1.35) saturate(1.2) drop-shadow(0 8px 20px rgba(0,0,0,.35));}
-    .servicePrimaryBody{display:flex; flex-direction:column; align-items:center; text-align:center; gap:0}
-    .servicePrimaryBody .cardList{margin:-14px 0 0; justify-items:center}
+    .servicePrimaryBody{display:flex; flex-direction:column; align-items:center; text-align:left; gap:2px; width:100%}
+    .servicePrimaryBody .cardList{margin:0 auto; width:max-content; max-width:100%; justify-items:start; align-self:center; text-align:left}
     .servicePrimaryBody .cardList li{white-space:normal}
     .servicesCtaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
     .servicesCtaRow .pill{padding:10px 14px}
@@ -518,6 +548,14 @@ footer{
       z-index:0;
     }
     .whyPanel > *{position:relative; z-index:1}
+    .whyPanel .sectionTitle{
+      color:#63b9e6;
+      text-shadow: 0 0 10px rgba(58,160,255,.16);
+    }
+    .reviewsTitle{
+      color:#63b9e6;
+      text-shadow: 0 0 10px rgba(58,160,255,.16);
+    }
     .num{
       min-width:12px;
       display:flex; align-items:center; justify-content:center;
@@ -736,25 +774,58 @@ footer{
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
     }
     .mutedSmall{color:var(--muted);font-size:12px;line-height:1.45;margin-top:10px}
-    .contactsItem{position:relative}
-    .contactMenu{
+    .contactsItem,.aboutItem{position:relative; padding-bottom:0}
+    .contactsItem::after,.aboutItem::after{content:""; position:absolute; left:0; right:0; top:100%; height:10px}
+     .contactMenu{
       position:absolute;
-      top:calc(100% + 8px);
+      top:100%;
       right:0;
-      min-width:320px;
-      max-width:min(92vw, 420px);
+      min-width:560px;
+      max-width:min(94vw, 700px);
       border:1px solid rgba(255,255,255,.12);
-      background: rgba(12,15,22,.96);
+      background: rgba(12,15,22,.94);
       border-radius:14px;
-      padding:12px 14px;
+      padding:10px 12px 12px;
       box-shadow: 0 16px 40px rgba(0,0,0,.45);
-      display:none;
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(0);
+      pointer-events:none;
       z-index:120;
+      transition: opacity .22s ease, visibility .22s ease;
     }
-    .contactMenu.open{display:block}
-    .contactList{margin:0; padding:0; list-style:none; display:grid; gap:6px; color:var(--muted); line-height:1.45}
-    .contactList li{margin:0}
-    .contactList a{color:var(--text); text-decoration:underline}
+    .contactsItem.menu-open .contactMenu,
+    .contactsItem:hover .contactMenu,
+    .contactsItem:focus-within .contactMenu,
+    .aboutItem.menu-open .contactMenu,
+    .aboutItem:hover .contactMenu,
+    .aboutItem:focus-within .contactMenu{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+      pointer-events:auto;
+    }
+    .contactHead{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(10,14,24,.86);
+      border-radius:16px;
+      padding:14px 16px;
+      color:rgba(238,242,255,.95);
+      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+      font-size:20px;
+      font-weight:700;
+      letter-spacing:.1px;
+      margin-bottom:10px;
+    }
+    .contactBody{padding:0 2px 2px; color:var(--muted)}
+    .contactBody p{margin:0 0 12px; line-height:1.35; font-size:20px; color:var(--muted)}
+    .contactBody p:last-child{margin-bottom:0}
+    .contactBody a{color:var(--text); text-decoration:underline; font-weight:700}
+    .aboutBody p:last-child{margin-bottom:0}
+    .aboutHeadAccent{color:#63b9e6; text-shadow:0 0 10px rgba(58,160,255,.16)}
+    .aboutBody ul{margin:0 0 14px 22px; padding:0; color:var(--muted); display:block}
+    .aboutBody li{margin:0 0 8px; line-height:1.5; font-size:17px; color:#ffffff; display:list-item}
+    .aboutBody p{font-size:17px; line-height:1.55; text-align:left; color:#ffffff}
 
     .internalPage{
       padding:24px 0 20px;
@@ -780,8 +851,8 @@ footer{
       .whyPanel .steps{grid-template-columns:1fr}
       h1{font-size:36px}
       .cubeStage{min-height:250px}
-      nav ul{gap:10px}
-      .contactMenu{left:0; right:auto; min-width:260px}
+      nav > ul{gap:10px}
+      .contactMenu{left:0; right:auto; min-width:260px; top:100%; max-width:min(95vw, 360px)}
     }
   
     /* Mobile usability */
@@ -789,6 +860,8 @@ footer{
     body.modal-open{overflow:hidden; touch-action:none}
     @media (max-width:560px){
       .pill{padding:12px 14px}
+      .contactHead{font-size:16px; padding:10px 12px}
+      .contactBody p{font-size:18px; margin-bottom:10px}
       .reqField input, .reqField textarea{font-size:16px} /* prevent iOS zoom */
       .modalTop{padding:14px 14px}
       .modalBody{padding:16px}
@@ -810,9 +883,9 @@ footer{
 
         <nav aria-label="Меню">
           <ul>
-            <li><a href="#about" data-page="about">О нас</a></li>
             <li><a href="#services" data-page="services">Услуги</a></li>
-            <li class="contactsItem"><a role="button" id="contactToggle" data-modal="contact">Контакты</a><div id="contactMenu" class="contactMenu" aria-hidden="true"></div></li>
+            <li class="aboutItem"><span class="navLabel" id="aboutToggle">О нас</span><div id="aboutMenu" class="contactMenu" aria-hidden="false"><div class="contactHead"><span class="aboutHeadAccent">О компании Кубикор</span></div><div class="contactBody aboutBody"><p>Мы — молодая IT-компания, которая любит сложные задачи и не верит в шаблонные решения. Для нас технологии — не цель, а инструмент, который должен работать на людей и бизнес, а не наоборот.</p><p>Мы создаём цифровые продукты, которые понятны, быстры и масштабируемы. От идеи до релиза — думаем головой, пишем код аккуратно и всегда задаём вопрос: «А будет ли это реально удобно?»</p><p>Нам важно:</p><ul><li>делать решения, которые приносят результат, а не просто выглядят красиво</li><li>говорить с клиентами на одном языке, без лишнего «айтишного тумана»</li><li>развиваться самим и помогать расти тем, кто работает с нами</li></ul><p>Мы не гонимся за модными словами и громкими обещаниями. Мы просто делаем свою работу хорошо, честно и с интересом — потому что любим то, чем занимаемся.</p><p><b>Если коротко:</b> мы про технологии с человеческим лицом.</p></div></div></li>
+            <li class="contactsItem"><span class="navLabel" id="contactToggle">Контакты</span><div id="contactMenu" class="contactMenu" aria-hidden="false"><div class="contactHead">ООО "КУБИКОР"</div><div class="contactBody"><p>ИНН: 7720941149</p><p>ОГРН: 1247700766972</p><p>111397, г. Москва, пр-кт Зелёный, дом 20</p><p>Email: <a href="mailto:kubikormsk@mail.ru">kubikormsk@mail.ru</a></p></div></div></li>
           </ul>
         </nav>
 </div>
@@ -836,7 +909,7 @@ footer{
           <div>
             <h1 class="reveal on">Кубикор — IT-решения для вашего бизнеса</h1>
             <p class="sub reveal on delay1">Мы создаём цифровые сервисы от идеи до запуска — кубик за кубиком.</p>
-            <p class="hint reveal on delay2">Разработка программного обеспечения, автоматизация бизнес-процессов и техническое сопровождение.</p>
+            <p class="hint reveal on delay2">Разработка программного обеспечения, автоматизация бизнес-процессов и техническое сопровождение, + 30% экономия времени на задачах.</p>
             <div class="energyRibbon" aria-hidden="true"></div>
           </div>
 
@@ -900,16 +973,13 @@ footer{
               <div class="step"><div class="num">-</div><div><b>Полный цикл</b><div class="hint">От идеи до запуска и дальнейшего развития.</div></div></div>
               <div class="step"><div class="num">-</div><div><b>Разработка</b><div class="hint">MVP, Agile, CI/CD, релизы.</div></div></div>
               <div class="step"><div class="num">-</div><div><b>Запуск и развитие</b><div class="hint">Сопровождение и масштабирование.</div></div></div>
-              <div class="step"><div class="num">-</div><div><b>Поддержка</b><div class="hint">Поддержка на всех этапах развития продукта.</div></div></div>
-              <div class="step"><div class="num">-</div><div><b>Автоматизация</b><div class="hint">+ 30% экономия времени на задачах.</div></div></div>
-              <div class="step"><div class="num">-</div><div><b>Россия</b><div class="hint">Работаем с бизнесом в Москве и подключаемся быстро.</div></div></div>
-            </div>
+              <div class="step"><div class="num">-</div><div><b>Поддержка</b><div class="hint">Поддержка на всех этапах развития продукта.</div></div></div>            </div>
           </div>
         </div>
       </section>
 
       <section id="reviews" class="reveal">
-  <h2 class="sectionTitle">Отзывы клиентов</h2>
+  <h2 class="sectionTitle reviewsTitle">Отзывы клиентов</h2>
 
   <div class="reviewsSlider" aria-label="Отзывы клиентов">
   <div class="reviewSlide is-active">
@@ -1157,26 +1227,14 @@ footer{
           <p>Вы можете запросить уточнение, обновление или удаление данных, написав на <a class="email" href="mailto:kubikormsk@mail.ru">kubikormsk@mail.ru</a>.</p>
         `
       },
-contact: {
-  title: "Контакты",
-  html: `
-    <div style="max-width:440px; margin:2px auto 0; text-align:center; line-height:1.55; color:var(--muted)">
-      <p style="margin:0 0 6px; color:var(--text)">ООО \"КУБИКОР\"</p>
-      <p style="margin:0">ИНН: 7720941149</p>
-      <p style="margin:0">ОГРН: 1247700766972</p>
-      <p style="margin:0">111397, г. Москва, пр-кт Зелёный, дом 20</p>
-      <p style="margin:8px 0 0">Email: <a href="mailto:kubikormsk@mail.ru" style="color:inherit; text-decoration:underline; font-weight:500">kubikormsk@mail.ru</a></p>
-    </div>
-  `
-}
     };
 
     const backdrop = document.getElementById('modalBackdrop');
     const modalBody = document.getElementById('modalBody');
     const modalTopTitle = document.getElementById('modalTopTitle');
 const closeModal = document.getElementById('closeModal');
-const contactToggle = document.getElementById('contactToggle');
-const contactMenu = document.getElementById('contactMenu');
+const contactItem = document.querySelector('.contactsItem');
+const aboutItem = document.querySelector('.aboutItem');
 const internalPage = document.getElementById('internalPage');
 const internalTitle = document.getElementById('internalTitle');
 const internalContent = document.getElementById('internalContent');
@@ -1193,7 +1251,6 @@ function renderPage(key){
   internalTitle.textContent = p.title;
   internalContent.innerHTML = p.html;
   internalPage.hidden = false;
-  hideContactMenu();
   document.body.classList.add('page-open');
   window.scrollTo(0, 0);
   return true;
@@ -1210,33 +1267,8 @@ function syncRoute(){
   if(!renderPage(key)) hidePage();
 }
 
-function openContactMenu(){
-  if(!contactMenu) return;
-  const m = MODALS.contact;
-  contactMenu.innerHTML = m ? m.html : '';
-  contactMenu.classList.add('open');
-  contactMenu.setAttribute('aria-hidden','false');
-}
-
-function hideContactMenu(){
-  if(!contactMenu) return;
-  contactMenu.classList.remove('open');
-  contactMenu.setAttribute('aria-hidden','true');
-}
-
-function toggleContactMenu(){
-  if(!contactMenu) return;
-  if(contactMenu.classList.contains('open')) hideContactMenu();
-  else openContactMenu();
-}
-
     function openModal(key){
-      if(key === 'contact'){
-        openContactMenu();
-        return;
-      }
-      hideContactMenu();
-      const m = MODALS[key];
+          const m = MODALS[key];
       if(!m) return;
       backdrop.classList.toggle('contactCompact', key === 'contact');
       modalTopTitle.textContent = m.title;
@@ -1256,12 +1288,6 @@ function toggleContactMenu(){
     }
 // Delegated handler for all current and future [data-page]/[data-modal] elements
 document.addEventListener('click', (e)=>{
-  const clickOnToggle = e.target.closest('#contactToggle');
-
-  if(!clickOnToggle){
-    hideContactMenu();
-  }
-
   const p = e.target.closest('[data-page]');
   if(p){
     e.preventDefault();
@@ -1273,11 +1299,6 @@ document.addEventListener('click', (e)=>{
   const t = e.target.closest('[data-modal]');
   if(!t) return;
   const key = t.getAttribute('data-modal');
-  if(key === 'contact'){
-    e.preventDefault();
-    toggleContactMenu();
-    return;
-  }
   e.preventDefault();
   openModal(key);
 });
@@ -1288,8 +1309,30 @@ window.addEventListener('hashchange', syncRoute);
 syncRoute();
 closeModal.addEventListener('click', hideModal);
 
+function bindHoverMenu(item){
+  if(!item) return;
+  let menuTimer = null;
+  const openMenu = ()=>{
+    if(menuTimer){ clearTimeout(menuTimer); menuTimer = null; }
+    item.classList.add('menu-open');
+  };
+  const closeMenu = ()=>{
+    if(menuTimer){ clearTimeout(menuTimer); }
+    menuTimer = setTimeout(()=>{
+      item.classList.remove('menu-open');
+      menuTimer = null;
+    }, 180);
+  };
+
+  item.addEventListener('mouseenter', openMenu);
+  item.addEventListener('mouseleave', closeMenu);
+}
+
+bindHoverMenu(contactItem);
+bindHoverMenu(aboutItem);
+
     backdrop.addEventListener('click', (e)=>{ if(e.target===backdrop) hideModal(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ hideModal(); hideContactMenu(); } });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ hideModal(); } });
     // background particles (blue-only, softer)
     const c = document.getElementById('spark');
     const ctx = c.getContext('2d');
