@@ -193,10 +193,28 @@
 footer{
   margin-top:40px;
 }
-.footerRow{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footerRow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
 .footerLeft{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:0;
   font-size:13px;
   color:rgba(238,242,255,.9);
+}
+.footerCopy{
+  margin:0;
+  padding:0;
+  font-size:14px;
+  font-weight:900;
+  line-height:1.05;
+  color:#ffffff;
+  text-shadow:0 0 12px rgba(214,239,255,.34);
+}
+.footerLeft .footerDetails{
+  margin:0 !important;
+  padding:0;
+  line-height:1.2;
 }
 .footerContact{text-align:right}
     .footerContactLabel{font-size:13px;color:rgba(238,242,255,.9)}
@@ -1046,14 +1064,16 @@ footer{
 
       <footer>
   <div class="footerRow">
-    <div class="footerLeft">© ООО "КУБИКОР", <span id="year">2025</span></div>
+    <div class="footerLeft">
+      <div class="footerCopy">© ООО "КУБИКОР", <span id="year">2025</span></div>
+      <div class="footerDetails">
+        ИНН: 7720941149 · ОГРН: 1247700766972 · Юр. адрес: 111397, г. Москва, пр-кт Зелёный, дом 20
+      </div>
+    </div>
     <div class="footerContact">
       <div class="footerContactLabel">Написать нам</div>
       <div class="footerContactEmail"><a href="mailto:kubikormsk@mail.ru">kubikormsk@mail.ru</a></div>
     </div>
-  </div>
-  <div class="footerDetails">
-    ИНН: 7720941149 · ОГРН: 1247700766972 · Юр. адрес: 111397, г. Москва, пр-кт Зелёный, дом 20
   </div>
 </footer>
     </div>
