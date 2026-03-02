@@ -1712,6 +1712,16 @@ document.addEventListener('click', (e) => {
   }
   requestAnimationFrame(tick);
 })();
+
+
+// Force fresh content when page is restored from bfcache/back-forward cache
+window.addEventListener('pageshow', (event) => {
+  const nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
+  const fromBFCache = event.persisted || (nav && nav.type === 'back_forward');
+  if(fromBFCache){
+    window.location.reload();
+  }
+});
 </script>
 
 </body>
