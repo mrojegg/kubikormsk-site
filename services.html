@@ -139,9 +139,9 @@
     footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted)}
     .footerRow{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
     .footerLeft{font-size:13px;color:rgba(238,242,255,.9)}
-    .footerRight{font-size:13px;color:rgba(238,242,255,.9)}
-    .footerRight a{color:#4fd2ff;text-decoration:none}
-    .footerRight a:hover{text-decoration:underline}
+    .footerMail{margin-top:12px;text-align:right;font-size:22px;color:rgba(238,242,255,.95)}
+    .footerMail a{color:#4fd2ff;text-decoration:none;font-size:22px;font-weight:800}
+    .footerMail a:hover{text-decoration:underline}
 
     @media (max-width: 920px){
       .grid{grid-template-columns:1fr}
@@ -158,6 +158,8 @@
         overflow-y:auto;
         -webkit-overflow-scrolling:touch;
       }
+      .footerMail{font-size:18px; text-align:left}
+      .footerMail a{font-size:18px}
     }
   </style>
 </head>
@@ -218,7 +220,15 @@
         <p>Практический результат: +30% экономии времени на операционных задачах за счёт автоматизации.</p>
       </section>
 
-      <footer><div class="footerRow"><div class="footerLeft">© ООО "КУБИКОР", 2025</div><div class="footerRight">Написать нам: <a href="mailto:kubikormsk@mail.ru">kubikormsk@mail.ru</a></div></div></footer>
+      <footer>
+  <div class="footerRow">
+    <div class="footerLeft">© ООО "КУБИКОР", <span id="year">2025</span></div>
+  </div>
+  <div class="footerDetails">
+    ИНН: 7720941149 · ОГРН: 1247700766972 · Юр. адрес: 111397, г. Москва, пр-кт Зелёный, дом 20
+  </div>
+  <div class="footerMail">Написать нам: <a href="mailto:kubikormsk@mail.ru">kubikormsk@mail.ru</a></div>
+</footer>
     </div>
   </main>
 
