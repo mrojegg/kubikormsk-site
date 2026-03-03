@@ -793,11 +793,13 @@ footer{
       right:0;
       min-width:560px;
       max-width:min(94vw, 700px);
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(12,15,22,.94);
+      border:1px solid rgba(132,184,221,.24);
+      background: linear-gradient(180deg, rgba(12,17,27,.965), rgba(8,12,19,.965));
       border-radius:14px;
       padding:10px 12px 12px;
-      box-shadow: 0 16px 40px rgba(0,0,0,.45);
+      box-shadow: 0 18px 46px rgba(0,0,0,.56);
+      backdrop-filter: blur(14px) saturate(1.08);
+      -webkit-backdrop-filter: blur(14px) saturate(1.08);
       opacity:0;
       visibility:hidden;
       transform:translateY(0);
@@ -844,12 +846,16 @@ footer{
       text-shadow: 0 0 10px rgba(69,199,255,.22);
       font-weight: 800;
     }
-    .aboutUnified{background: rgba(12,15,22,.78)}
+    .aboutUnified{background: rgba(11,16,25,.92)}
     .aboutUnified .contactBody{color:#f5fbff}
-    .aboutUnified .contactBody p{font-size:17px; line-height:1.55; color:#f5fbff; text-shadow:0 0 6px rgba(255,255,255,.08)}
-    .aboutUnified .contactBody ul{margin:0 0 14px 22px; padding:0; color:#ffffff; display:block}
-    .aboutUnified .contactBody li{margin:0 0 8px; line-height:1.5; font-size:17px; color:#f5fbff; text-shadow:0 0 6px rgba(255,255,255,.08); display:list-item}
-    .aboutUnified .contactBody b{color:#63b9e6; text-shadow:0 0 10px rgba(69,199,255,.18)}
+    .aboutUnified .contactBody p{font-size:17px; line-height:1.55; color:#f5fbff; text-shadow:0 0 4px rgba(255,255,255,.06)}
+    .aboutUnified .contactBody ul{margin:0 0 14px 22px; padding:0; color:#f5fbff; display:block}
+    .aboutUnified .contactBody li{margin:0 0 8px; line-height:1.5; font-size:17px; color:#f5fbff; text-shadow:0 0 4px rgba(255,255,255,.06); display:list-item}
+    .aboutUnified .contactBody b{color:#63b9e6; text-shadow:0 0 10px rgba(69,199,255,.20)}
+    .aboutUnified .contactBody a{
+      color:#63b9e6;
+      text-shadow:0 0 8px rgba(69,199,255,.16);
+    }
 
     .internalPage{
       padding:24px 0 20px;
@@ -915,7 +921,7 @@ footer{
         <nav aria-label="Меню">
           <ul>
             <li><a href="services.html">Услуги</a></li>
-            <li class="contactsItem"><span class="navLabel" id="contactToggle">О нас</span><div id="contactMenu" class="contactMenu aboutUnified" aria-hidden="false"><div class="contactBody"><p>Мы любим сложные задачи и не верим в шаблонные решения. Для нас технологии — не цель, а инструмент, который должен работать на людей и бизнес, а не наоборот.</p><p>Создаём цифровые продукты, которые понятны, быстры и масштабируемы. От идеи до релиза — думаем головой, пишем код аккуратно и всегда задаём вопрос: «А будет ли это реально удобно?»</p><p><b>Нам важно:</b></p><ul><li>Делать решения, которые приносят результат, а не просто выглядят красиво!</li><li>Говорить на понятном языке, без лишнего «айтишного тумана».</li><li>Развиваться самим и помогать расти тем, кто работает с нами.</li></ul><p>Это не гонка за модными словами и громкими обещаниями, просто Мы - делаем свою работу хорошо, честно и с интересом — потому что любим то, чем занимаемся.</p><p><b>Если коротко:</b> PRO - технологии с человеческим лицом.</p></div></div></li>
+            <li class="contactsItem"><span class="navLabel" id="contactToggle">О нас</span><div id="contactMenu" class="contactMenu aboutUnified" aria-hidden="false"><div class="contactBody"><p><b>Мы</b> любим сложные задачи и не верим в шаблонные решения. <b>Для нас</b> технологии — не цель, а инструмент, который должен работать на людей и бизнес, а не наоборот.</p><p>Создаём цифровые продукты, которые понятны, быстры и масштабируемы. От идеи до релиза — думаем головой, пишем код аккуратно и всегда задаём вопрос: «А будет ли это реально удобно?»</p><p><b>Нам важно:</b></p><ul><li>Делать решения, которые приносят результат, а не просто выглядят красиво!</li><li>Говорить на понятном языке, без лишнего «айтишного тумана».</li><li>Развиваться самим и помогать расти тем, кто работает с нами.</li></ul><p>Это не гонка за модными словами и громкими обещаниями, просто Мы - делаем свою работу хорошо, честно и с интересом — потому что любим то, чем занимаемся.</p><p><b>Если коротко:</b> PRO - технологии с человеческим лицом.</p></div></div></li>
           </ul>
         </nav>
 </div>

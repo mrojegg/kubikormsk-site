@@ -27,7 +27,7 @@
     .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
 
     header{
-      position:sticky; top:0; z-index:40;
+      position:sticky; top:0; z-index:200;
       backdrop-filter: blur(10px);
       background: rgba(7,8,11,.65);
       border-bottom:1px solid var(--line);
@@ -49,11 +49,13 @@
       right:0;
       min-width:560px;
       max-width:min(94vw, 700px);
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(12,15,22,.94);
+      border:1px solid rgba(132,184,221,.24);
+      background: linear-gradient(180deg, rgba(12,17,27,.965), rgba(8,12,19,.965));
       border-radius:14px;
       padding:10px 12px 12px;
-      box-shadow: 0 16px 40px rgba(0,0,0,.45);
+      box-shadow: 0 18px 46px rgba(0,0,0,.56);
+      backdrop-filter: blur(14px) saturate(1.08);
+      -webkit-backdrop-filter: blur(14px) saturate(1.08);
       opacity:0;
       visibility:hidden;
       transform:translateY(0);
@@ -102,12 +104,16 @@
       text-shadow: 0 0 10px rgba(69,199,255,.22);
       font-weight: 800;
     }
-    .aboutUnified{background: rgba(12,15,22,.78)}
+    .aboutUnified{background: rgba(11,16,25,.92)}
     .aboutUnified .contactBody{color:#f5fbff}
-    .aboutUnified .contactBody p{font-size:17px; line-height:1.55; color:#f5fbff; text-shadow:0 0 6px rgba(255,255,255,.08)}
-    .aboutUnified .contactBody ul{margin:0 0 14px 22px; padding:0; color:#ffffff; display:block}
-    .aboutUnified .contactBody li{margin:0 0 8px; line-height:1.5; font-size:17px; color:#f5fbff; text-shadow:0 0 6px rgba(255,255,255,.08); display:list-item}
-    .aboutUnified .contactBody b{color:#63b9e6; text-shadow:0 0 10px rgba(69,199,255,.18)}
+    .aboutUnified .contactBody p{font-size:17px; line-height:1.55; color:#f5fbff; text-shadow:0 0 4px rgba(255,255,255,.06)}
+    .aboutUnified .contactBody ul{margin:0 0 14px 22px; padding:0; color:#f5fbff; display:block}
+    .aboutUnified .contactBody li{margin:0 0 8px; line-height:1.5; font-size:17px; color:#f5fbff; text-shadow:0 0 4px rgba(255,255,255,.06); display:list-item}
+    .aboutUnified .contactBody b{color:#63b9e6; text-shadow:0 0 10px rgba(69,199,255,.20)}
+    .aboutUnified .contactBody a{
+      color:#63b9e6;
+      text-shadow:0 0 8px rgba(69,199,255,.16);
+    }
 
 
     main{padding:34px 0 46px}
@@ -120,23 +126,108 @@
       color:#63b9e6;
       text-shadow:0 0 14px rgba(58,160,255,.18);
     }
-    .lead{margin:0 0 22px;color:rgba(238,242,255,.93);font-size:19px;line-height:1.55;max-width:900px}
-    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-    .card{
-      border:1px solid rgba(255,255,255,.10);
-      background:linear-gradient(180deg, rgba(69,199,255,.08), rgba(69,199,255,0) 84%);
-      border-radius:16px;
-      padding:16px 14px;
+    
+    .lead{margin:0 0 26px;color:rgba(238,242,255,.93);font-size:19px;line-height:1.6;max-width:980px}
+
+    .serviceIntro{margin-bottom:26px}
+    .serviceIntro p{margin:0 0 12px;color:var(--muted);font-size:18px;line-height:1.65;max-width:980px}
+
+    .sectionTitle{margin:34px 0 12px;font-size:30px;line-height:1.15;color:#63b9e6;text-shadow:0 0 14px rgba(58,160,255,.2)}
+    .sectionText{margin:0 0 14px;color:var(--muted);font-size:18px;line-height:1.62;max-width:980px}
+
+    .plainBullets{margin:0 0 20px;padding-left:22px;color:var(--text);font-size:17px;line-height:1.6}
+    .plainBullets li{margin:0 0 8px}
+
+    .stages{
+      margin-top:18px;
+      padding-bottom:120px;
+      margin-bottom:-120px;
+      position:relative;
+      isolation:isolate;
     }
-    .card h2{margin:0 0 8px;font-size:22px;line-height:1.2}
-    .card p{margin:0 0 10px;color:var(--muted);line-height:1.5}
-    .card ul{margin:0;padding-left:20px;color:var(--muted);line-height:1.5}
+    .stageCard{
+      position:sticky;
+      top:92px;
+      z-index:1;
+      margin:0 0 16px;
+      opacity:var(--stage-opacity, 1);
+      border:0;
+      border-radius:0;
+      background:transparent;
+      padding:22px 20px;
+      box-shadow:none;
+      backdrop-filter:none;
+      -webkit-backdrop-filter:none;
+      overflow:visible;
+      isolation:isolate;
+      transition: opacity .45s ease, transform .45s ease;
+    }
+    .stageCard::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      border-radius:0;
+      background:transparent;
+      z-index:0;
+    }
+    .stageCard::after{
+      content:none;
+    }
+    .stageCard > *{
+      position:relative;
+      z-index:2;
+    }
+    /* Hard reset: text-only stack, no card background/lines */
+    .stages .stageCard,
+    .stages .stageCard::before,
+    .stages .stageCard::after{
+      background:none !important;
+      border:none !important;
+      box-shadow:none !important;
+      backdrop-filter:none !important;
+      -webkit-backdrop-filter:none !important;
+    }
+    .stages .stageCard::before,
+    .stages .stageCard::after{
+      content:none !important;
+    }
+    /* layered sticky stack */
+    .stages .stageCard:nth-child(1){z-index:1}
+    .stages .stageCard:nth-child(2){z-index:2}
+    .stages .stageCard:nth-child(3){z-index:3}
+    .stages .stageCard:nth-child(4){z-index:4}
+    .stages .stageCard:nth-child(5){z-index:5}
+    .stages .stageCard:nth-child(6){z-index:6}
+    .stages .stageCard:nth-child(7){z-index:7}
+    .stages .stageCard:nth-child(8){z-index:12;}
+    .stageTitle{margin:0 0 10px;font-size:27px;line-height:1.18;color:#8fe9ff;text-shadow:0 0 10px rgba(69,199,255,.18)}
+    .stageText{margin:0 0 12px;color:rgba(238,242,255,.95);font-size:18px;line-height:1.66}
+    .stageBullets{margin:0 0 14px;padding-left:22px;color:rgba(224,233,247,.92);font-size:17px;line-height:1.62}
+    .stageBullets li{margin:0 0 7px}
+    .stageResult{margin:0;color:#d8f3ff;font-size:17px;line-height:1.62}
+    .stages .stageCard + .stageCard{margin-top:-20px;}
+    .stages .stageCard:nth-child(8){margin-top:-28px;}
+    .stages .stageCard.is-past{
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(-4px);
+    }
 
-    .section{margin-top:20px}
-    .section h3{margin:0 0 8px;font-size:22px;color:#63b9e6}
-    .section p{margin:0 0 10px;color:var(--muted);line-height:1.6}
 
-    footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted)}
+    .valueList{margin:0 0 16px;padding-left:22px;color:var(--text);font-size:18px;line-height:1.6}
+    .valueList li{margin:0 0 8px}
+
+    .partnerBlock{
+      margin-top:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(69,199,255,.10), rgba(69,199,255,0) 92%);
+      border-radius:16px;
+      padding:16px 16px;
+    }
+    .partnerBlock p{margin:0;color:rgba(238,242,255,.93);font-size:18px;line-height:1.62}
+
+footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted)}
     .footerRow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
     .footerDetails{margin-top:0;font-size:12px;color:rgba(170,179,197,.9);line-height:1.45}
     .footerLeft{display:flex;flex-direction:column;align-items:flex-start;gap:0;font-size:13px;color:rgba(238,242,255,.9)}
@@ -163,6 +254,12 @@
         overflow-y:auto;
         -webkit-overflow-scrolling:touch;
       }
+      .stages{padding-bottom:0;margin-bottom:0;position:static}
+      .stageCard{position:relative; top:auto; margin:0 0 14px; padding:16px 14px;}
+      .stages .stageCard + .stageCard{margin-top:0}
+      .stages .stageCard:nth-child(8){margin-top:0}
+      .stageTitle{font-size:20px}
+      .stageText,.stageBullets,.stageResult,.sectionText,.partnerBlock p,.valueList{font-size:16px}
       .footerContact{text-align:left}
       .footerContactEmail a{font-size:14px}
     }
@@ -175,7 +272,7 @@
         <a class="brand" href="index.html">ООО "КУБИКОР"</a>
         <nav aria-label="Меню">
           <ul>
-            <li class="contactsItem"><span class="navLabel" id="contactToggle">О нас</span><div id="contactMenu" class="contactMenu aboutUnified" aria-hidden="false"><div class="contactBody"><p>Мы любим сложные задачи и не верим в шаблонные решения. Для нас технологии — не цель, а инструмент, который должен работать на людей и бизнес, а не наоборот.</p><p>Создаём цифровые продукты, которые понятны, быстры и масштабируемы. От идеи до релиза — думаем головой, пишем код аккуратно и всегда задаём вопрос: «А будет ли это реально удобно?»</p><p><b>Нам важно:</b></p><ul><li>Делать решения, которые приносят результат, а не просто выглядят красиво!</li><li>Говорить на понятном языке, без лишнего «айтишного тумана».</li><li>Развиваться самим и помогать расти тем, кто работает с нами.</li></ul><p>Это не гонка за модными словами и громкими обещаниями, просто Мы - делаем свою работу хорошо, честно и с интересом — потому что любим то, чем занимаемся.</p><p><b>Если коротко:</b> PRO - технологии с человеческим лицом.</p></div></div></li>
+            <li class="contactsItem"><span class="navLabel" id="contactToggle">О нас</span><div id="contactMenu" class="contactMenu aboutUnified" aria-hidden="false"><div class="contactBody"><p><b>Мы</b> любим сложные задачи и не верим в шаблонные решения. <b>Для нас</b> технологии — не цель, а инструмент, который должен работать на людей и бизнес, а не наоборот.</p><p>Создаём цифровые продукты, которые понятны, быстры и масштабируемы. От идеи до релиза — думаем головой, пишем код аккуратно и всегда задаём вопрос: «А будет ли это реально удобно?»</p><p><b>Нам важно:</b></p><ul><li>Делать решения, которые приносят результат, а не просто выглядят красиво!</li><li>Говорить на понятном языке, без лишнего «айтишного тумана».</li><li>Развиваться самим и помогать расти тем, кто работает с нами.</li></ul><p>Это не гонка за модными словами и громкими обещаниями, просто Мы - делаем свою работу хорошо, честно и с интересом — потому что любим то, чем занимаемся.</p><p><b>Если коротко:</b> PRO - технологии с человеческим лицом.</p></div></div></li>
           </ul>
         </nav>
       </div>
@@ -184,46 +281,137 @@
 
   <main>
     <div class="wrap">
-      <h1>Услуги Кубикор</h1>
-      <p class="lead">Мы делаем цифровые решения под задачи бизнеса: проектируем, разрабатываем, автоматизируем процессы и сопровождаем продукт после запуска.</p>
+      <h1>Разработка программного обеспечения</h1>
+      <p class="lead">Создаём масштабируемые, отказоустойчивые и безопасные IT-решения для бизнеса. От стратегической проработки до промышленной эксплуатации и развития.</p>
 
-      <div class="grid">
-        <article class="card">
-          <h2>Проектирование</h2>
-          <p>Собираем требования, разбираем бизнес‑процессы и проектируем UX/UI и архитектуру.</p>
-          <ul>
-            <li>Анализ целей и ограничений</li>
-            <li>Прототипы и пользовательские сценарии</li>
-            <li>Архитектура с запасом на рост</li>
+      <section class="serviceIntro" aria-label="Введение">
+        <p>Мы берём ответственность за весь жизненный цикл продукта — от идеи до стабильной работы в продакшене.</p>
+      </section>
+
+      <h2 class="sectionTitle">Комплексный подход к разработке</h2>
+      <p class="sectionText">Разработка ПО — это системная работа, а не набор отдельных задач. Мы выстраиваем процесс так, чтобы каждый этап усиливал бизнес-результат.</p>
+      <p class="sectionText">Ключевые принципы:</p>
+      <ul class="plainBullets">
+        <li>Архитектура с расчётом на масштабирование</li>
+        <li>Управляемые сроки и прозрачные этапы</li>
+        <li>Контроль качества на каждом спринте</li>
+        <li>Предсказуемый результат</li>
+      </ul>
+
+      <h2 class="sectionTitle">Этапы реализации проекта</h2>
+
+      <section class="stages" aria-label="Этапы реализации">
+        <article class="stageCard">
+          <h3 class="stageTitle">1. Бизнес-анализ и стратегия</h3>
+          <p class="stageText">На старте мы синхронизируем бизнес-цели, ограничения и критерии успеха, чтобы команда, заказчик и стейкхолдеры работали в одной системе координат. Это снижает риск дорогостоящих переделок и формирует управляемый план запуска.</p>
+          <ul class="stageBullets">
+            <li>Декомпозиция бизнес-процессов и выявление узких мест</li>
+            <li>Формализация функциональных и нефункциональных требований</li>
+            <li>Матрица рисков с приоритизацией критичных сценариев</li>
+            <li>Roadmap развития продукта по этапам внедрения</li>
           </ul>
+          <p class="stageResult">Результат: структурированная модель проекта, прозрачные ожидания по срокам и реалистичная траектория релиза.</p>
         </article>
 
-        <article class="card">
-          <h2>Разработка ПО</h2>
-          <p>Запускаем MVP и развиваем продукт итерациями с прозрачными сроками.</p>
-          <ul>
-            <li>MVP за 4-8 недель</li>
-            <li>Agile-подход и поэтапные релизы</li>
-            <li>CI/CD и контроль качества</li>
+        <article class="stageCard">
+          <h3 class="stageTitle">2. Архитектурное проектирование</h3>
+          <p class="stageText">Проектируем технологическую основу с фокусом на надёжность, масштабирование и предсказуемую эксплуатацию. Архитектура должна выдерживать рост нагрузки и оставаться удобной для развития команды в долгом горизонте.</p>
+          <ul class="stageBullets">
+            <li>Выбор технологического стека под бизнес-контекст</li>
+            <li>Проектирование backend-архитектуры и границ сервисов</li>
+            <li>Модель данных, интеграционные контуры и API-контракты</li>
+            <li>Заложенные механизмы безопасности и отказоустойчивости</li>
           </ul>
+          <p class="stageResult">Результат: архитектура, готовая к промышленной нагрузке, масштабированию и долгосрочной поддержке.</p>
         </article>
 
-        <article class="card">
-          <h2>Поддержка и развитие</h2>
-          <p>После запуска ведём продукт дальше: поддержка, доработки и масштабирование.</p>
-          <ul>
-            <li>Приоритизация улучшений</li>
-            <li>Стабильность и мониторинг</li>
-            <li>Рост функциональности под бизнес</li>
+        <article class="stageCard">
+          <h3 class="stageTitle">3. UX/UI и цифровая логика</h3>
+          <p class="stageText">Интерфейс рассматривается как часть бизнес-системы, а не как декоративный слой. Мы проектируем пользовательские сценарии так, чтобы сокращать путь к целевому действию и повышать эффективность операций.</p>
+          <ul class="stageBullets">
+            <li>Сценарное проектирование пользовательских потоков</li>
+            <li>Прототипирование ключевых экранов до реализации</li>
+            <li>Оптимизация точек трения в интерфейсе</li>
+            <li>Повышение конверсии и управляемости пользовательского пути</li>
           </ul>
+          <p class="stageResult">Результат: интерфейс, который поддерживает бизнес-метрики и снижает операционную нагрузку на команду.</p>
         </article>
+
+        <article class="stageCard">
+          <h3 class="stageTitle">4. Разработка и внедрение</h3>
+          <p class="stageText">Разработка ведётся итеративно по Agile-подходу с постоянной валидацией результата. Мы обеспечиваем контролируемую поставку функциональности и прозрачность прогресса на каждом цикле.</p>
+          <ul class="stageBullets">
+            <li>Запуск MVP для сокращения time-to-market</li>
+            <li>Спринтовая модель с управлением приоритетами</li>
+            <li>Регулярные демо и фиксация решений</li>
+            <li>CI/CD-конвейер и автоматизированные релизы</li>
+          </ul>
+          <p class="stageResult">Результат: поддерживаемый production-ready код, готовый к развитию, интеграциям и росту продукта.</p>
+        </article>
+
+        <article class="stageCard">
+          <h3 class="stageTitle">5. Интеграции и корпоративные решения</h3>
+          <p class="stageText">Обеспечиваем надёжный обмен данными между внутренними и внешними системами. Интеграции проектируются с учётом устойчивости, безопасности и наблюдаемости на уровне всей экосистемы.</p>
+          <ul class="stageBullets">
+            <li>API-first подход и сервисная архитектура</li>
+            <li>Интеграции с CRM/ERP и внутренними контурами</li>
+            <li>Платёжные, финансовые и документооборотные модули</li>
+            <li>Контуры аналитики, отчётности и аудита данных</li>
+          </ul>
+          <p class="stageResult">Результат: стабильная интеграционная среда, в которой критичные бизнес-процессы работают без сбоев.</p>
+        </article>
+
+        <article class="stageCard">
+          <h3 class="stageTitle">6. Контроль качества</h3>
+          <p class="stageText">Качество встраивается в процесс разработки с первого спринта. Это позволяет обнаруживать дефекты на ранних этапах и выпускать предсказуемые релизы без накопления технического долга.</p>
+          <ul class="stageBullets">
+            <li>Unit, integration и end-to-end проверки критичных сценариев</li>
+            <li>Нагрузочное тестирование и проверка узких мест</li>
+            <li>Security-проверки и контроль уязвимостей</li>
+            <li>Code review и инженерные quality-gates</li>
+          </ul>
+          <p class="stageResult">Результат: устойчивый релизный процесс и стабильная эксплуатация без неожиданных регрессий.</p>
+        </article>
+
+        <article class="stageCard">
+          <h3 class="stageTitle">7. Запуск и промышленная эксплуатация</h3>
+          <p class="stageText">Выводим систему в продакшен по управляемому сценарию с контролем рисков, наблюдаемостью и запасом по производительности. Запуск организован так, чтобы минимизировать влияние на бизнес-операции.</p>
+          <ul class="stageBullets">
+            <li>Подготовка инфраструктурных контуров и сред</li>
+            <li>Контейнеризация, деплой-пайплайны и откаты</li>
+            <li>Мониторинг, логирование и алертинг</li>
+            <li>Контроль SLA/SLO и производительности под нагрузкой</li>
+          </ul>
+          <p class="stageResult">Результат: предсказуемый запуск в промышленную эксплуатацию без критичных простоев.</p>
+        </article>
+
+        <article class="stageCard">
+          <h3 class="stageTitle">8. Поддержка и развитие</h3>
+          <p class="stageText">После релиза мы не останавливаемся: развиваем функциональность, оптимизируем производительность и сопровождаем рост продукта вместе с бизнесом. Поддержка строится как непрерывный engineering-процесс.</p>
+          <ul class="stageBullets">
+            <li>Плановые обновления и техническое обслуживание</li>
+            <li>Расширение функциональности под новые задачи</li>
+            <li>Оптимизация производительности и стоимости владения</li>
+            <li>Масштабирование под рост нагрузки и команды</li>
+          </ul>
+          <p class="stageResult">Результат: продукт остаётся стабильным, управляемым и готовым к дальнейшей трансформации бизнеса.</p>
+        </article>
+      </section>
+
+      <h2 class="sectionTitle">Что получает бизнес</h2>
+      <ul class="valueList">
+        <li>Сокращение time-to-market</li>
+        <li>Управляемый бюджет и сроки</li>
+        <li>Архитектуру, готовую к масштабированию</li>
+        <li>Снижение технических рисков</li>
+        <li>Продукт, готовый к промышленной эксплуатации</li>
+      </ul>
+
+      <h2 class="sectionTitle">Подход к партнёрству</h2>
+      <div class="partnerBlock">
+        <p>Мы работаем как технологический партнёр, а не как подрядчик на короткий срок. Наша задача — выстроить систему, которая будет работать стабильно сегодня и поддерживать рост завтра.</p>
       </div>
 
-      <section class="section">
-        <h3>Автоматизация процессов</h3>
-        <p>Убираем ручные операции, объединяем данные в единую цепочку и сокращаем время обработки заявок.</p>
-        <p>Практический результат: +30% экономии времени на операционных задачах за счёт автоматизации.</p>
-      </section>
 
       <footer>
   <div class="footerRow">
@@ -306,6 +494,73 @@
       bindHoverMenu(contactItem);
     }
   
+    // Sticky stages: when next card reaches sticky line, hide all previous cards.
+    (function initStageStackFade(){
+      const cards = Array.from(document.querySelectorAll('.stages .stageCard'));
+      if(!cards.length) return;
+
+      let ticking = false;
+      const getStickyTop = () => {
+        const raw = parseFloat(getComputedStyle(cards[0]).top || '92');
+        return Number.isFinite(raw) ? raw : 92;
+      };
+
+      const clearState = () => {
+        cards.forEach((card) => {
+          card.classList.remove('is-past');
+          card.style.setProperty('--stage-opacity', '1');
+        });
+      };
+
+      const update = () => {
+        ticking = false;
+        if(getComputedStyle(cards[0]).position !== 'sticky'){
+          clearState();
+          return;
+        }
+
+        const stickyTop = getStickyTop();
+        const fadeStart = Math.max(stickyTop + 460, window.innerHeight * 0.82);
+        const fadeEnd = stickyTop + 24;
+
+        cards.forEach((card, index) => {
+          const next = cards[index + 1];
+          if(!next){
+            card.classList.remove('is-past');
+            card.style.setProperty('--stage-opacity', '1');
+            return;
+          }
+
+          const nextTop = next.getBoundingClientRect().top;
+          const progressRaw = (fadeStart - nextTop) / (fadeStart - fadeEnd);
+          const progress = Math.max(0, Math.min(1, progressRaw));
+          const fadeFrom = 0.74; // keep previous card fully readable for most of overlap
+          const fadeTo = 0.98;   // then fade only near the end
+
+          let opacity = 1;
+          if(progress > fadeFrom){
+            const tRaw = (progress - fadeFrom) / (fadeTo - fadeFrom);
+            const t = Math.max(0, Math.min(1, tRaw));
+            const eased = t * t * (3 - 2 * t); // smoothstep
+            opacity = 1 - eased;
+          }
+
+          card.style.setProperty('--stage-opacity', opacity.toFixed(3));
+          card.classList.toggle('is-past', progress >= 0.995);
+        });
+      };
+
+      const onScroll = () => {
+        if(ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+      };
+
+      window.addEventListener('scroll', onScroll, { passive:true });
+      window.addEventListener('resize', onScroll);
+      update();
+    })();
+
 
 // Force fresh content when page is restored from bfcache/back-forward cache
 window.addEventListener('pageshow', (event) => {
