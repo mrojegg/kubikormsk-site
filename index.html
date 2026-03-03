@@ -72,9 +72,9 @@
 .reviewsSlider{
   position:relative;
   border-radius: 18px;
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(12,15,22,.70);
-  box-shadow: 0 16px 40px rgba(0,0,0,.25);
+  border:1px solid rgba(0,0,0,.12);
+  background: rgba(0,0,0,.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
   padding:14px 16px; /* smaller */
   overflow:visible;
 }
@@ -108,8 +108,8 @@
   width:9px;
   height:9px;
   border-radius:999px;
-  border:1px solid rgba(255,255,255,.18);
-  background: rgba(255,255,255,.06);
+  border:1px solid rgba(0,0,0,.6);
+  background:#ffffff;
   padding:0;
   appearance:none;
   cursor:pointer;
@@ -117,8 +117,8 @@
 }
 
 .reviewDot.on{
-  border-color: rgba(69,199,255,.55);
-  background: rgba(69,199,255,.22);
+  border-color: #000000;
+  background:#ffffff;
 }
 .reviewDot:focus-visible{
   outline:2px solid rgba(69,199,255,.45);
@@ -219,7 +219,7 @@ footer{
 .footerContact{text-align:right}
     .footerContactLabel{margin:0;padding:0;font-size:14px;font-weight:700;line-height:1.1;color:rgba(238,242,255,.92);text-shadow:0 0 6px rgba(214,239,255,.14)}
     .footerContactEmail{margin-top:1px; line-height:1.1}
-    .footerContactEmail a{color:#4fd2ff;text-decoration:none;font-size:14px;font-weight:800}
+    .footerContactEmail a{color:#3fdfff;text-decoration:none;font-size:14px;font-weight:800}
     .footerContactEmail a:hover{text-decoration:underline}
 
 
@@ -239,19 +239,20 @@ footer{
   font-size:72px;
   letter-spacing:4px;
   background: linear-gradient(120deg,
-    #dff8ff 0%,
-    #33d6ff 20%,
-    #00bfff 40%,
-    #3aa0ff 60%,
-    #7ce3ff 80%,
-    #e9fdff 100%);
+    #e9fbff 0%,
+    #9aefff 14%,
+    #3fdfff 34%,
+    #11c9f6 54%,
+    #58e6ff 78%,
+    #f6ffff 100%);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   text-shadow:
-    0 0 18px rgba(0,191,255,.55),
-    0 0 36px rgba(51,214,255,.30);
+    0 0 14px rgba(88,230,255,.86),
+    0 0 30px rgba(17,201,246,.58),
+    0 0 54px rgba(154,239,255,.34);
   animation: qubycoreGradient 6s ease-in-out infinite;
 
   line-height: 1.05;
@@ -274,19 +275,20 @@ footer{
   will-change: transform;
   transform: translate3d(0,0,0);
   background: linear-gradient(120deg,
-    #dff8ff 0%,
-    #33d6ff 20%,
-    #00bfff 40%,
-    #3aa0ff 60%,
-    #7ce3ff 80%,
-    #e9fdff 100%);
+    #e9fbff 0%,
+    #9aefff 14%,
+    #3fdfff 34%,
+    #11c9f6 54%,
+    #58e6ff 78%,
+    #f6ffff 100%);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   text-shadow:
-    0 0 18px rgba(0,191,255,.55),
-    0 0 36px rgba(51,214,255,.30);
+    0 0 14px rgba(88,230,255,.86),
+    0 0 30px rgba(17,201,246,.58),
+    0 0 54px rgba(154,239,255,.34);
   animation: qubycoreGradient 6s ease-in-out infinite;
 }
 
@@ -294,13 +296,13 @@ footer{
 
   <style>
     :root{
-      --bg:#07080b;
-      --text:#eef2ff;
-      --muted:#aab3c5;
-      --line:rgba(255,255,255,.10);
+      --bg:#000000;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.78);
+      --line:rgba(255,255,255,.20);
       /* Blue-only energy palette */
-      --blue:#45c7ff;
-      --blue2:#8fe9ff;
+      --blue:#11c9f6;
+      --blue2:#9aefff;
       --blueGlow: rgba(69,199,255,.55);
       --shadow: 0 20px 60px rgba(0,0,0,.55);
       --radius:18px;
@@ -310,15 +312,15 @@ footer{
     html,body{height:100%}
     body{
       margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
-      background:
-        radial-gradient(1200px 820px at 72% 12%, rgba(69,199,255,.10), transparent 72%),
-        radial-gradient(1050px 760px at 22% 34%, rgba(143,233,255,.08), transparent 74%),
-        radial-gradient(900px 620px at 50% 78%, rgba(69,199,255,.05), transparent 76%),
-        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background: var(--bg);
       color:var(--text);
       overflow-x:hidden;
     }
+    h1,h2,h3,.sectionTitle,.brand,nav a,.navLabel,.contactHead,.footerCopy,.footerContactLabel,#brandWordSimple,.review-company{
+      font-family:Space Grotesk, Inter, system-ui, sans-serif;
+    }
+    input,textarea,button,select{font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif}
     a{color:inherit;text-decoration:none}
 
     .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
@@ -327,7 +329,7 @@ footer{
     .bg-grid:before{
       content:"";
       position:fixed; inset:0;
-      background: radial-gradient(1200px 900px at 55% 22%, rgba(69,199,255,.05), transparent 70%);
+      background: radial-gradient(1200px 900px at 55% 22%, rgba(255,255,255,.04), transparent 70%);
       pointer-events:none;
       opacity:.35;
       z-index:-3;
@@ -340,9 +342,39 @@ footer{
       width:100vw;
       height:100vh;
       z-index:-2;
-      opacity:.92;
+      opacity:.6;
       pointer-events:none;
     }
+    .pcb-layer{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-2;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(0,0,0,.09) 0 1.4px, transparent 1.5px),
+        radial-gradient(circle at 74% 28%, rgba(0,0,0,.08) 0 1.6px, transparent 1.7px),
+        radial-gradient(circle at 36% 72%, rgba(0,0,0,.08) 0 1.3px, transparent 1.4px),
+        radial-gradient(circle at 88% 78%, rgba(0,0,0,.09) 0 1.5px, transparent 1.6px),
+        repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 1px, transparent 1px 64px),
+        repeating-linear-gradient(0deg, rgba(0,0,0,.035) 0 1px, transparent 1px 56px);
+      opacity:.36;
+      animation: pcbGridFlow 9s ease-in-out infinite;
+    }
+    @keyframes pcbGridFlow{
+      0%{
+        opacity:.30;
+        background-position:0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+      }
+      50%{
+        opacity:.48;
+        background-position:0 0, 0 0, 0 0, 0 0, 18px 0, 0 14px;
+      }
+      100%{
+        opacity:.30;
+        background-position:0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+      }
+    }
+    body.static-pcb #spark{display:none}
 
     header{
       position:sticky; top:0; z-index:50;
@@ -448,8 +480,8 @@ footer{
       letter-spacing:-.6px;
     }
     .hero h1{
-      color:#63b9e6;
-      text-shadow: 0 0 14px rgba(58,160,255,.18);
+      color:#ffffff;
+      text-shadow: 0 0 12px rgba(255,255,255,.12);
     }
     .sub{color:rgba(238,242,255,.92);font-size:18px;line-height:1.5;margin:0 0 10px}
     .hint{color:var(--muted);font-size:14px;margin:0;line-height:1.45}
@@ -459,7 +491,7 @@ footer{
       margin-top:18px;
       height:2px;
       border-radius:999px;
-      background: linear-gradient(90deg, transparent, rgba(69,199,255,.55), rgba(143,233,255,.65), rgba(69,199,255,.55), transparent);
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,.28), rgba(0,0,0,.62), rgba(0,0,0,.28), transparent);
       background-size: 220% 100%;
       animation: ribbon 4.2s linear infinite;
       opacity:.85;
@@ -489,12 +521,34 @@ footer{
     .sectionTitle{
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
       font-size:22px;margin:0 0 14px
+      ;color:#ffffff;
+      text-shadow: 0 0 10px rgba(255,255,255,.12);
     }
     .cards{display:grid;grid-template-columns:repeat(2, 1fr); gap:14px}
     .services3{grid-template-columns:repeat(3, minmax(0, 1fr));}
-    .services3 .card{background:transparent; padding:0; border-radius:0; overflow:visible}
+    .services3 .card{
+      background:rgba(0,0,0,.02);
+      border:1px solid rgba(0,0,0,.12);
+      border-radius:14px;
+      padding:8px 12px;
+      overflow:hidden;
+      min-height:86px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .services3 .servicePrimaryBody{
+      width:100%;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+    .services3 .servicePrimaryBody .cardList{
+      margin:0 auto;
+      text-align:left;
+    }
     .card{
-      background: linear-gradient(180deg, rgba(69,199,255,.07), rgba(69,199,255,0) 84%);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0) 84%);
       border:none;
       border-radius: 14px;
       padding:14px 12px;
@@ -511,7 +565,7 @@ footer{
     .card p{margin:0; color:var(--muted); line-height:1.35; position:relative}
 
     .cardList{margin:0; padding:0; list-style:none; display:grid; gap:6px}
-    .cardList li{color:var(--muted); line-height:1.35}
+    .cardList li{color:#000000; line-height:1.3; font-weight:600}
     .serviceLogoWrap{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; margin:0; width:min(100%, 320px)}
     .serviceLogoImg{width:132px; height:132px; object-fit:contain; object-position:center; display:block; filter: drop-shadow(0 8px 20px rgba(0,0,0,.35)); border-radius:12px;}
     .serviceLogoImg.noAlpha{mix-blend-mode:multiply; filter: brightness(.78) contrast(1.35) saturate(1.2) drop-shadow(0 8px 20px rgba(0,0,0,.35));}
@@ -521,7 +575,6 @@ footer{
     .servicesCtaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
     .servicesCtaRow .pill{padding:10px 14px}
 
-    .grid2{display:grid;grid-template-columns:1fr 1fr; gap:14px}
     .panel{
       background: transparent;
       border:none;
@@ -532,51 +585,96 @@ footer{
       overflow:visible;
     }
     .panel:before{display:none}
-    .steps{display:grid; gap:8px; position:relative}
-    .step{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:8px 2px;
-      border:none;
-      background:transparent;
-    }
-    .whyPanel .steps{
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:6px 16px;
-    }
-    .whyPanel .step{padding:4px 0}
-    .whyPanel{position:relative; border-radius:22px; isolation:isolate}
-    .whyPanel:before{
-      content:"";
-      position:absolute;
-      inset:-36px -28px -30px -28px;
-      background:
-        radial-gradient(70% 55% at 52% 8%, rgba(69,199,255,.13), rgba(69,199,255,0) 74%),
-        radial-gradient(58% 42% at 20% 82%, rgba(69,199,255,.06), rgba(69,199,255,0) 78%),
-        radial-gradient(58% 42% at 80% 84%, rgba(69,199,255,.06), rgba(69,199,255,0) 78%);
-      filter: blur(22px);
-      opacity:.72;
-      pointer-events:none;
-      z-index:0;
-    }
-    .whyPanel > *{position:relative; z-index:1}
-    .whyPanel .sectionTitle{
-      color:#63b9e6;
-      text-shadow: 0 0 10px rgba(58,160,255,.16);
-    }
     .reviewsTitle{
-      color:#63b9e6;
-      text-shadow: 0 0 10px rgba(58,160,255,.16);
+      color:#ffffff;
+      text-shadow: 0 0 10px rgba(255,255,255,.12);
     }
-    .num{
-      min-width:12px;
-      display:flex; align-items:center; justify-content:center;
-      font-weight:700;
-      color:rgba(238,242,255,.9);
-      background:transparent;
-      border:none;
-      flex:0 0 auto;
-      font-family: Space Grotesk, Inter, system-ui, sans-serif;
+    .contentBlock{margin-top:26px}
+    .contentLead{margin:0 0 14px;color:rgba(238,242,255,.92);line-height:1.6}
+    .fitGrid,.caseGrid,.processGrid,.techGrid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
     }
+    .techGrid{
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+    }
+    .fitCard,.caseCard,.processCard,.techCard{
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0) 92%);
+      border-radius:16px;
+      padding:14px;
+    }
+    .fitCard h3,.caseCard h3,.processCard h3,.techCard h3{
+      margin:0 0 8px;
+      font-size:20px;
+      line-height:1.2;
+      color:#ffffff;
+      text-shadow:0 0 10px rgba(255,255,255,.12);
+    }
+    .techCard{
+      padding:10px 12px;
+      border-radius:14px;
+    }
+    .techCard h3{
+      margin:0 0 6px;
+      font-size:17px;
+    }
+    .fitCard p,.caseCard p,.processCard p,.techCard p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.58;
+    }
+    .caseMeta{margin-top:8px; display:grid; gap:6px}
+    .caseMeta b{color:#d9f7ff}
+    .processNum{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:24px;
+      height:24px;
+      margin-right:8px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,.32);
+      color:#ffffff;
+      font-family:Space Grotesk, Inter, system-ui, sans-serif;
+      font-size:13px;
+    }
+    .techList{
+      margin:4px 0 0;
+      padding:0;
+      list-style:none;
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px 0;
+      color:var(--muted);
+      line-height:1.35;
+      font-size:14px;
+    }
+    .techList li{
+      display:flex;
+      align-items:center;
+      white-space:nowrap;
+    }
+    .techList li + li::before{
+      content:"•";
+      margin:0 8px;
+      color:rgba(255,255,255,.58);
+    }
+    .faqList{
+      margin:0;
+      display:grid;
+      gap:6px;
+    }
+    .faqItem{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      background:rgba(255,255,255,.02);
+      padding:7px 12px;
+    }
+    .faqItem p{margin:0; line-height:1.45}
+    .faqItem b{color:#0b0b0b}
     .metric{
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
       font-weight:800; font-size:28px;
@@ -832,14 +930,14 @@ footer{
     .contactBody p:last-child{margin-bottom:0}
     .contactBody a{color:var(--text); text-decoration:underline; font-weight:700}
     #contactMenu .contactHead{
-      background: linear-gradient(135deg, #8fe9ff 0%, #45c7ff 52%, #2ea7e8 100%);
+      background: linear-gradient(135deg, #9aefff 0%, #11c9f6 52%, #0fb6ec 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       text-shadow: 0 0 12px rgba(69,199,255,.30);
     }
     #contactMenu .contactBody a{
-      background: linear-gradient(135deg, #8fe9ff 0%, #63b9e6 55%, #45c7ff 100%);
+      background: linear-gradient(135deg, #9aefff 0%, #3fdfff 55%, #11c9f6 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -851,10 +949,83 @@ footer{
     .aboutUnified .contactBody p{font-size:17px; line-height:1.55; color:#f5fbff; text-shadow:0 0 4px rgba(255,255,255,.06)}
     .aboutUnified .contactBody ul{margin:0 0 14px 22px; padding:0; color:#f5fbff; display:block}
     .aboutUnified .contactBody li{margin:0 0 8px; line-height:1.5; font-size:17px; color:#f5fbff; text-shadow:0 0 4px rgba(255,255,255,.06); display:list-item}
-    .aboutUnified .contactBody b{color:#63b9e6; text-shadow:0 0 10px rgba(69,199,255,.20)}
+    .aboutUnified .contactBody b{color:#3fdfff; text-shadow:0 0 10px rgba(69,199,255,.20)}
     .aboutUnified .contactBody a{
-      color:#63b9e6;
+      color:#3fdfff;
       text-shadow:0 0 8px rgba(69,199,255,.16);
+    }
+
+    /* Light mono theme (white background, black text) */
+    :root{
+      --bg:#ffffff;
+      --text:#0b0b0b;
+      --muted:rgba(0,0,0,.72);
+      --line:rgba(0,0,0,.14);
+    }
+    body{background:#ffffff;color:#0b0b0b}
+    .bg-grid:before{background:radial-gradient(1200px 900px at 55% 22%, rgba(0,0,0,.035), transparent 70%)}
+    header{
+      background:rgba(255,255,255,.88);
+      border-bottom:1px solid rgba(0,0,0,.14);
+    }
+    .brand, nav a, .navLabel{color:#0b0b0b; text-shadow:none}
+    nav a:hover{background:rgba(0,0,0,.05)}
+    .hero h1, .sectionTitle, .reviewsTitle,
+    .fitCard h3, .caseCard h3, .processCard h3, .techCard h3,
+    .footerCopy, .footerContactLabel{color:#0b0b0b; text-shadow:none}
+    .sub, .hint, .contentLead, .cardList li,
+    .fitCard p, .caseCard p, .processCard p, .techCard p,
+    .faqItem p, .reviewSlide p, .footerDetails{color:rgba(0,0,0,.78)}
+    .card{background:linear-gradient(180deg, rgba(0,0,0,.035), rgba(0,0,0,0) 84%)}
+    .fitCard,.caseCard,.processCard,.techCard{
+      border:1px solid rgba(0,0,0,.12);
+      background:linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,0) 92%);
+    }
+    .processNum{border-color:rgba(0,0,0,.28); color:#0b0b0b}
+    .techList li + li::before{color:rgba(0,0,0,.45)}
+    .faqItem{
+      border-color:rgba(0,0,0,.12);
+      background:rgba(0,0,0,.02);
+    }
+    .footerContactEmail a{color:#0b0b0b}
+    .caseGrid .caseCard h3,
+    .caseGrid .caseCard p,
+    .caseGrid .caseCard b{
+      color:#0b0b0b !important;
+      text-shadow:none !important;
+    }
+    #brandWordSimple,
+    #brandWordSimple span{
+      background:none !important;
+      color:#0b0b0b !important;
+      -webkit-text-fill-color:#0b0b0b !important;
+      text-shadow:none !important;
+    }
+    #brandWordSimple span:nth-child(-n+4){
+      -webkit-text-stroke:0.55px #000000;
+      font-weight:900 !important;
+    }
+    #contactMenu .contactHead,
+    #contactMenu .contactBody a,
+    .aboutUnified .contactBody b,
+    .aboutUnified .contactBody a{
+      background:none !important;
+      color:#000000 !important;
+      -webkit-text-fill-color:#000000 !important;
+      text-shadow:none !important;
+    }
+    .aboutUnified .contactBody,
+    .aboutUnified .contactBody p,
+    .aboutUnified .contactBody li{
+      color:#0b0b0b !important;
+    }
+    .contactMenu,
+    .aboutUnified{
+      background:rgba(245,245,245,.9) !important;
+      border:1px solid rgba(0,0,0,.12) !important;
+      box-shadow:0 8px 20px rgba(0,0,0,.08) !important;
+      backdrop-filter:none !important;
+      -webkit-backdrop-filter:none !important;
     }
 
     .internalPage{
@@ -875,10 +1046,10 @@ footer{
       .heroGrid{grid-template-columns:1fr; gap:18px}
       .cards{grid-template-columns:1fr}
       .services3{grid-template-columns:1fr}
-      .grid2{grid-template-columns:1fr}
+      .fitGrid,.caseGrid,.processGrid,.techGrid{grid-template-columns:1fr}
+      .techGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .servicesCtaRow{justify-content:flex-start}
       .split{grid-template-columns:1fr}
-      .whyPanel .steps{grid-template-columns:1fr}
       h1{font-size:36px}
       .cubeStage{min-height:250px}
       nav > ul{gap:10px}
@@ -903,12 +1074,14 @@ footer{
       #wordStageSimple{min-height:200px}
       .footerContact{text-align:left}
       .footerContactEmail a{font-size:14px}
+      .techGrid{grid-template-columns:1fr}
     }
 
   </style>
 </head>
 
-<body class="bg-grid">
+<body class="bg-grid static-pcb">
+  <div class="pcb-layer" aria-hidden="true"></div>
   <canvas id="spark"></canvas>
 
   <header>
@@ -945,7 +1118,6 @@ footer{
           <div>
             <h1 class="reveal on">Кубикор — IT-решения для вашего бизнеса</h1>
             <p class="sub reveal on delay1">Мы создаём цифровые сервисы от идеи до запуска — кубик за кубиком.</p>
-            <p class="hint reveal on delay2">Разработка программного обеспечения, автоматизация бизнес-процессов и техническое сопровождение, + 30% экономия времени на задачах.</p>
             <div class="energyRibbon" aria-hidden="true"></div>
           </div>
 
@@ -962,9 +1134,6 @@ footer{
         <div class="cards services3">
           <article class="card">
             <div class="servicePrimaryBody">
-              <div class="serviceLogoWrap">
-                <img class="serviceLogoImg" src="assets/dev-logo.png" alt="Разработка ПО" loading="lazy">
-              </div>
               <ul class="cardList">
                 <li>• MVP за 4-8 недель</li>
                 <li>• Прозрачные этапы и сроки</li>
@@ -973,9 +1142,6 @@ footer{
           </article>
           <article class="card">
             <div class="servicePrimaryBody">
-              <div class="serviceLogoWrap">
-                <img class="serviceLogoImg" src="assets/automation-logo.png" alt="Автоматизация процессов" loading="lazy">
-              </div>
               <ul class="cardList">
                 <li>• Меньше ручных операций</li>
                 <li>• Быстрее обработка заявок</li>
@@ -984,9 +1150,6 @@ footer{
           </article>
           <article class="card">
             <div class="servicePrimaryBody">
-              <div class="serviceLogoWrap">
-                <img class="serviceLogoImg" src="assets/support-logo.png" alt="Поддержка и развитие" loading="lazy">
-              </div>
               <ul class="cardList">
                 <li>• Сопровождение после запуска</li>
                 <li>• План доработок по приоритетам</li>
@@ -997,20 +1160,121 @@ footer{
       </section>
 
 
-      <section class="reveal">
-        <div class="grid2" style="grid-template-columns:1fr;">
-          <div class="panel whyPanel">
-            <h2 class="sectionTitle">Почему мы ?</h2>
-            <div class="steps">
-              <div class="step"><div class="num">-</div><div><b>Анализ задачи</b><div class="hint">Понимаем цели бизнеса и ограничения.</div></div></div>
-              <div class="step"><div class="num">-</div><div><b>Ориентация на бизнес</b><div class="hint">Понимаем процессы компании и говорим без «айтишного тумана».</div></div></div>
-              <div class="step"><div class="num">-</div><div><b>Инженерный подход</b><div class="hint">Архитектура, прозрачные этапы, ответственность за результат.</div></div></div>
-              <div class="step"><div class="num">-</div><div><b>Проектирование</b><div class="hint">UX/UI, метрики, архитектура.</div></div></div>
-              <div class="step"><div class="num">-</div><div><b>Полный цикл</b><div class="hint">От идеи до запуска и дальнейшего развития.</div></div></div>
-              <div class="step"><div class="num">-</div><div><b>Разработка</b><div class="hint">MVP, Agile, CI/CD, релизы.</div></div></div>
-              <div class="step"><div class="num">-</div><div><b>Запуск и развитие</b><div class="hint">Сопровождение и масштабирование.</div></div></div>
-              <div class="step"><div class="num">-</div><div><b>Поддержка</b><div class="hint">Поддержка на всех этапах развития продукта.</div></div></div>            </div>
-          </div>
+      <section class="reveal contentBlock">
+        <h2 class="sectionTitle">Кому мы подходим</h2>
+        <p class="contentLead">Работаем с бизнесом, где важны скорость запуска, прозрачные процессы и предсказуемый результат.</p>
+        <div class="fitGrid">
+          <article class="fitCard">
+            <h3>Производство</h3>
+            <p>Автоматизация заявок, отчётности и внутренних процессов без перегруза команды.</p>
+          </article>
+          <article class="fitCard">
+            <h3>Сервисные компании</h3>
+            <p>Цифровизация операционных задач и снижение ручных действий на ежедневных этапах.</p>
+          </article>
+          <article class="fitCard">
+            <h3>Логистика и дистрибуция</h3>
+            <p>Контроль потоков, статусов и SLA в едином рабочем контуре.</p>
+          </article>
+          <article class="fitCard">
+            <h3>Новые продукты</h3>
+            <p>Запуск MVP и поэтапное развитие платформы без потери темпа.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal contentBlock">
+        <h2 class="sectionTitle">Что меняется после внедрения</h2>
+        <div class="caseGrid">
+          <article class="caseCard">
+            <h3>Обработка заявок</h3>
+            <div class="caseMeta">
+              <p><b>Ситуация:</b> большой объём ручной обработки тормозил работу команды.</p>
+              <p><b>Что сделали:</b> внедрили единую логику обработки и автоматические сценарии.</p>
+              <p><b>Результат:</b> -30% ручных операций и быстрее обработка обращений.</p>
+            </div>
+          </article>
+          <article class="caseCard">
+            <h3>Быстрый запуск сервиса</h3>
+            <div class="caseMeta">
+              <p><b>Ситуация:</b> нужно было быстро выйти на рынок без потери качества.</p>
+              <p><b>Что сделали:</b> собрали MVP, настроили CI/CD и поэтапный релиз.</p>
+              <p><b>Результат:</b> запуск за 6-8 недель и прозрачный roadmap развития.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal contentBlock">
+        <h2 class="sectionTitle">Как мы работаем</h2>
+        <p class="contentLead">Прозрачный процесс в 4 шага: на каждом этапе понятно, что делаем, зачем и какой эффект получает бизнес.</p>
+        <div class="processGrid">
+          <article class="processCard">
+            <h3><span class="processNum">1</span>Анализ</h3>
+            <p>Фиксируем цели, ограничения и метрики результата.</p>
+          </article>
+          <article class="processCard">
+            <h3><span class="processNum">2</span>Проектирование</h3>
+            <p>Собираем UX/UI, архитектуру и план этапов под реальные сроки.</p>
+          </article>
+          <article class="processCard">
+            <h3><span class="processNum">3</span>Разработка</h3>
+            <p>Итерации, контроль качества и стабильные релизы.</p>
+          </article>
+          <article class="processCard">
+            <h3><span class="processNum">4</span>Поддержка</h3>
+            <p>Развитие продукта, сопровождение и масштабирование под рост.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal contentBlock">
+        <h2 class="sectionTitle">Технологии</h2>
+        <p class="contentLead">Подбираем стек под задачи бизнеса и сценарии роста, а не ради трендов.</p>
+        <div class="techGrid">
+          <article class="techCard">
+            <h3>Backend</h3>
+            <ul class="techList">
+              <li>Node.js</li>
+              <li>Python</li>
+              <li>Java</li>
+            </ul>
+          </article>
+          <article class="techCard">
+            <h3>Frontend</h3>
+            <ul class="techList">
+              <li>React</li>
+              <li>Next.js</li>
+              <li>TypeScript</li>
+            </ul>
+          </article>
+          <article class="techCard">
+            <h3>Data</h3>
+            <ul class="techList">
+              <li>PostgreSQL</li>
+              <li>Redis</li>
+              <li>Интеграционные API</li>
+            </ul>
+          </article>
+          <article class="techCard">
+            <h3>Infrastructure</h3>
+            <ul class="techList">
+              <li>Docker</li>
+              <li>CI/CD</li>
+              <li>Мониторинг и логирование</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal contentBlock">
+        <h2 class="sectionTitle">Частые вопросы</h2>
+        <div class="faqList">
+          <div class="faqItem"><p><b>Сколько длится запуск?</b> Обычно MVP занимает 4-8 недель в зависимости от сложности и интеграций.</p></div>
+          <div class="faqItem"><p><b>Можно зайти поэтапно?</b> Да, начинаем с приоритетного контура и развиваем систему итерациями.</p></div>
+          <div class="faqItem"><p><b>Как контролируются сроки?</b> Через план спринтов, демо-этапы и прозрачный рабочий бэклог.</p></div>
+          <div class="faqItem"><p><b>Что после релиза?</b> Поддержка, доработки по приоритетам и развитие под рост нагрузки.</p></div>
+          <div class="faqItem"><p><b>Работаете с текущими системами?</b> Да, проектируем безопасные интеграции с существующей инфраструктурой.</p></div>
         </div>
       </section>
 
@@ -1412,96 +1676,98 @@ if(mobileMenuMode){
 
     backdrop.addEventListener('click', (e)=>{ if(e.target===backdrop) hideModal(); });
     document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ hideModal(); } });
-    // background particles (blue-only, softer)
-    const c = document.getElementById('spark');
-    const ctx = c.getContext('2d');
-    const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-    let W=0,H=0,particles=[];
-    function resize(){
-      W = Math.floor(window.innerWidth);
-      H = Math.floor(window.innerHeight);
-      c.width = Math.floor(W * DPR);
-      c.height = Math.floor(H * DPR);
-      c.style.width = W + "px";
-      c.style.height = H + "px";
-      ctx.setTransform(DPR,0,0,DPR,0,0);
+    // lightweight star streaks background (low CPU/GPU cost)
+    (function initStarfield(){
+      if(document.body && document.body.classList.contains('static-pcb')) return;
+      const c = document.getElementById('spark');
+      if(!c) return;
+      const ctx = c.getContext('2d', { alpha: true });
+      if(!ctx) return;
 
-            const base = (W*H)/32000;
-      const cap = isSmall ? 65 : 90;
-      const floorN = isSmall ? 34 : 50;
-      const count = Math.floor(Math.min(cap, Math.max(floorN, base)));
-      particles = Array.from({length:count}, ()=>({
-        x: Math.random()*W,
-        y: Math.random()*H,
-        r: Math.random()*1.4 + 0.4,
-        vx: (Math.random()*0.14 + 0.03) * (Math.random()<0.5?-1:1),
-        vy: (Math.random()*0.10 + 0.02) * (Math.random()<0.5?-1:1),
-        t: Math.random()*Math.PI*2,
-        a: Math.random()*0.20 + 0.06
-      }));
-    }
-    window.addEventListener('resize', resize, {passive:true});
-    resize();
+      const DPR = Math.max(1, Math.min(1.5, window.devicePixelRatio || 1));
+      const maxStreaks = isSmall ? 16 : 24;
+      const targetFps = (isSmall || prefersReduced) ? 20 : 30;
+      const frameStep = 1000 / targetFps;
 
-    function draw(){
-      ctx.clearRect(0,0,W,H);
+      let W = 0;
+      let H = 0;
+      let streaks = [];
+      let rafId = 0;
+      let lastTs = 0;
 
-      // cursor glow (subtle) — disable on mobile to save GPU
-      if(!isSmall){
-        const gx = (tx*0.5+0.5)*W;
-        const gy = (ty*0.5+0.5)*H;
-        const g0 = ctx.createRadialGradient(gx, gy, 0, gx, gy, 270);
-        g0.addColorStop(0, "rgba(69,199,255,0.08)");
-        g0.addColorStop(1, "rgba(0,0,0,0)");
-        ctx.fillStyle = g0;
-        ctx.fillRect(0,0,W,H);
-      }
+      const spawn = () => ({
+        x: Math.random() * (W + 160) - 80,
+        y: Math.random() * (H + 160) - 80,
+        vx: -0.75 - Math.random() * 1.25,
+        vy: 0.35 + Math.random() * 0.9,
+        len: 6 + Math.random() * 18,
+        life: 0,
+        maxLife: 60 + Math.random() * 120,
+        alpha: 0.08 + Math.random() * 0.22
+      });
 
-      for(const p of particles){
-        p.t += 0.01;
-        p.x += p.vx + Math.sin(p.t)*0.02;
-        p.y += p.vy + Math.cos(p.t)*0.02;
+      const resize = () => {
+        W = Math.floor(window.innerWidth);
+        H = Math.floor(window.innerHeight);
+        c.width = Math.floor(W * DPR);
+        c.height = Math.floor(H * DPR);
+        c.style.width = W + 'px';
+        c.style.height = H + 'px';
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        streaks = Array.from({ length: maxStreaks }, spawn);
+      };
 
-        if(p.x < -10) p.x = W+10;
-        if(p.x > W+10) p.x = -10;
-        if(p.y < -10) p.y = H+10;
-        if(p.y > H+10) p.y = -10;
+      const tick = (ts) => {
+        if (ts - lastTs < frameStep) {
+          rafId = requestAnimationFrame(tick);
+          return;
+        }
+        const dt = Math.min(2.5, (ts - (lastTs || ts)) / 16.67);
+        lastTs = ts;
 
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(143,233,255,${p.a})`;
-        ctx.arc(p.x + tx*6, p.y + ty*5, p.r, 0, Math.PI*2);
-        ctx.fill();
-      }
+        ctx.clearRect(0, 0, W, H);
 
-      // near connections (very subtle) — disable on small screens / reduced motion
-      if(!isSmall && !prefersReduced){
-        ctx.lineWidth = 1;
-        for(let i=0;i<particles.length;i++){
-          const a = particles[i];
-          for(let j=i+1;j<particles.length;j++){
-            const b = particles[j];
-            const dx=a.x-b.x, dy=a.y-b.y;
-            const d2 = dx*dx + dy*dy;
-            if(d2 < 115*115){
-              const alpha = (1 - Math.sqrt(d2)/115) * 0.06;
-              ctx.strokeStyle = `rgba(69,199,255,${alpha})`;
-              ctx.beginPath();
-              ctx.moveTo(a.x + tx*6, a.y + ty*5);
-              ctx.lineTo(b.x + tx*6, b.y + ty*5);
-              ctx.stroke();
-            }
+        for (let i = 0; i < streaks.length; i++) {
+          const s = streaks[i];
+          s.life += dt;
+          s.x += s.vx * dt;
+          s.y += s.vy * dt;
+
+          const age = s.life / s.maxLife;
+          const fade = age < 0.5 ? age * 2 : (1 - age) * 2;
+          const a = Math.max(0, Math.min(1, fade)) * s.alpha;
+
+          ctx.strokeStyle = `rgba(154,239,255,${a.toFixed(3)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(s.x, s.y);
+          ctx.lineTo(s.x - s.len * 0.9, s.y + s.len * 0.45);
+          ctx.stroke();
+
+          if (s.life >= s.maxLife || s.x < -180 || s.y > H + 180) {
+            streaks[i] = spawn();
           }
         }
-      }
-      requestAnimationFrame(draw);
-    }
-    if(!prefersReduced){
-      let rafId = 0;
-      const run = ()=>{ if(!rafId) rafId = requestAnimationFrame(draw); };
-      const stop = ()=>{ if(rafId){ cancelAnimationFrame(rafId); rafId=0; } };
-      document.addEventListener('visibilitychange', ()=>{ document.hidden ? stop() : run(); }, {passive:true});
-      run();
-    }
+
+        rafId = requestAnimationFrame(tick);
+      };
+
+      const start = () => {
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      };
+      const stop = () => {
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = 0;
+        }
+      };
+
+      window.addEventListener('resize', resize, { passive: true });
+      document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()), { passive: true });
+
+      resize();
+      if (!prefersReduced) start();
+    })();
 // Mail client opener with web fallback (Chrome/Yandex/Edge safe)
 function openMailWithFallback(to, subject, body){
   const safeTo = (to || 'kubikormsk@mail.ru').trim();
