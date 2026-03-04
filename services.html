@@ -29,7 +29,7 @@
       width:100vw;
       height:100vh;
       z-index:0;
-      opacity:.56;
+      opacity:.42;
       pointer-events:none;
     }
     .pcb-layer{
@@ -44,24 +44,9 @@
         radial-gradient(circle at 86% 80%, rgba(0,0,0,.09) 0 1.5px, transparent 1.6px),
         repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 1px, transparent 1px 64px),
         repeating-linear-gradient(0deg, rgba(0,0,0,.035) 0 1px, transparent 1px 56px);
-      opacity:.34;
-      animation: pcbGridFlow 9s ease-in-out infinite;
+      opacity:.36;
+      background-position:0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
     }
-    @keyframes pcbGridFlow{
-      0%{
-        opacity:.28;
-        background-position:0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
-      }
-      50%{
-        opacity:.46;
-        background-position:0 0, 0 0, 0 0, 0 0, 18px 0, 0 14px;
-      }
-      100%{
-        opacity:.28;
-        background-position:0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
-      }
-    }
-    body.static-pcb #spark{display:none}
     header, main{position:relative; z-index:1}
     a{color:inherit;text-decoration:none}
     .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
@@ -450,8 +435,7 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
   </main>
 
   <script>
-    (function initStarfield(){
-      if(document.body && document.body.classList.contains('static-pcb')) return;
+    (function initGridLineActivity(){
       const c = document.getElementById('spark');
       if(!c) return;
       const ctx = c.getContext('2d', { alpha: true });
@@ -460,26 +444,49 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
       const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const isSmall = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
       const DPR = Math.max(1, Math.min(1.5, window.devicePixelRatio || 1));
-      const maxStreaks = isSmall ? 16 : 24;
-      const targetFps = (isSmall || prefersReduced) ? 20 : 30;
+      const cellW = 64;
+      const cellH = 56;
+      const maxActive = isSmall ? 8 : 14;
+      const targetFps = prefersReduced ? 18 : 30;
       const frameStep = 1000 / targetFps;
 
       let W = 0;
       let H = 0;
-      let streaks = [];
       let rafId = 0;
       let lastTs = 0;
+      let activeTarget = 4;
+      let nextTargetShift = 0;
+      const pulses = [];
 
-      const spawn = () => ({
-        x: Math.random() * (W + 160) - 80,
-        y: Math.random() * (H + 160) - 80,
-        vx: -0.75 - Math.random() * 1.25,
-        vy: 0.35 + Math.random() * 0.9,
-        len: 6 + Math.random() * 18,
-        life: 0,
-        maxLife: 60 + Math.random() * 120,
-        alpha: 0.08 + Math.random() * 0.22
-      });
+      const rand = (min, max) => min + Math.random() * (max - min);
+      const randInt = (min, max) => Math.floor(rand(min, max + 1));
+
+      const spawnPulse = () => {
+        const horizontal = Math.random() < 0.5;
+        if(horizontal){
+          const y = randInt(0, Math.ceil(H / cellH)) * cellH + 0.5;
+          pulses.push({
+            h: true,
+            x: rand(-180, W),
+            y,
+            speed: rand(42, 92),
+            len: rand(56, 170),
+            life: 0,
+            maxLife: rand(1200, 2600)
+          });
+        } else {
+          const x = randInt(0, Math.ceil(W / cellW)) * cellW + 0.5;
+          pulses.push({
+            h: false,
+            x,
+            y: rand(-180, H),
+            speed: rand(40, 88),
+            len: rand(56, 170),
+            life: 0,
+            maxLife: rand(1200, 2600)
+          });
+        }
+      };
 
       const resize = () => {
         W = Math.floor(window.innerWidth);
@@ -489,7 +496,6 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
         c.style.width = W + 'px';
         c.style.height = H + 'px';
         ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-        streaks = Array.from({ length: maxStreaks }, spawn);
       };
 
       const tick = (ts) => {
@@ -497,39 +503,68 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
           rafId = requestAnimationFrame(tick);
           return;
         }
-        const dt = Math.min(2.5, (ts - (lastTs || ts)) / 16.67);
+        const dtMs = Math.min(60, ts - (lastTs || ts));
+        const dt = dtMs / 1000;
         lastTs = ts;
 
         ctx.clearRect(0, 0, W, H);
 
-        for(let i = 0; i < streaks.length; i++){
-          const s = streaks[i];
-          s.life += dt;
-          s.x += s.vx * dt;
-          s.y += s.vy * dt;
+        if(ts >= nextTargetShift){
+          activeTarget = randInt(1, maxActive);
+          nextTargetShift = ts + rand(900, 1900);
+        }
+        while(pulses.length < activeTarget){
+          spawnPulse();
+        }
 
-          const age = s.life / s.maxLife;
-          const fade = age < 0.5 ? age * 2 : (1 - age) * 2;
-          const a = Math.max(0, Math.min(1, fade)) * s.alpha;
+        for(let i = pulses.length - 1; i >= 0; i--){
+          const p = pulses[i];
+          p.life += dtMs;
+          const t = p.life / p.maxLife;
+          const fade = t < 0.25 ? (t / 0.25) : (t > 0.8 ? ((1 - t) / 0.2) : 1);
+          const alpha = Math.max(0, fade) * 0.65;
 
-          ctx.strokeStyle = `rgba(154,239,255,${a.toFixed(3)})`;
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(s.x, s.y);
-          ctx.lineTo(s.x - s.len * 0.9, s.y + s.len * 0.45);
-          ctx.stroke();
-
-          if(s.life >= s.maxLife || s.x < -180 || s.y > H + 180){
-            streaks[i] = spawn();
+          if(p.h){
+            p.x += p.speed * dt;
+            const x1 = p.x;
+            const x2 = p.x + p.len;
+            const g = ctx.createLinearGradient(x1, p.y, x2, p.y);
+            g.addColorStop(0, 'rgba(0,0,0,0)');
+            g.addColorStop(0.3, `rgba(0,0,0,${(0.22 * alpha).toFixed(3)})`);
+            g.addColorStop(0.5, `rgba(0,0,0,${(0.5 * alpha).toFixed(3)})`);
+            g.addColorStop(0.7, `rgba(0,0,0,${(0.22 * alpha).toFixed(3)})`);
+            g.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.strokeStyle = g;
+            ctx.lineWidth = 1.1;
+            ctx.beginPath();
+            ctx.moveTo(x1, p.y);
+            ctx.lineTo(x2, p.y);
+            ctx.stroke();
+            if(p.life >= p.maxLife || p.x > W + 220) pulses.splice(i, 1);
+          } else {
+            p.y += p.speed * dt;
+            const y1 = p.y;
+            const y2 = p.y + p.len;
+            const g = ctx.createLinearGradient(p.x, y1, p.x, y2);
+            g.addColorStop(0, 'rgba(0,0,0,0)');
+            g.addColorStop(0.3, `rgba(0,0,0,${(0.2 * alpha).toFixed(3)})`);
+            g.addColorStop(0.5, `rgba(0,0,0,${(0.44 * alpha).toFixed(3)})`);
+            g.addColorStop(0.7, `rgba(0,0,0,${(0.2 * alpha).toFixed(3)})`);
+            g.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.strokeStyle = g;
+            ctx.lineWidth = 1.1;
+            ctx.beginPath();
+            ctx.moveTo(p.x, y1);
+            ctx.lineTo(p.x, y2);
+            ctx.stroke();
+            if(p.life >= p.maxLife || p.y > H + 220) pulses.splice(i, 1);
           }
         }
 
         rafId = requestAnimationFrame(tick);
       };
 
-      const start = () => {
-        if(!rafId) rafId = requestAnimationFrame(tick);
-      };
+      const start = () => { if(!rafId) rafId = requestAnimationFrame(tick); };
       const stop = () => {
         if(rafId){
           cancelAnimationFrame(rafId);
@@ -541,7 +576,7 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
       document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()), { passive: true });
 
       resize();
-      if(!prefersReduced) start();
+      start();
     })();
 
     // Sticky stages: when next card reaches sticky line, hide all previous cards.
