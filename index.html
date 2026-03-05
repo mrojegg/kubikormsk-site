@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!doctype html>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
@@ -671,105 +671,6 @@ footer{
       line-height:1.4;
       font-weight:500;
     }
-    .curveSection{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:12px;
-      margin-top:2px;
-    }
-    .curveCard{
-      border:1px solid rgba(0,0,0,.14);
-      border-radius:16px;
-      padding:12px 12px 10px;
-      min-height:150px;
-      background:
-        linear-gradient(160deg, rgba(255,255,255,.60), rgba(255,255,255,0) 60%),
-        rgba(0,0,0,.02);
-      box-shadow:
-        0 12px 24px rgba(0,0,0,.09),
-        0 1px 0 rgba(255,255,255,.78) inset;
-    }
-    .curveHead{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:8px;
-    }
-    .curveTitle{
-      margin:0;
-      color:#0b0b0b;
-      font-family:Space Grotesk, Inter, system-ui, sans-serif;
-      font-size:20px;
-      line-height:1.15;
-      font-weight:800;
-      letter-spacing:-.2px;
-    }
-    .curveValue{
-      font-family:Space Grotesk, Inter, system-ui, sans-serif;
-      font-size:14px;
-      font-weight:800;
-      color:#0b0b0b;
-      padding:4px 10px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,.18);
-      background:rgba(0,0,0,.05);
-      white-space:nowrap;
-    }
-    .curveHint{
-      margin:0 0 8px;
-      color:rgba(0,0,0,.66);
-      font-size:13px;
-      line-height:1.35;
-      font-weight:500;
-    }
-    .curveTrack{
-      position:relative;
-      height:136px;
-      border-radius:12px;
-      border:1px solid rgba(0,0,0,.12);
-      background:
-        linear-gradient(90deg, rgba(0,0,0,.06), rgba(0,0,0,.01) 40%, rgba(0,0,0,.11)),
-        repeating-linear-gradient(90deg, rgba(0,0,0,.04) 0 1px, transparent 1px 28px),
-        repeating-linear-gradient(0deg, rgba(0,0,0,.035) 0 1px, transparent 1px 20px);
-      overflow:hidden;
-      user-select:none;
-      touch-action:none;
-    }
-    .curveSvg{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      pointer-events:none;
-    }
-    .curveBase{display:none}
-    .curvePath{
-      fill:none;
-      stroke:rgba(0,0,0,.95);
-      stroke-width:2.4;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-    .curveHandle{
-      position:absolute;
-      width:22px;
-      height:22px;
-      border-radius:50%;
-      border:4px solid rgba(0,0,0,.9);
-      background:#ededed;
-      box-shadow:0 3px 10px rgba(0,0,0,.18);
-      transform:translate(-50%,-50%);
-      cursor:grab;
-    }
-    .curveHandle:active{cursor:grabbing}
-    .curveFoot{
-      margin-top:7px;
-      color:rgba(0,0,0,.70);
-      font-size:12.5px;
-      line-height:1.35;
-      font-weight:600;
-    }
     .card{
       background:
         linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,0) 56%),
@@ -969,12 +870,24 @@ footer{
         0 1px 0 rgba(255,255,255,.30) inset,
         0 -1px 0 rgba(0,0,0,.13) inset;
     }
-    .techIcon{
+    .techIconLabel{
       width:18px;
       height:18px;
       min-width:18px;
-      object-fit:contain;
-      display:block;
+      border-radius:5px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-family:Space Grotesk, Inter, system-ui, sans-serif;
+      font-size:10px;
+      font-weight:800;
+      line-height:1;
+      color:#0b0b0b;
+      border:1px solid rgba(0,0,0,.2);
+      background:linear-gradient(180deg, #ffffff 0%, #ececec 100%);
+      box-shadow:0 1px 0 rgba(255,255,255,.7) inset;
+      text-transform:uppercase;
+      letter-spacing:.1px;
     }
     .faqList{
       margin:0;
@@ -1455,7 +1368,6 @@ footer{
       .heroGrid{grid-template-columns:1fr; gap:18px}
       .cards{grid-template-columns:1fr}
       .services3{grid-template-columns:1fr}
-      .curveSection{grid-template-columns:1fr}
       .fitGrid,.caseGrid,.processGrid,.techGrid{grid-template-columns:1fr}
       .techGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .servicesCtaRow{justify-content:flex-start}
@@ -1485,10 +1397,6 @@ footer{
       .footerContact{text-align:left}
       .footerContactEmail a{font-size:14px}
       .techGrid{grid-template-columns:1fr}
-      .curveCard{min-height:142px}
-      .curveTitle{font-size:18px}
-      .curveValue{font-size:13px}
-      .curveTrack{height:120px}
       .services3 .card{min-height:128px}
       .services3 .serviceKpiTitle{font-size:18px}
       .services3 .serviceKpiValue{font-size:13px}
@@ -1584,41 +1492,41 @@ footer{
           <article class="techCard">
             <h3>Backend</h3>
             <ul class="techList">
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/nodedotjs" alt="" aria-hidden="true">Node.js</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/python" alt="" aria-hidden="true">Python</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/openjdk" alt="" aria-hidden="true">Java</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/nestjs" alt="" aria-hidden="true">NestJS</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/graphql" alt="" aria-hidden="true">GraphQL</li>
+              <li><span class="techIconLabel" aria-hidden="true">JS</span>Node.js</li>
+              <li><span class="techIconLabel" aria-hidden="true">PY</span>Python</li>
+              <li><span class="techIconLabel" aria-hidden="true">JV</span>Java</li>
+              <li><span class="techIconLabel" aria-hidden="true">NS</span>NestJS</li>
+              <li><span class="techIconLabel" aria-hidden="true">GQ</span>GraphQL</li>
             </ul>
           </article>
           <article class="techCard">
             <h3>Frontend</h3>
             <ul class="techList">
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/react" alt="" aria-hidden="true">React</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/nextdotjs" alt="" aria-hidden="true">Next.js</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/typescript" alt="" aria-hidden="true">TypeScript</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/redux" alt="" aria-hidden="true">Redux</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/vite" alt="" aria-hidden="true">Vite</li>
+              <li><span class="techIconLabel" aria-hidden="true">RC</span>React</li>
+              <li><span class="techIconLabel" aria-hidden="true">NX</span>Next.js</li>
+              <li><span class="techIconLabel" aria-hidden="true">TS</span>TypeScript</li>
+              <li><span class="techIconLabel" aria-hidden="true">RX</span>Redux</li>
+              <li><span class="techIconLabel" aria-hidden="true">VT</span>Vite</li>
             </ul>
           </article>
           <article class="techCard">
             <h3>Data</h3>
             <ul class="techList">
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/postgresql" alt="" aria-hidden="true">PostgreSQL</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/redis" alt="" aria-hidden="true">Redis</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/apachekafka" alt="" aria-hidden="true">Apache Kafka</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/rabbitmq" alt="" aria-hidden="true">RabbitMQ</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/mongodb" alt="" aria-hidden="true">MongoDB</li>
+              <li><span class="techIconLabel" aria-hidden="true">PG</span>PostgreSQL</li>
+              <li><span class="techIconLabel" aria-hidden="true">RD</span>Redis</li>
+              <li><span class="techIconLabel" aria-hidden="true">KF</span>Apache Kafka</li>
+              <li><span class="techIconLabel" aria-hidden="true">RM</span>RabbitMQ</li>
+              <li><span class="techIconLabel" aria-hidden="true">MG</span>MongoDB</li>
             </ul>
           </article>
           <article class="techCard">
             <h3>Infrastructure</h3>
             <ul class="techList">
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/docker" alt="" aria-hidden="true">Docker</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/kubernetes" alt="" aria-hidden="true">Kubernetes</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/terraform" alt="" aria-hidden="true">Terraform</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/githubactions" alt="" aria-hidden="true">GitHub Actions</li>
-              <li><img class="techIcon" src="https://cdn.simpleicons.org/prometheus" alt="" aria-hidden="true">Prometheus</li>
+              <li><span class="techIconLabel" aria-hidden="true">DK</span>Docker</li>
+              <li><span class="techIconLabel" aria-hidden="true">K8</span>Kubernetes</li>
+              <li><span class="techIconLabel" aria-hidden="true">TF</span>Terraform</li>
+              <li><span class="techIconLabel" aria-hidden="true">GH</span>GitHub Actions</li>
+              <li><span class="techIconLabel" aria-hidden="true">PM</span>Prometheus</li>
             </ul>
           </article>
         </div>
@@ -2481,111 +2389,6 @@ document.addEventListener('click', (e) => {
       items.forEach((other) => setOpen(other, false));
       setOpen(item, !wasOpen);
     });
-  });
-})();
-
-// Interactive curves (time saving + process progress)
-(function(){
-  const cards = Array.from(document.querySelectorAll('.curveCard'));
-  if(!cards.length) return;
-
-  const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
-
-  cards.forEach((card) => {
-    const type = card.dataset.curve || 'time';
-    const track = card.querySelector('.curveTrack');
-    const path = card.querySelector('.curvePath');
-    const handle = card.querySelector('.curveHandle');
-    const valueEl = card.querySelector('.curveValue');
-    const metaEl = card.querySelector('.curveMeta');
-    if(!track || !path || !handle || !valueEl || !metaEl) return;
-
-    const initial = Number(card.dataset.progress || 50);
-    let progress = clamp(isNaN(initial) ? 50 : initial, 6, 94);
-    let dragId = null;
-
-    // One fixed curve shape; marker moves along this line.
-    const yAt = (t) => {
-      const linear = 74 - (t * 46);
-      const bend = ((t - 0.58) * (t - 0.58)) * 18;
-      return clamp(linear + bend, 10, 90);
-    };
-
-    const render = () => {
-      const box = track.getBoundingClientRect();
-      const sx = 4;
-      const ex = 96;
-      const ratio = progress / 100;
-
-      const points = [];
-      const seg = 48;
-      for(let i=0;i<=seg;i++){
-        const t = i / seg;
-        const x = sx + (ex - sx) * t;
-        const y = yAt(t);
-        points.push(`${x.toFixed(2)} ${y.toFixed(2)}`);
-      }
-      path.setAttribute('d', `M ${points.join(' L ')}`);
-
-      const hx = sx + (ex - sx) * ratio;
-      const hy = yAt(ratio);
-      handle.style.left = `${hx}%`;
-      handle.style.top = `${hy}%`;
-
-      if(type === 'time'){
-        const saved = Math.round(10 + ratio * 30);
-        const fromDays = 14;
-        const toDays = Math.max(6, Math.round(fromDays * (1 - saved / 100)));
-        valueEl.textContent = `-${saved}%`;
-        metaEl.textContent = `с ${fromDays} до ${toDays} дней`;
-      } else {
-        const readiness = Math.round(30 + ratio * 65);
-        const phase = ratio < 0.14
-          ? 'Анализ требований'
-          : ratio < 0.28
-            ? 'Проектирование решения'
-            : ratio < 0.42
-              ? 'Архитектура и интеграции'
-              : ratio < 0.58
-                ? 'Разработка функциональности'
-                : ratio < 0.74
-                  ? 'Тестирование и QA'
-                  : ratio < 0.88
-                    ? 'Релиз в production'
-                    : 'Поддержка и развитие';
-        valueEl.textContent = `${readiness}%`;
-        metaEl.textContent = phase;
-      }
-    };
-
-    const setByClientX = (clientX) => {
-      const box = track.getBoundingClientRect();
-      const ratio = (clientX - box.left) / Math.max(1, box.width);
-      progress = clamp(Math.round(ratio * 100), 6, 94);
-      render();
-    };
-
-    handle.addEventListener('pointerdown', (e) => {
-      dragId = e.pointerId;
-      handle.setPointerCapture(dragId);
-      setByClientX(e.clientX);
-    });
-    handle.addEventListener('pointermove', (e) => {
-      if(dragId !== e.pointerId) return;
-      setByClientX(e.clientX);
-    });
-    handle.addEventListener('pointerup', (e) => {
-      if(dragId === e.pointerId) dragId = null;
-    });
-    handle.addEventListener('pointercancel', () => { dragId = null; });
-
-    track.addEventListener('click', (e) => {
-      if(e.target === handle) return;
-      setByClientX(e.clientX);
-    });
-
-    window.addEventListener('resize', render, { passive:true });
-    render();
   });
 })();
 
