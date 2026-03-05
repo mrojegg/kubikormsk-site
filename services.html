@@ -92,6 +92,15 @@
       top:92px;
       z-index:1;
       margin:0 0 14px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,0) 58%),
+        rgba(255,255,255,.02);
+      box-shadow:
+        0 10px 22px rgba(0,0,0,.12),
+        0 1px 0 rgba(255,255,255,.06) inset;
+      padding:16px 16px 14px;
       opacity:var(--intro-opacity, 1);
       transition:opacity .45s ease, transform .45s ease;
     }
@@ -174,6 +183,17 @@
     .stages .stageCard::after{
       content:none !important;
     }
+    .stages .stageCard{
+      border:1px solid rgba(255,255,255,.08) !important;
+      border-radius:14px !important;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,0) 58%),
+        rgba(255,255,255,.016) !important;
+      box-shadow:
+        0 10px 22px rgba(0,0,0,.11),
+        0 1px 0 rgba(255,255,255,.06) inset !important;
+      padding:18px 16px !important;
+    }
     /* layered sticky stack */
     .stages .stageCard:nth-child(1){z-index:1}
     .stages .stageCard:nth-child(2){z-index:2}
@@ -207,6 +227,9 @@
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 92%);
       border-radius:16px;
       padding:16px 16px;
+      box-shadow:
+        0 12px 24px rgba(0,0,0,.12),
+        0 1px 0 rgba(255,255,255,.06) inset;
     }
     .partnerBlock p{margin:0;color:rgba(238,242,255,.93);font-size:18px;line-height:1.62}
 
@@ -243,6 +266,29 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
       border-color:rgba(0,0,0,.12);
       background:linear-gradient(180deg, rgba(0,0,0,.045), rgba(0,0,0,0) 92%);
     }
+    .introCard{
+      border-color:rgba(0,0,0,.12);
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.58), rgba(255,255,255,0) 58%),
+        rgba(0,0,0,.015);
+      box-shadow:
+        0 10px 20px rgba(0,0,0,.08),
+        0 1px 0 rgba(255,255,255,.82) inset;
+    }
+    .stages .stageCard{
+      border-color:rgba(0,0,0,.12) !important;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.56), rgba(255,255,255,0) 58%),
+        rgba(0,0,0,.012) !important;
+      box-shadow:
+        0 10px 20px rgba(0,0,0,.08),
+        0 1px 0 rgba(255,255,255,.82) inset !important;
+    }
+    .partnerBlock{
+      box-shadow:
+        0 10px 20px rgba(0,0,0,.08),
+        0 1px 0 rgba(255,255,255,.78) inset;
+    }
     .footerCopy, .footerContactLabel, .footerContactEmail a{color:#0b0b0b; text-shadow:none}
 
     @media (max-width: 920px){
@@ -256,6 +302,7 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
       .introStack .introCard:nth-child(2){margin-top:0}
       .stages{padding-bottom:0;margin-bottom:0;position:static}
       .stageCard{position:relative; top:auto; margin:0 0 14px; padding:16px 14px;}
+      .stages .stageCard{padding:16px 14px !important}
       .stages .stageCard + .stageCard{margin-top:0}
       .stages .stageCard:nth-child(9){margin-top:0}
       .stageTitle{font-size:20px}
@@ -420,7 +467,7 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
       <footer>
   <div class="footerRow">
     <div class="footerLeft">
-      <div class="footerCopy">© ООО "КУБИКОР", <span id="year">2025</span></div>
+      <div class="footerCopy">© ООО "КУБИКОР", <span id="year">2024 - 2026</span></div>
       <div class="footerDetails">
         ИНН: 7720941149 · ОГРН: 1247700766972 · Юр. адрес: 111397, г. Москва, пр-кт Зелёный, дом 20
       </div>

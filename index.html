@@ -128,6 +128,7 @@
 
 /* Mobile-first tweaks (no redesign) */
 @media (max-width: 560px){
+  body{padding-top:110px}
   .wrap{padding:0 14px}
   header .nav{
     height:auto;
@@ -316,6 +317,7 @@ footer{
       background: var(--bg);
       color:var(--text);
       overflow-x:hidden;
+      padding-top:72px;
     }
     h1,h2,h3,.sectionTitle,.brand,nav a,.navLabel,.contactHead,.footerCopy,.footerContactLabel,#brandWordSimple,.review-company{
       font-family:Space Grotesk, Inter, system-ui, sans-serif;
@@ -458,7 +460,11 @@ footer{
     }
 
     header{
-      position:sticky; top:0; z-index:50;
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:1000;
       backdrop-filter: blur(10px);
       background: rgba(7,8,11,.60);
       border-bottom: 1px solid var(--line);
@@ -608,15 +614,21 @@ footer{
     .cards{display:grid;grid-template-columns:repeat(2, 1fr); gap:14px}
     .services3{grid-template-columns:repeat(3, minmax(0, 1fr));}
     .services3 .card{
-      background:rgba(0,0,0,.02);
-      border:1px solid rgba(0,0,0,.12);
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.55), rgba(255,255,255,0) 56%),
+        rgba(0,0,0,.02);
+      border:1px solid rgba(0,0,0,.14);
       border-radius:14px;
       padding:8px 12px;
       overflow:hidden;
-      min-height:86px;
+      min-height:142px;
       display:flex;
       align-items:center;
       justify-content:center;
+      box-shadow:
+        0 12px 22px rgba(0,0,0,.09),
+        0 1px 0 rgba(255,255,255,.80) inset,
+        0 -8px 12px rgba(0,0,0,.05) inset;
     }
     .services3 .servicePrimaryBody{
       width:100%;
@@ -625,15 +637,150 @@ footer{
       text-align:center;
     }
     .services3 .servicePrimaryBody .cardList{
-      margin:0 auto;
+      margin:4px 0 0;
       text-align:left;
     }
+    .services3 .serviceKpiTitle{
+      margin:0;
+      font-family:Space Grotesk, Inter, system-ui, sans-serif;
+      font-size:20px;
+      line-height:1.2;
+      letter-spacing:-.2px;
+      color:#0b0b0b;
+      font-weight:800;
+    }
+    .services3 .serviceKpiValue{
+      margin:8px 0 0;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:5px 10px;
+      border-radius:999px;
+      border:1px solid rgba(17,201,246,.38);
+      background:rgba(17,201,246,.12);
+      color:#0b0b0b;
+      font-family:Space Grotesk, Inter, system-ui, sans-serif;
+      font-size:14px;
+      font-weight:800;
+      letter-spacing:.1px;
+    }
+    .services3 .serviceKpiDesc{
+      margin:6px 0 0;
+      color:rgba(0,0,0,.70);
+      font-size:14px;
+      line-height:1.4;
+      font-weight:500;
+    }
+    .curveSection{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      margin-top:2px;
+    }
+    .curveCard{
+      border:1px solid rgba(0,0,0,.14);
+      border-radius:16px;
+      padding:12px 12px 10px;
+      min-height:150px;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.60), rgba(255,255,255,0) 60%),
+        rgba(0,0,0,.02);
+      box-shadow:
+        0 12px 24px rgba(0,0,0,.09),
+        0 1px 0 rgba(255,255,255,.78) inset;
+    }
+    .curveHead{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:8px;
+    }
+    .curveTitle{
+      margin:0;
+      color:#0b0b0b;
+      font-family:Space Grotesk, Inter, system-ui, sans-serif;
+      font-size:20px;
+      line-height:1.15;
+      font-weight:800;
+      letter-spacing:-.2px;
+    }
+    .curveValue{
+      font-family:Space Grotesk, Inter, system-ui, sans-serif;
+      font-size:14px;
+      font-weight:800;
+      color:#0b0b0b;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.18);
+      background:rgba(0,0,0,.05);
+      white-space:nowrap;
+    }
+    .curveHint{
+      margin:0 0 8px;
+      color:rgba(0,0,0,.66);
+      font-size:13px;
+      line-height:1.35;
+      font-weight:500;
+    }
+    .curveTrack{
+      position:relative;
+      height:136px;
+      border-radius:12px;
+      border:1px solid rgba(0,0,0,.12);
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.06), rgba(0,0,0,.01) 40%, rgba(0,0,0,.11)),
+        repeating-linear-gradient(90deg, rgba(0,0,0,.04) 0 1px, transparent 1px 28px),
+        repeating-linear-gradient(0deg, rgba(0,0,0,.035) 0 1px, transparent 1px 20px);
+      overflow:hidden;
+      user-select:none;
+      touch-action:none;
+    }
+    .curveSvg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+    }
+    .curveBase{display:none}
+    .curvePath{
+      fill:none;
+      stroke:rgba(0,0,0,.95);
+      stroke-width:2.4;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+    .curveHandle{
+      position:absolute;
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      border:4px solid rgba(0,0,0,.9);
+      background:#ededed;
+      box-shadow:0 3px 10px rgba(0,0,0,.18);
+      transform:translate(-50%,-50%);
+      cursor:grab;
+    }
+    .curveHandle:active{cursor:grabbing}
+    .curveFoot{
+      margin-top:7px;
+      color:rgba(0,0,0,.70);
+      font-size:12.5px;
+      line-height:1.35;
+      font-weight:600;
+    }
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0) 84%);
-      border:none;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,0) 56%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0) 84%);
+      border:1px solid rgba(255,255,255,.11);
       border-radius: 14px;
       padding:14px 12px;
-      box-shadow:none;
+      box-shadow:
+        0 16px 34px rgba(0,0,0,.24),
+        0 2px 0 rgba(255,255,255,.05) inset,
+        0 -10px 18px rgba(0,0,0,.10) inset;
       position:relative;
       overflow:hidden;
     }
@@ -654,6 +801,25 @@ footer{
 
     .cardList{margin:0; padding:0; list-style:none; display:grid; gap:6px}
     .cardList li{color:#000000; line-height:1.3; font-weight:600}
+    .services3 .cardList li{
+      position:relative;
+      padding-left:16px;
+      font-size:16px;
+      font-weight:700;
+      line-height:1.35;
+    }
+    .services3 .cardList li::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:.5em;
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#11c9f6;
+      box-shadow:0 0 0 3px rgba(17,201,246,.16);
+      transform:translateY(-50%);
+    }
     .serviceLogoWrap{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; margin:0; width:min(100%, 320px)}
     .serviceLogoImg{width:132px; height:132px; object-fit:contain; object-position:center; display:block; filter: drop-shadow(0 8px 20px rgba(0,0,0,.35)); border-radius:12px;}
     .serviceLogoImg.noAlpha{mix-blend-mode:multiply; filter: brightness(.78) contrast(1.35) saturate(1.2) drop-shadow(0 8px 20px rgba(0,0,0,.35));}
@@ -689,12 +855,36 @@ footer{
       gap:10px;
     }
     .fitCard,.caseCard,.processCard,.techCard{
-      border:1px solid rgba(255,255,255,.10);
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0) 92%);
-      border-radius:16px;
+      border:1px solid rgba(0,0,0,.16);
+      background:
+        linear-gradient(180deg, #ffffff 0%, #f9f9f9 58%, #f1f1f1 100%),
+        repeating-linear-gradient(45deg, rgba(0,0,0,.012) 0 2px, rgba(255,255,255,.012) 2px 4px);
+      border-radius:14px;
       padding:14px;
       position:relative;
       overflow:hidden;
+      box-shadow:
+        0 6px 0 rgba(0,0,0,.20),
+        0 12px 18px rgba(0,0,0,.12),
+        0 1px 0 rgba(255,255,255,.45) inset,
+        0 -1px 0 rgba(0,0,0,.14) inset;
+      transition:transform .14s ease, box-shadow .14s ease;
+    }
+    .fitCard:hover,.caseCard:hover,.processCard:hover,.techCard:hover{
+      transform:translateY(2px);
+      box-shadow:
+        0 4px 0 rgba(0,0,0,.20),
+        0 8px 12px rgba(0,0,0,.10),
+        0 1px 0 rgba(255,255,255,.38) inset,
+        0 -1px 0 rgba(0,0,0,.14) inset;
+    }
+    .fitCard:active,.caseCard:active,.processCard:active,.techCard:active{
+      transform:translateY(4px);
+      box-shadow:
+        0 2px 0 rgba(0,0,0,.21),
+        0 4px 8px rgba(0,0,0,.10),
+        0 1px 0 rgba(255,255,255,.32) inset,
+        0 -1px 0 rgba(0,0,0,.15) inset;
     }
     .fitCard h3,.caseCard h3,.processCard h3,.techCard h3{
       margin:0 0 8px;
@@ -725,9 +915,15 @@ footer{
       width:24px;
       height:24px;
       margin-right:8px;
-      border-radius:8px;
-      border:1px solid rgba(255,255,255,.32);
-      color:#ffffff;
+      border-radius:7px;
+      border:1px solid rgba(0,0,0,.16);
+      color:#0b0b0b;
+      background:linear-gradient(180deg, #ffffff 0%, #f3f3f3 100%);
+      box-shadow:
+        0 3px 0 rgba(0,0,0,.18),
+        0 5px 8px rgba(0,0,0,.10),
+        0 1px 0 rgba(255,255,255,.4) inset,
+        0 -1px 0 rgba(0,0,0,.14) inset;
       font-family:Space Grotesk, Inter, system-ui, sans-serif;
       font-size:13px;
     }
@@ -735,22 +931,50 @@ footer{
       margin:4px 0 0;
       padding:0;
       list-style:none;
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px 0;
+      display:grid;
+      gap:8px;
       color:var(--muted);
-      line-height:1.35;
+      line-height:1.3;
       font-size:14px;
     }
     .techList li{
-      display:flex;
+      display:inline-flex;
       align-items:center;
-      white-space:nowrap;
+      gap:8px;
+      white-space:normal;
+      padding:6px 8px;
+      border-radius:9px;
+      border:1px solid rgba(0,0,0,.14);
+      background:linear-gradient(180deg, #ffffff 0%, #f4f4f4 100%);
+      box-shadow:
+        0 3px 0 rgba(0,0,0,.16),
+        0 5px 8px rgba(0,0,0,.10),
+        0 1px 0 rgba(255,255,255,.38) inset,
+        0 -1px 0 rgba(0,0,0,.12) inset;
+      transition:transform .12s ease, box-shadow .12s ease;
     }
-    .techList li + li::before{
-      content:"•";
-      margin:0 8px;
-      color:rgba(255,255,255,.58);
+    .techList li:hover{
+      transform:translateY(1px);
+      box-shadow:
+        0 2px 0 rgba(0,0,0,.16),
+        0 4px 6px rgba(0,0,0,.10),
+        0 1px 0 rgba(255,255,255,.35) inset,
+        0 -1px 0 rgba(0,0,0,.12) inset;
+    }
+    .techList li:active{
+      transform:translateY(2px);
+      box-shadow:
+        0 1px 0 rgba(0,0,0,.16),
+        0 2px 4px rgba(0,0,0,.09),
+        0 1px 0 rgba(255,255,255,.30) inset,
+        0 -1px 0 rgba(0,0,0,.13) inset;
+    }
+    .techIcon{
+      width:18px;
+      height:18px;
+      min-width:18px;
+      object-fit:contain;
+      display:block;
     }
     .faqList{
       margin:0;
@@ -760,11 +984,60 @@ footer{
     .faqItem{
       border:1px solid rgba(255,255,255,.10);
       border-radius:14px;
-      background:rgba(255,255,255,.02);
-      padding:7px 12px;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,0) 58%),
+        rgba(255,255,255,.02);
+      padding:6px 10px;
+      box-shadow:
+        0 10px 20px rgba(0,0,0,.18),
+        0 1px 0 rgba(255,255,255,.05) inset;
     }
-    .faqItem p{margin:0; line-height:1.45}
-    .faqItem b{color:#0b0b0b}
+    .faqQuestion{
+      width:100%;
+      border:0;
+      background:transparent;
+      padding:6px 2px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color:inherit;
+      font:inherit;
+      cursor:pointer;
+      text-align:left;
+    }
+    .faqQuestionText{
+      margin:0;
+      font-weight:700;
+      line-height:1.45;
+    }
+    .faqPlus{
+      width:20px;
+      height:20px;
+      min-width:20px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.28);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-family:Space Grotesk, Inter, system-ui, sans-serif;
+      font-size:16px;
+      font-weight:700;
+      line-height:1;
+      transition:transform .2s ease;
+    }
+    .faqItem.open .faqPlus{
+      transform:rotate(45deg);
+    }
+    .faqAnswer{
+      display:none;
+      margin-top:2px;
+      padding:0 2px 4px;
+      line-height:1.45;
+    }
+    .faqItem.open .faqAnswer{
+      display:block;
+    }
     .metric{
       font-family: Space Grotesk, Inter, system-ui, sans-serif;
       font-weight:800; font-size:28px;
@@ -1065,18 +1338,64 @@ footer{
     .footerCopy, .footerContactLabel{color:#0b0b0b; text-shadow:none}
     .sub, .hint, .contentLead, .cardList li,
     .fitCard p, .caseCard p, .processCard p, .techCard p,
-    .faqItem p, .reviewSlide p, .footerDetails{color:rgba(0,0,0,.78)}
-    .card{background:linear-gradient(180deg, rgba(0,0,0,.035), rgba(0,0,0,0) 84%)}
+    .faqAnswer, .reviewSlide p, .footerDetails{color:rgba(0,0,0,.78)}
+    .card{
+      border:1px solid rgba(0,0,0,.14);
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.58), rgba(255,255,255,0) 58%),
+        linear-gradient(180deg, rgba(0,0,0,.035), rgba(0,0,0,0) 84%);
+      box-shadow:
+        0 14px 26px rgba(0,0,0,.10),
+        0 1px 0 rgba(255,255,255,.85) inset,
+        0 -8px 14px rgba(0,0,0,.06) inset;
+    }
     .fitCard,.caseCard,.processCard,.techCard{
-      border:1px solid rgba(0,0,0,.12);
-      background:linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,0) 92%);
+      border:1px solid rgba(0,0,0,.16);
+      background:
+        linear-gradient(180deg, #ffffff 0%, #f9f9f9 58%, #f1f1f1 100%),
+        repeating-linear-gradient(45deg, rgba(0,0,0,.012) 0 2px, rgba(255,255,255,.012) 2px 4px);
+      box-shadow:
+        0 6px 0 rgba(0,0,0,.20),
+        0 12px 18px rgba(0,0,0,.12),
+        0 1px 0 rgba(255,255,255,.45) inset,
+        0 -1px 0 rgba(0,0,0,.14) inset;
+    }
+    .fitCard:hover,.caseCard:hover,.processCard:hover,.techCard:hover{
+      transform:translateY(2px);
+      box-shadow:
+        0 4px 0 rgba(0,0,0,.20),
+        0 8px 12px rgba(0,0,0,.10),
+        0 1px 0 rgba(255,255,255,.38) inset,
+        0 -1px 0 rgba(0,0,0,.14) inset;
+    }
+    .fitCard:active,.caseCard:active,.processCard:active,.techCard:active{
+      transform:translateY(4px);
+      box-shadow:
+        0 2px 0 rgba(0,0,0,.21),
+        0 4px 8px rgba(0,0,0,.10),
+        0 1px 0 rgba(255,255,255,.32) inset,
+        0 -1px 0 rgba(0,0,0,.15) inset;
     }
     .processNum{border-color:rgba(0,0,0,.28); color:#0b0b0b}
-    .techList li + li::before{color:rgba(0,0,0,.45)}
+    .techList li{
+      border-color:rgba(0,0,0,.14);
+      background:linear-gradient(180deg, #ffffff 0%, #f4f4f4 100%);
+      box-shadow:
+        0 3px 0 rgba(0,0,0,.16),
+        0 5px 8px rgba(0,0,0,.10),
+        0 1px 0 rgba(255,255,255,.38) inset,
+        0 -1px 0 rgba(0,0,0,.12) inset;
+    }
     .faqItem{
       border-color:rgba(0,0,0,.12);
-      background:rgba(0,0,0,.02);
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.50), rgba(255,255,255,0) 58%),
+        rgba(0,0,0,.02);
+      box-shadow:
+        0 10px 18px rgba(0,0,0,.09),
+        0 1px 0 rgba(255,255,255,.78) inset;
     }
+    .faqPlus{border-color:rgba(0,0,0,.28)}
     .footerContactEmail a{color:#0b0b0b}
     .caseGrid .caseCard h3,
     .caseGrid .caseCard p,
@@ -1136,6 +1455,7 @@ footer{
       .heroGrid{grid-template-columns:1fr; gap:18px}
       .cards{grid-template-columns:1fr}
       .services3{grid-template-columns:1fr}
+      .curveSection{grid-template-columns:1fr}
       .fitGrid,.caseGrid,.processGrid,.techGrid{grid-template-columns:1fr}
       .techGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .servicesCtaRow{justify-content:flex-start}
@@ -1165,6 +1485,14 @@ footer{
       .footerContact{text-align:left}
       .footerContactEmail a{font-size:14px}
       .techGrid{grid-template-columns:1fr}
+      .curveCard{min-height:142px}
+      .curveTitle{font-size:18px}
+      .curveValue{font-size:13px}
+      .curveTrack{height:120px}
+      .services3 .card{min-height:128px}
+      .services3 .serviceKpiTitle{font-size:18px}
+      .services3 .serviceKpiValue{font-size:13px}
+      .services3 .cardList li{font-size:15px}
     }
 
   </style>
@@ -1212,8 +1540,8 @@ footer{
       <section class="hero">
         <div class="heroGrid">
           <div>
-            <h1 class="reveal on">Кубикор — IT-решения для вашего бизнеса</h1>
-            <p class="sub reveal on delay1">Мы создаём цифровые сервисы от идеи до запуска — кубик за кубиком.</p>
+            <h1 class="reveal on">IT-решения для вашего бизнеса</h1>
+            <p class="sub reveal on delay1">Цифровые сервисы от идеи до запуска — кубик за кубиком.</p>
             <div class="energyRibbon" aria-hidden="true"></div>
           </div>
 
@@ -1226,35 +1554,97 @@ footer{
         </div>
       </section>
 
-            <section class="reveal">
-        <div class="cards services3">
-          <article class="card">
-            <div class="servicePrimaryBody">
-              <ul class="cardList">
-                <li>• MVP за 4-8 недель</li>
-                <li>• Прозрачные этапы и сроки</li>
-              </ul>
-            </div>
+      <section class="reveal contentBlock">
+        <h2 class="sectionTitle">Как мы работаем</h2>
+        <p class="contentLead">Работаем по прозрачной модели в 4 шага: фиксируем цели, синхронизируем решения, показываем результат на демо и двигаемся итерациями без хаоса.</p>
+        <div class="processGrid">
+          <article class="processCard">
+            <h3><span class="processNum">1</span>Анализ</h3>
+            <p>Проводим интервью со стейкхолдерами, разбираем текущие процессы и точки потерь. На выходе формируем scope MVP, карту рисков, KPI и приоритизированный roadmap запуска.</p>
           </article>
-          <article class="card">
-            <div class="servicePrimaryBody">
-              <ul class="cardList">
-                <li>• Меньше ручных операций</li>
-                <li>• Быстрее обработка заявок</li>
-              </ul>
-            </div>
+          <article class="processCard">
+            <h3><span class="processNum">2</span>Проектирование</h3>
+            <p>Проектируем архитектуру, пользовательские сценарии и интеграционные контуры. Вы получаете технический каркас решения, прототипы ключевых экранов и реалистичный план спринтов.</p>
           </article>
-          <article class="card">
-            <div class="servicePrimaryBody">
-              <ul class="cardList">
-                <li>• Сопровождение после запуска</li>
-                <li>• План доработок по приоритетам</li>
-              </ul>
-            </div>
+          <article class="processCard">
+            <h3><span class="processNum">3</span>Разработка</h3>
+            <p>Разрабатываем итерациями с регулярными демо, code review и тестированием критичных сценариев. Каждый релиз проходит quality-gates и выкатывается управляемо через CI/CD.</p>
+          </article>
+          <article class="processCard">
+            <h3><span class="processNum">4</span>Поддержка</h3>
+            <p>После запуска обеспечиваем мониторинг, поддержку и развитие продукта по приоритетам бизнеса. Масштабируем функциональность и производительность без остановки операционных процессов.</p>
           </article>
         </div>
       </section>
 
+      <section class="reveal contentBlock">
+        <h2 class="sectionTitle">Технологии</h2>
+        <p class="contentLead">Подбираем стек под задачи бизнеса и сценарии роста, а не ради трендов.</p>
+        <div class="techGrid">
+          <article class="techCard">
+            <h3>Backend</h3>
+            <ul class="techList">
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/nodedotjs" alt="" aria-hidden="true">Node.js</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/python" alt="" aria-hidden="true">Python</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/openjdk" alt="" aria-hidden="true">Java</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/nestjs" alt="" aria-hidden="true">NestJS</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/graphql" alt="" aria-hidden="true">GraphQL</li>
+            </ul>
+          </article>
+          <article class="techCard">
+            <h3>Frontend</h3>
+            <ul class="techList">
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/react" alt="" aria-hidden="true">React</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/nextdotjs" alt="" aria-hidden="true">Next.js</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/typescript" alt="" aria-hidden="true">TypeScript</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/redux" alt="" aria-hidden="true">Redux</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/vite" alt="" aria-hidden="true">Vite</li>
+            </ul>
+          </article>
+          <article class="techCard">
+            <h3>Data</h3>
+            <ul class="techList">
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/postgresql" alt="" aria-hidden="true">PostgreSQL</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/redis" alt="" aria-hidden="true">Redis</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/apachekafka" alt="" aria-hidden="true">Apache Kafka</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/rabbitmq" alt="" aria-hidden="true">RabbitMQ</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/mongodb" alt="" aria-hidden="true">MongoDB</li>
+            </ul>
+          </article>
+          <article class="techCard">
+            <h3>Infrastructure</h3>
+            <ul class="techList">
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/docker" alt="" aria-hidden="true">Docker</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/kubernetes" alt="" aria-hidden="true">Kubernetes</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/terraform" alt="" aria-hidden="true">Terraform</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/githubactions" alt="" aria-hidden="true">GitHub Actions</li>
+              <li><img class="techIcon" src="https://cdn.simpleicons.org/prometheus" alt="" aria-hidden="true">Prometheus</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal contentBlock">
+        <h2 class="sectionTitle">Что меняется после внедрения</h2>
+        <div class="caseGrid">
+          <article class="caseCard">
+            <h3>Обработка заявок</h3>
+            <div class="caseMeta">
+              <p><b>Ситуация:</b> заявки обрабатывались вручную в нескольких таблицах, из-за чего терялись статусы и росло время ответа клиенту.</p>
+              <p><b>Что сделали:</b> собрали единый процесс обработки, настроили автоматические маршруты, SLA-триггеры и контрольные дашборды для команды.</p>
+              <p><b>Результат:</b> до -30% ручных действий, ускорение первичной обработки обращений и прозрачная загрузка по каждому этапу.</p>
+            </div>
+          </article>
+          <article class="caseCard">
+            <h3>Быстрый запуск сервиса</h3>
+            <div class="caseMeta">
+              <p><b>Ситуация:</b> бизнесу требовался быстрый выход на рынок, но без технического долга и «ручных» релизов.</p>
+              <p><b>Что сделали:</b> выделили критичный scope MVP, собрали архитектурный каркас, внедрили CI/CD и запускали функциональность поэтапно через короткие спринты.</p>
+              <p><b>Результат:</b> первый production-релиз за 6-8 недель, предсказуемый ритм поставки и понятный план развития продукта на следующие этапы.</p>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <section class="reveal contentBlock">
         <h2 class="sectionTitle">Кому мы подходим</h2>
@@ -1280,97 +1670,50 @@ footer{
       </section>
 
       <section class="reveal contentBlock">
-        <h2 class="sectionTitle">Что меняется после внедрения</h2>
-        <div class="caseGrid">
-          <article class="caseCard">
-            <h3>Обработка заявок</h3>
-            <div class="caseMeta">
-              <p><b>Ситуация:</b> большой объём ручной обработки тормозил работу команды.</p>
-              <p><b>Что сделали:</b> внедрили единую логику обработки и автоматические сценарии.</p>
-              <p><b>Результат:</b> -30% ручных операций и быстрее обработка обращений.</p>
-            </div>
-          </article>
-          <article class="caseCard">
-            <h3>Быстрый запуск сервиса</h3>
-            <div class="caseMeta">
-              <p><b>Ситуация:</b> нужно было быстро выйти на рынок без потери качества.</p>
-              <p><b>Что сделали:</b> собрали MVP, настроили CI/CD и поэтапный релиз.</p>
-              <p><b>Результат:</b> запуск за 6-8 недель и прозрачный roadmap развития.</p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="reveal contentBlock">
-        <h2 class="sectionTitle">Как мы работаем</h2>
-        <p class="contentLead">Прозрачный процесс в 4 шага: на каждом этапе понятно, что делаем, зачем и какой эффект получает бизнес.</p>
-        <div class="processGrid">
-          <article class="processCard">
-            <h3><span class="processNum">1</span>Анализ</h3>
-            <p>Фиксируем цели, ограничения и метрики результата.</p>
-          </article>
-          <article class="processCard">
-            <h3><span class="processNum">2</span>Проектирование</h3>
-            <p>Собираем UX/UI, архитектуру и план этапов под реальные сроки.</p>
-          </article>
-          <article class="processCard">
-            <h3><span class="processNum">3</span>Разработка</h3>
-            <p>Итерации, контроль качества и стабильные релизы.</p>
-          </article>
-          <article class="processCard">
-            <h3><span class="processNum">4</span>Поддержка</h3>
-            <p>Развитие продукта, сопровождение и масштабирование под рост.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="reveal contentBlock">
-        <h2 class="sectionTitle">Технологии</h2>
-        <p class="contentLead">Подбираем стек под задачи бизнеса и сценарии роста, а не ради трендов.</p>
-        <div class="techGrid">
-          <article class="techCard">
-            <h3>Backend</h3>
-            <ul class="techList">
-              <li>Node.js</li>
-              <li>Python</li>
-              <li>Java</li>
-            </ul>
-          </article>
-          <article class="techCard">
-            <h3>Frontend</h3>
-            <ul class="techList">
-              <li>React</li>
-              <li>Next.js</li>
-              <li>TypeScript</li>
-            </ul>
-          </article>
-          <article class="techCard">
-            <h3>Data</h3>
-            <ul class="techList">
-              <li>PostgreSQL</li>
-              <li>Redis</li>
-              <li>Интеграционные API</li>
-            </ul>
-          </article>
-          <article class="techCard">
-            <h3>Infrastructure</h3>
-            <ul class="techList">
-              <li>Docker</li>
-              <li>CI/CD</li>
-              <li>Мониторинг и логирование</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="reveal contentBlock">
         <h2 class="sectionTitle">Частые вопросы</h2>
         <div class="faqList">
-          <div class="faqItem"><p><b>Сколько длится запуск?</b> Обычно MVP занимает 4-8 недель в зависимости от сложности и интеграций.</p></div>
-          <div class="faqItem"><p><b>Можно зайти поэтапно?</b> Да, начинаем с приоритетного контура и развиваем систему итерациями.</p></div>
-          <div class="faqItem"><p><b>Как контролируются сроки?</b> Через план спринтов, демо-этапы и прозрачный рабочий бэклог.</p></div>
-          <div class="faqItem"><p><b>Что после релиза?</b> Поддержка, доработки по приоритетам и развитие под рост нагрузки.</p></div>
-          <div class="faqItem"><p><b>Работаете с текущими системами?</b> Да, проектируем безопасные интеграции с существующей инфраструктурой.</p></div>
+          <div class="faqItem">
+            <button class="faqQuestion" type="button" aria-expanded="false">
+              <span class="faqQuestionText">За сколько вы реально запускаете рабочий MVP, а не прототип «для галочки»?</span>
+              <span class="faqPlus" aria-hidden="true">+</span>
+            </button>
+            <div class="faqAnswer" hidden>Обычно 6-10 недель до первого production-релиза. На старте фиксируем scope MVP, критерии готовности и календарь демо по спринтам, чтобы запуск был управляемым и без срыва сроков.</div>
+          </div>
+          <div class="faqItem">
+            <button class="faqQuestion" type="button" aria-expanded="false">
+              <span class="faqQuestionText">Как вы контролируете бюджет и защищаете проект от бесконечных доработок?</span>
+              <span class="faqPlus" aria-hidden="true">+</span>
+            </button>
+            <div class="faqAnswer" hidden>Разбиваем работу на этапы с прозрачной оценкой и приоритетами. Любые изменения проходят через change-control: сначала влияние на срок/стоимость, потом решение. Вы всегда понимаете, за что платите и какой бизнес-эффект получаете.</div>
+          </div>
+          <div class="faqItem">
+            <button class="faqQuestion" type="button" aria-expanded="false">
+              <span class="faqQuestionText">Мы сможем видеть реальный прогресс, а не только «отчёты в конце месяца»?</span>
+              <span class="faqPlus" aria-hidden="true">+</span>
+            </button>
+            <div class="faqAnswer" hidden>Да. Вы получаете доступ к рабочему бэклогу, регулярные демо и статус по рискам/блокерам. Контроль идёт в процессе, а не постфактум, поэтому решения можно принимать быстро и без потери темпа.</div>
+          </div>
+          <div class="faqItem">
+            <button class="faqQuestion" type="button" aria-expanded="false">
+              <span class="faqQuestionText">Как вы гарантируете качество и что делаете, чтобы не ловить критичные баги после релиза?</span>
+              <span class="faqPlus" aria-hidden="true">+</span>
+            </button>
+            <div class="faqAnswer" hidden>Качество встраивается в каждый спринт: code review, тестирование ключевых сценариев, pre-release проверки и наблюдаемость после выката. Это снижает риск регрессий и обеспечивает стабильную эксплуатацию с первого дня.</div>
+          </div>
+          <div class="faqItem">
+            <button class="faqQuestion" type="button" aria-expanded="false">
+              <span class="faqQuestionText">Безопасность, NDA и права на код: что остаётся у нас?</span>
+              <span class="faqPlus" aria-hidden="true">+</span>
+            </button>
+            <div class="faqAnswer" hidden>Заключаем NDA и фиксируем договором передачу прав на результат. Репозитории, доступы, инфраструктура и документация оформляются так, чтобы продукт полностью контролировался вашей компанией.</div>
+          </div>
+          <div class="faqItem">
+            <button class="faqQuestion" type="button" aria-expanded="false">
+              <span class="faqQuestionText">Вы можете встроиться в нашу текущую команду и системы без остановки бизнеса?</span>
+              <span class="faqPlus" aria-hidden="true">+</span>
+            </button>
+            <div class="faqAnswer" hidden>Да. Мы подключаемся к вашей текущей архитектуре, процессам и инструментам, усиливаем команду и делаем внедрение поэтапно. Критичные процессы продолжают работать, пока новая функциональность вводится без операционного шока.</div>
+          </div>
         </div>
       </section>
 
@@ -1431,7 +1774,7 @@ footer{
       <footer>
   <div class="footerRow">
     <div class="footerLeft">
-      <div class="footerCopy">© ООО "КУБИКОР", <span id="year">2025</span></div>
+      <div class="footerCopy">© ООО "КУБИКОР", <span id="year">2024 - 2026</span></div>
       <div class="footerDetails">
         ИНН: 7720941149 · ОГРН: 1247700766972 · Юр. адрес: 111397, г. Москва, пр-кт Зелёный, дом 20
       </div>
@@ -1458,7 +1801,7 @@ footer{
 
   <script>
     const y=document.getElementById('year');
-    if(y) y.textContent = '2025';
+    if(y) y.textContent = '2024 - 2026';
 
     const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isSmall = window.matchMedia && window.matchMedia('(max-width: 560px)').matches;
@@ -1775,9 +2118,27 @@ if(mobileMenuMode){
     (function initBootSplash(){
       const splash = document.getElementById('bootSplash');
       if(!splash) return;
+      const navEntry = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
+      const navType = (navEntry && navEntry.type) ? navEntry.type : '';
+      const isBackForward = navType === 'back_forward';
+      let fromServices = false;
+      try{
+        if(document.referrer){
+          const ref = new URL(document.referrer);
+          fromServices = ref.origin === window.location.origin && /\/services\.html$/i.test(ref.pathname);
+        }
+      }catch(_e){}
+
+      const shouldSkipSplash = isBackForward || (fromServices && navType === 'navigate');
+      if(shouldSkipSplash){
+        splash.parentNode && splash.parentNode.removeChild(splash);
+        document.body.classList.remove('boot-lock');
+        return;
+      }
+
       document.body.classList.add('boot-lock');
-      const minMs = 3500;
-      const hardCapMs = 4300;
+      const minMs = 2500;
+      const hardCapMs = 3000;
       const started = performance.now();
       let done = false;
 
@@ -2095,6 +2456,137 @@ document.addEventListener('click', (e) => {
 
   if(prefersReduced) return;
   startAuto();
+})();
+
+// FAQ accordion (question + plus -> reveal answer below)
+(function(){
+  const items = Array.from(document.querySelectorAll('.faqItem'));
+  if(!items.length) return;
+
+  const setOpen = (item, isOpen) => {
+    const btn = item.querySelector('.faqQuestion');
+    const answer = item.querySelector('.faqAnswer');
+    if(!btn || !answer) return;
+    item.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', String(isOpen));
+    answer.hidden = !isOpen;
+  };
+
+  items.forEach((item) => {
+    const btn = item.querySelector('.faqQuestion');
+    if(!btn) return;
+
+    btn.addEventListener('click', () => {
+      const wasOpen = item.classList.contains('open');
+      items.forEach((other) => setOpen(other, false));
+      setOpen(item, !wasOpen);
+    });
+  });
+})();
+
+// Interactive curves (time saving + process progress)
+(function(){
+  const cards = Array.from(document.querySelectorAll('.curveCard'));
+  if(!cards.length) return;
+
+  const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+
+  cards.forEach((card) => {
+    const type = card.dataset.curve || 'time';
+    const track = card.querySelector('.curveTrack');
+    const path = card.querySelector('.curvePath');
+    const handle = card.querySelector('.curveHandle');
+    const valueEl = card.querySelector('.curveValue');
+    const metaEl = card.querySelector('.curveMeta');
+    if(!track || !path || !handle || !valueEl || !metaEl) return;
+
+    const initial = Number(card.dataset.progress || 50);
+    let progress = clamp(isNaN(initial) ? 50 : initial, 6, 94);
+    let dragId = null;
+
+    // One fixed curve shape; marker moves along this line.
+    const yAt = (t) => {
+      const linear = 74 - (t * 46);
+      const bend = ((t - 0.58) * (t - 0.58)) * 18;
+      return clamp(linear + bend, 10, 90);
+    };
+
+    const render = () => {
+      const box = track.getBoundingClientRect();
+      const sx = 4;
+      const ex = 96;
+      const ratio = progress / 100;
+
+      const points = [];
+      const seg = 48;
+      for(let i=0;i<=seg;i++){
+        const t = i / seg;
+        const x = sx + (ex - sx) * t;
+        const y = yAt(t);
+        points.push(`${x.toFixed(2)} ${y.toFixed(2)}`);
+      }
+      path.setAttribute('d', `M ${points.join(' L ')}`);
+
+      const hx = sx + (ex - sx) * ratio;
+      const hy = yAt(ratio);
+      handle.style.left = `${hx}%`;
+      handle.style.top = `${hy}%`;
+
+      if(type === 'time'){
+        const saved = Math.round(10 + ratio * 30);
+        const fromDays = 14;
+        const toDays = Math.max(6, Math.round(fromDays * (1 - saved / 100)));
+        valueEl.textContent = `-${saved}%`;
+        metaEl.textContent = `с ${fromDays} до ${toDays} дней`;
+      } else {
+        const readiness = Math.round(30 + ratio * 65);
+        const phase = ratio < 0.14
+          ? 'Анализ требований'
+          : ratio < 0.28
+            ? 'Проектирование решения'
+            : ratio < 0.42
+              ? 'Архитектура и интеграции'
+              : ratio < 0.58
+                ? 'Разработка функциональности'
+                : ratio < 0.74
+                  ? 'Тестирование и QA'
+                  : ratio < 0.88
+                    ? 'Релиз в production'
+                    : 'Поддержка и развитие';
+        valueEl.textContent = `${readiness}%`;
+        metaEl.textContent = phase;
+      }
+    };
+
+    const setByClientX = (clientX) => {
+      const box = track.getBoundingClientRect();
+      const ratio = (clientX - box.left) / Math.max(1, box.width);
+      progress = clamp(Math.round(ratio * 100), 6, 94);
+      render();
+    };
+
+    handle.addEventListener('pointerdown', (e) => {
+      dragId = e.pointerId;
+      handle.setPointerCapture(dragId);
+      setByClientX(e.clientX);
+    });
+    handle.addEventListener('pointermove', (e) => {
+      if(dragId !== e.pointerId) return;
+      setByClientX(e.clientX);
+    });
+    handle.addEventListener('pointerup', (e) => {
+      if(dragId === e.pointerId) dragId = null;
+    });
+    handle.addEventListener('pointercancel', () => { dragId = null; });
+
+    track.addEventListener('click', (e) => {
+      if(e.target === handle) return;
+      setByClientX(e.clientX);
+    });
+
+    window.addEventListener('resize', render, { passive:true });
+    render();
+  });
 })();
 
   </script>
