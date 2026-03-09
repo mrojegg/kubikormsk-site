@@ -107,7 +107,7 @@
     .introStack .introCard:nth-child(1){z-index:1}
     .introStack .introCard:nth-child(2){
       z-index:2;
-      margin-top:-12px;
+      margin-top:10px;
     }
     .introCard.is-past{
       opacity:0;
@@ -140,7 +140,7 @@
       position:sticky;
       top:92px;
       z-index:1;
-      margin:0 0 16px;
+      margin:0 0 18px;
       opacity:var(--stage-opacity, 1);
       border:0;
       border-radius:0;
@@ -209,8 +209,8 @@
     .stageBullets{margin:0 0 14px;padding-left:22px;color:rgba(224,233,247,.92);font-size:17px;line-height:1.62}
     .stageBullets li{margin:0 0 7px}
     .stageResult{margin:0;color:#ffffff;font-size:17px;line-height:1.62}
-    .stages .stageCard + .stageCard{margin-top:-20px;}
-    .stages .stageCard:nth-child(9){margin-top:-28px;}
+    .stages .stageCard + .stageCard{margin-top:8px;}
+    .stages .stageCard:nth-child(9){margin-top:8px;}
     .stages .stageCard.is-past{
       opacity:0;
       pointer-events:none;
@@ -253,6 +253,25 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
       --line:rgba(0,0,0,.14);
     }
     body{background:#ffffff;color:#0b0b0b}
+    /* Soft matte only for text outside card-like blocks */
+    body.static-pcb main :is(h1,h2,h3,p,li,.sectionTitle,.sectionText,.lead,.stageTitle,.stageText,.stageResult):not(:where(
+      .card *,
+      .introCard *,
+      .stageCard *,
+      .faqItem *,
+      .fitCard *,
+      .caseCard *,
+      .processCard *,
+      .techCard *,
+      .partnerBlock *,
+      .review-card *,
+      .reviewsSlider *
+    )){
+      text-shadow:
+        0 0 10px rgba(255,255,255,.84),
+        0 0 18px rgba(255,255,255,.68),
+        0 0 28px rgba(255,255,255,.52);
+    }
     header{
       background:rgba(255,255,255,.88);
       border-bottom:1px solid rgba(0,0,0,.14);
@@ -269,25 +288,58 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
     .introCard{
       border-color:rgba(0,0,0,.12);
       background:
-        linear-gradient(160deg, rgba(255,255,255,.58), rgba(255,255,255,0) 58%),
-        rgba(0,0,0,.015);
+        linear-gradient(180deg, #ffffff 0%, #f9f9f9 58%, #f1f1f1 100%),
+        repeating-linear-gradient(45deg, rgba(0,0,0,.012) 0 2px, rgba(255,255,255,.012) 2px 4px);
       box-shadow:
-        0 10px 20px rgba(0,0,0,.08),
-        0 1px 0 rgba(255,255,255,.82) inset;
+        0 6px 0 rgba(0,0,0,.20),
+        0 12px 18px rgba(0,0,0,.12),
+        0 1px 0 rgba(255,255,255,.45) inset,
+        0 -1px 0 rgba(0,0,0,.14) inset;
+      transition:transform .14s ease, box-shadow .14s ease;
     }
     .stages .stageCard{
       border-color:rgba(0,0,0,.12) !important;
       background:
-        linear-gradient(160deg, rgba(255,255,255,.56), rgba(255,255,255,0) 58%),
-        rgba(0,0,0,.012) !important;
+        linear-gradient(180deg, #ffffff 0%, #f9f9f9 58%, #f1f1f1 100%),
+        repeating-linear-gradient(45deg, rgba(0,0,0,.012) 0 2px, rgba(255,255,255,.012) 2px 4px) !important;
       box-shadow:
-        0 10px 20px rgba(0,0,0,.08),
-        0 1px 0 rgba(255,255,255,.82) inset !important;
+        0 6px 0 rgba(0,0,0,.20),
+        0 12px 18px rgba(0,0,0,.12),
+        0 1px 0 rgba(255,255,255,.45) inset,
+        0 -1px 0 rgba(0,0,0,.14) inset !important;
+      transition:transform .14s ease, box-shadow .14s ease;
     }
     .partnerBlock{
+      border-color:rgba(0,0,0,.16);
+      background:
+        linear-gradient(180deg, #ffffff 0%, #f8f8f8 58%, #f0f0f0 100%),
+        repeating-linear-gradient(45deg, rgba(0,0,0,.012) 0 2px, rgba(255,255,255,.012) 2px 4px);
       box-shadow:
-        0 10px 20px rgba(0,0,0,.08),
-        0 1px 0 rgba(255,255,255,.78) inset;
+        0 6px 0 rgba(0,0,0,.20),
+        0 12px 18px rgba(0,0,0,.12),
+        0 1px 0 rgba(255,255,255,.42) inset,
+        0 -1px 0 rgba(0,0,0,.12) inset;
+      transition:transform .14s ease, box-shadow .14s ease;
+    }
+    .introCard:hover,
+    .stages .stageCard:hover,
+    .partnerBlock:hover{
+      transform:translateY(2px);
+      box-shadow:
+        0 4px 0 rgba(0,0,0,.20),
+        0 8px 12px rgba(0,0,0,.10),
+        0 1px 0 rgba(255,255,255,.38) inset,
+        0 -1px 0 rgba(0,0,0,.14) inset !important;
+    }
+    .introCard:active,
+    .stages .stageCard:active,
+    .partnerBlock:active{
+      transform:translateY(4px);
+      box-shadow:
+        0 2px 0 rgba(0,0,0,.21),
+        0 4px 8px rgba(0,0,0,.10),
+        0 1px 0 rgba(255,255,255,.32) inset,
+        0 -1px 0 rgba(0,0,0,.15) inset !important;
     }
     .footerCopy, .footerContactLabel, .footerContactEmail a{color:#0b0b0b; text-shadow:none}
 
@@ -482,58 +534,64 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
   </main>
 
   <script>
+    // full-screen "IntelliJ-like" terminal with typed site code
     (function initGridLineActivity(){
       const c = document.getElementById('spark');
       if(!c) return;
       const ctx = c.getContext('2d', { alpha: true });
       if(!ctx) return;
 
-      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const isSmall = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
       const DPR = Math.max(1, Math.min(1.5, window.devicePixelRatio || 1));
-      const cellW = 64;
-      const cellH = 56;
-      const maxActive = isSmall ? 8 : 14;
-      const targetFps = prefersReduced ? 18 : 30;
-      const frameStep = 1000 / targetFps;
+      const charsPerSec = 92;
+      const holdAfterDoneMs = 3600;
+      const maxCodeLines = 1500;
+      const codeSeed = [
+        '<!doctype html>',
+        '<html lang="ru">',
+        '<head>',
+        '  <meta charset="utf-8" />',
+        '  <meta name="viewport" content="width=device-width,initial-scale=1" />',
+        '  <title>QUBYcore — IT-решения для вашего бизнеса</title>',
+        '  <style>',
+        '    :root { --bg:#fff; --text:#111; --line:rgba(0,0,0,.12); --accent:#0f172a; }',
+        '    body{ margin:0; background:var(--bg); color:var(--text); font-family:Inter,system-ui,sans-serif; }',
+        '    header{ position:sticky; top:0; z-index:200; border-bottom:1px solid var(--line); backdrop-filter:blur(8px); }',
+        '    .hero{ display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center; min-height:58vh; }',
+        '    .faqItem{ border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,.72); }',
+        '    .techTag{ display:inline-flex; align-items:center; padding:8px 12px; border-radius:12px; border:1px solid var(--line); }',
+        '  </style>',
+        '</head>',
+        '<body class="bg-grid static-pcb">',
+        '  <header><nav>ООО "КУБИКОР"</nav></header>',
+        '  <main id="top">',
+        '    <section class="hero">',
+        '      <h1>IT-решения для вашего бизнеса</h1>',
+        '      <p>Цифровые сервисы от идеи до запуска — кубик за кубиком.</p>',
+        '    </section>',
+        '    <section id="tech" class="techGrid"></section>',
+        '    <section id="faq" class="faqList"></section>',
+        '  </main>',
+        '  <script>',
+        '    const state = { page: "services", domain: "qubycore.ru", build: "static-html-css-js", version: "1.0.0" };',
+        '    function initBootSplash(){ /* splash only on index and only on hard navigation */ }',
+        '    function initHeaderSticky(){ /* keep header visible on scroll, no hide */ }',
+        '    function initFaqAccordion(){ /* only one answer open at a time */ }',
+        '    function initServicesStack(){ /* sticky card stack on services page */ }',
+        '    function initTypedCodeBackground(){ /* full-screen intellij terminal */ }',
+        '    window.addEventListener("pageshow", (e)=>{ if(e.persisted){ location.reload(); } });',
+        '  <\\/script>',
+        '</body>',
+        '</html>'
+      ];
+      const codeLines = Array.from({ length: maxCodeLines }, (_, i) => codeSeed[i % codeSeed.length]);
+      const fullText = codeLines.join('\n');
 
       let W = 0;
       let H = 0;
       let rafId = 0;
       let lastTs = 0;
-      let activeTarget = 4;
-      let nextTargetShift = 0;
-      const pulses = [];
-
-      const rand = (min, max) => min + Math.random() * (max - min);
-      const randInt = (min, max) => Math.floor(rand(min, max + 1));
-
-      const spawnPulse = () => {
-        const horizontal = Math.random() < 0.5;
-        if(horizontal){
-          const y = randInt(0, Math.ceil(H / cellH)) * cellH + 0.5;
-          pulses.push({
-            h: true,
-            x: rand(-180, W),
-            y,
-            speed: rand(42, 92),
-            len: rand(56, 170),
-            life: 0,
-            maxLife: rand(1200, 2600)
-          });
-        } else {
-          const x = randInt(0, Math.ceil(W / cellW)) * cellW + 0.5;
-          pulses.push({
-            h: false,
-            x,
-            y: rand(-180, H),
-            speed: rand(40, 88),
-            len: rand(56, 170),
-            life: 0,
-            maxLife: rand(1200, 2600)
-          });
-        }
-      };
+      let typedChars = 0;
+      let doneHoldMs = 0;
 
       const resize = () => {
         W = Math.floor(window.innerWidth);
@@ -545,69 +603,106 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
         ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
       };
 
-      const tick = (ts) => {
-        if(ts - lastTs < frameStep){
-          rafId = requestAnimationFrame(tick);
-          return;
+      const draw = (ts) => {
+        ctx.clearRect(0, 0, W, H);
+
+        const termX = 0;
+        const termY = 0;
+        const termW = W;
+        const termH = H;
+        const headH = 38;
+        const padX = 16;
+        const padY = 12;
+        const lineH = 19;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(termX, termY, termW, termH);
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.rect(termX, termY, termW, termH);
+        ctx.strokeStyle = 'rgba(0,0,0,0.14)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.rect(termX, termY, termW, headH);
+        ctx.fillStyle = 'rgba(0,0,0,0.07)';
+        ctx.fill();
+
+        const dotY = termY + headH * 0.5;
+        const dots = ['#ff5f57', '#febc2e', '#28c840'];
+        for(let i = 0; i < 3; i++){
+          ctx.beginPath();
+          ctx.arc(termX + 14 + i * 14, dotY, 4, 0, Math.PI * 2);
+          ctx.fillStyle = dots[i];
+          ctx.fill();
         }
-        const dtMs = Math.min(60, ts - (lastTs || ts));
+
+        ctx.font = '700 11px Inter, sans-serif';
+        ctx.fillStyle = 'rgba(0,0,0,0.58)';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('IntelliJ IDEA • qubycore-site', termX + 64, dotY);
+
+        const codeTop = termY + headH + padY;
+        const codeLeft = termX + padX;
+        const codeBottom = termY + termH - padY;
+        const lineNumsOffset = 26;
+
+        ctx.beginPath();
+        ctx.rect(termX, termY + headH, termW, termH - headH);
+        ctx.clip();
+
+        const typedText = fullText.slice(0, Math.floor(typedChars));
+        const typedLines = typedText.split('\n');
+        const maxVisibleLines = Math.max(1, Math.floor((codeBottom - codeTop) / lineH));
+        const startLine = Math.max(0, typedLines.length - maxVisibleLines);
+
+        ctx.font = '700 14px "SFMono-Regular", Menlo, Consolas, Monaco, monospace';
+        ctx.textBaseline = 'top';
+        ctx.textAlign = 'left';
+
+        for(let i = startLine; i < typedLines.length; i++){
+          const y = codeTop + (i - startLine) * lineH;
+          const lineNo = String(i + 1).padStart(2, '0');
+          ctx.fillStyle = 'rgba(0,0,0,0.3)';
+          ctx.fillText(lineNo, codeLeft, y);
+          ctx.fillStyle = 'rgba(0,0,0,0.55)';
+          ctx.fillText(typedLines[i], codeLeft + lineNumsOffset, y);
+        }
+
+        const blinkOn = Math.floor(ts / 520) % 2 === 0;
+        if(blinkOn){
+          const lastLineText = typedLines[typedLines.length - 1] || '';
+          const y = codeTop + (typedLines.length - 1 - startLine) * lineH;
+          const cursorX = codeLeft + lineNumsOffset + ctx.measureText(lastLineText).width + 1;
+          ctx.fillStyle = 'rgba(0,0,0,0.58)';
+          ctx.fillRect(cursorX, y + 1, 2, 12);
+        }
+
+        ctx.restore();
+      };
+
+      const tick = (ts) => {
+        const dtMs = Math.min(64, ts - (lastTs || ts));
         const dt = dtMs / 1000;
         lastTs = ts;
 
-        ctx.clearRect(0, 0, W, H);
-
-        if(ts >= nextTargetShift){
-          activeTarget = randInt(1, maxActive);
-          nextTargetShift = ts + rand(900, 1900);
-        }
-        while(pulses.length < activeTarget){
-          spawnPulse();
-        }
-
-        for(let i = pulses.length - 1; i >= 0; i--){
-          const p = pulses[i];
-          p.life += dtMs;
-          const t = p.life / p.maxLife;
-          const fade = t < 0.25 ? (t / 0.25) : (t > 0.8 ? ((1 - t) / 0.2) : 1);
-          const alpha = Math.max(0, fade) * 0.65;
-
-          if(p.h){
-            p.x += p.speed * dt;
-            const x1 = p.x;
-            const x2 = p.x + p.len;
-            const g = ctx.createLinearGradient(x1, p.y, x2, p.y);
-            g.addColorStop(0, 'rgba(0,0,0,0)');
-            g.addColorStop(0.3, `rgba(0,0,0,${(0.22 * alpha).toFixed(3)})`);
-            g.addColorStop(0.5, `rgba(0,0,0,${(0.5 * alpha).toFixed(3)})`);
-            g.addColorStop(0.7, `rgba(0,0,0,${(0.22 * alpha).toFixed(3)})`);
-            g.addColorStop(1, 'rgba(0,0,0,0)');
-            ctx.strokeStyle = g;
-            ctx.lineWidth = 1.1;
-            ctx.beginPath();
-            ctx.moveTo(x1, p.y);
-            ctx.lineTo(x2, p.y);
-            ctx.stroke();
-            if(p.life >= p.maxLife || p.x > W + 220) pulses.splice(i, 1);
-          } else {
-            p.y += p.speed * dt;
-            const y1 = p.y;
-            const y2 = p.y + p.len;
-            const g = ctx.createLinearGradient(p.x, y1, p.x, y2);
-            g.addColorStop(0, 'rgba(0,0,0,0)');
-            g.addColorStop(0.3, `rgba(0,0,0,${(0.2 * alpha).toFixed(3)})`);
-            g.addColorStop(0.5, `rgba(0,0,0,${(0.44 * alpha).toFixed(3)})`);
-            g.addColorStop(0.7, `rgba(0,0,0,${(0.2 * alpha).toFixed(3)})`);
-            g.addColorStop(1, 'rgba(0,0,0,0)');
-            ctx.strokeStyle = g;
-            ctx.lineWidth = 1.1;
-            ctx.beginPath();
-            ctx.moveTo(p.x, y1);
-            ctx.lineTo(p.x, y2);
-            ctx.stroke();
-            if(p.life >= p.maxLife || p.y > H + 220) pulses.splice(i, 1);
+        if(typedChars < fullText.length){
+          typedChars = Math.min(fullText.length, typedChars + charsPerSec * dt);
+          if(typedChars >= fullText.length) doneHoldMs = 0;
+        } else {
+          doneHoldMs += dtMs;
+          if(doneHoldMs >= holdAfterDoneMs){
+            typedChars = 0;
+            doneHoldMs = 0;
           }
         }
 
+        draw(ts);
         rafId = requestAnimationFrame(tick);
       };
 
@@ -619,8 +714,8 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
         }
       };
 
-      window.addEventListener('resize', resize, { passive: true });
-      document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()), { passive: true });
+      window.addEventListener('resize', resize, { passive:true });
+      document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()), { passive:true });
 
       resize();
       start();

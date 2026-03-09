@@ -237,8 +237,8 @@ footer{
 #brandWordSimple{
   font-family: Space Grotesk, Inter, system-ui, sans-serif;
   font-weight:900;
-  font-size:72px;
-  letter-spacing:4px;
+  font-size:86px;
+  letter-spacing:2px;
   background: linear-gradient(120deg,
     #e9fbff 0%,
     #9aefff 14%,
@@ -264,7 +264,7 @@ footer{
   100%{ background-position: 0% 50%; }
 }
 @media (max-width:900px){
-  #brandWordSimple{ font-size:54px; }
+  #brandWordSimple{ font-size:62px; }
 }
 
 /* Per-letter shimmer + JS bounce (Safari-safe) */
@@ -341,7 +341,7 @@ footer{
       position:fixed;
       inset:0;
       z-index:9999;
-      background:#030407;
+      background:#ffffff;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -357,81 +357,116 @@ footer{
     }
     .boot-scene{
       position:relative;
-      width:min(78vw, 560px);
-      aspect-ratio:1/1;
+      width:auto;
+      aspect-ratio:auto;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding-bottom:0;
+      padding:0;
     }
     .boot-scene::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:radial-gradient(ellipse at center, rgba(3,4,7,0) 58%, rgba(3,4,7,.92) 100%);
-      z-index:1;
+      content:none;
     }
-    .boot-image{
-      position:absolute;
-      inset:4% 8% 14%;
-      width:auto;
-      height:auto;
-      max-width:84%;
-      max-height:82%;
-      object-fit:contain;
-      opacity:.92;
-      filter:contrast(1.04) brightness(.88);
-      -webkit-mask-image:radial-gradient(ellipse at center, rgba(0,0,0,1) 54%, rgba(0,0,0,.82) 70%, rgba(0,0,0,.2) 86%, rgba(0,0,0,0) 100%);
-      mask-image:radial-gradient(ellipse at center, rgba(0,0,0,1) 54%, rgba(0,0,0,.82) 70%, rgba(0,0,0,.2) 86%, rgba(0,0,0,0) 100%);
-      pointer-events:none;
-      user-select:none;
-      z-index:0;
-    }
-    .boot-wire{
-      position:absolute;
-      inset:4% 8% 16%;
-      filter:drop-shadow(0 0 10px rgba(255,255,255,.08));
-      opacity:.62;
-    }
-    .boot-wire path{
-      fill:none;
-      stroke:rgba(245,248,255,.16);
-      stroke-width:.95;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-      mix-blend-mode:screen;
-    }
-    .boot-wire path.thin{stroke-width:.62; stroke:rgba(245,248,255,.12)}
-    .boot-wire path.faint{stroke-width:.58; stroke:rgba(245,248,255,.08)}
     .boot-title{
       position:relative;
+      display:inline-block;
       z-index:2;
       font-family:Space Grotesk, Inter, system-ui, sans-serif;
-      font-size:clamp(30px, 5.4vw, 52px);
+      font-size:clamp(54px, 9.4vw, 98px);
       letter-spacing:.28em;
-      font-weight:700;
-      color:#f4f6fb;
+      font-weight:900;
+      -webkit-text-stroke:1px #111111;
+      color:#111111;
       text-shadow:
-        0 0 14px rgba(255,255,255,.16),
-        0 0 28px rgba(175,235,255,.18);
+        0 0 0 #111111,
+        0 0 0 #111111,
+        0 1px 0 rgba(0,0,0,.45),
+        0 10px 18px rgba(0,0,0,.18);
       user-select:none;
       transform:translateY(-8px);
       text-align:center;
+      transform-style:preserve-3d;
+      perspective:1200px;
+      animation:bootTitleFloat 3.4s cubic-bezier(.42,0,.23,1) infinite;
+    }
+    .boot-title.is-settled{
+      animation:none;
+      transform:translateY(-8px);
+    }
+    .boot-title-main{
+      position:relative;
+      z-index:2;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.03em;
+      transition:opacity .28s ease, filter .28s ease, transform .28s ease;
+    }
+    .boot-char{
+      display:inline-block;
+      min-width:.66em;
+      text-align:center;
+      opacity:.95;
+      transform:translateY(0);
+      transition:opacity .22s ease, transform .22s ease, text-shadow .22s ease, filter .22s ease;
+      filter:blur(.1px);
+    }
+    .boot-char.is-fixed{
+      opacity:1;
+      transform:translateY(-2px) translateZ(16px) scale(1.06);
+      -webkit-text-stroke:1.1px #111111;
+      text-shadow:
+        0 0 0 #111111,
+        0 0 0 #111111,
+        0 1px 0 rgba(0,0,0,.42),
+        0 2px 0 rgba(0,0,0,.26),
+        0 4px 0 rgba(0,0,0,.16),
+        0 10px 16px rgba(0,0,0,.24);
+      filter:blur(0);
+      animation:bootCharBounce 1.5s cubic-bezier(.32,.02,.24,1) infinite;
+      animation-delay:calc(var(--slot-i, 0) * 70ms);
+    }
+    .boot-title.is-settled .boot-char.is-fixed{
+      animation:bootCharBounce 1.5s cubic-bezier(.32,.02,.24,1) infinite;
+      transform:translateY(-2px) translateZ(16px) scale(1.06);
+    }
+    .boot-char.is-space{
+      min-width:.36em;
     }
     .boot-title::before{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:56%;
-      width:118%;
-      height:72%;
-      transform:translate(-50%,-50%);
-      border-radius:999px;
-      background:radial-gradient(ellipse at center, rgba(186,242,255,.22) 0%, rgba(186,242,255,.12) 34%, rgba(186,242,255,0) 72%);
-      filter:blur(14px);
-      z-index:-1;
-      pointer-events:none;
+      content:none;
+    }
+    .boot-title::after{
+      content:none;
+    }
+    @keyframes bootTitleFloat{
+      0%,100%{transform:translateY(-8px) rotateX(0deg) rotateY(0deg) scale(1)}
+      50%{transform:translateY(-12px) rotateX(9deg) rotateY(-8deg) scale(1.05)}
+    }
+    @keyframes bootCharBounce{
+      0%, 100%{
+        transform:translateY(-2px) translateZ(16px) scale(1.06);
+      }
+      35%{
+        transform:translateY(-10px) translateZ(18px) scale(1.07);
+      }
+      55%{
+        transform:translateY(-4px) translateZ(16px) scale(1.055);
+      }
+      72%{
+        transform:translateY(-8px) translateZ(17px) scale(1.065);
+      }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .boot-title,
+      .boot-title::before,
+      .boot-title::after{
+        animation:none;
+      }
+      .boot-char{
+        transition:none;
+        filter:none;
+      }
     }
     /* particles canvas */
     #spark{
@@ -889,6 +924,56 @@ footer{
       text-transform:uppercase;
       letter-spacing:.1px;
     }
+    /* Brand palette for tech stack words */
+    .techList li.tech-node{color:#2f8f3f}
+    .techList li.tech-python{color:#3776ab}
+    .techList li.tech-java{color:#e76f00}
+    .techList li.tech-nest{color:#e0234e}
+    .techList li.tech-graphql{color:#d6108f}
+    .techList li.tech-react{color:#0ea5c6}
+    .techList li.tech-next{color:#111111}
+    .techList li.tech-ts{color:#3178c6}
+    .techList li.tech-redux{color:#764abc}
+    .techList li.tech-vite{color:#5a5df0}
+    .techList li.tech-postgres{color:#336791}
+    .techList li.tech-redis{color:#d6362a}
+    .techList li.tech-kafka{color:#242424}
+    .techList li.tech-rabbit{color:#ff6600}
+    .techList li.tech-mongo{color:#47a248}
+    .techList li.tech-docker{color:#2496ed}
+    .techList li.tech-k8s{color:#326ce5}
+    .techList li.tech-terraform{color:#844fba}
+    .techList li.tech-gha{color:#2088ff}
+    .techList li.tech-prom{color:#e6522c}
+
+    .techList li.tech-node .techIconLabel{background:#8cc84b;color:#182314;border-color:#5f8a32}
+    .techList li.tech-python .techIconLabel{
+      background:linear-gradient(135deg,#3776ab 0%,#3776ab 50%,#ffd43b 50%,#ffd43b 100%);
+      color:#111;
+      border-color:#7b9ab4;
+    }
+    .techList li.tech-java .techIconLabel{background:#f29029;color:#221100;border-color:#b56b1d}
+    .techList li.tech-nest .techIconLabel{background:#e0234e;color:#fff;border-color:#a81b39}
+    .techList li.tech-graphql .techIconLabel{background:#e10098;color:#fff;border-color:#9a0068}
+    .techList li.tech-react .techIconLabel{background:#61dafb;color:#0b2230;border-color:#2f90ab}
+    .techList li.tech-next .techIconLabel{background:#111;color:#fff;border-color:#000}
+    .techList li.tech-ts .techIconLabel{background:#3178c6;color:#fff;border-color:#235998}
+    .techList li.tech-redux .techIconLabel{background:#764abc;color:#fff;border-color:#57368f}
+    .techList li.tech-vite .techIconLabel{
+      background:linear-gradient(135deg,#646cff 0%,#747bff 55%,#ffcb3d 100%);
+      color:#0b0b0b;
+      border-color:#5960c8;
+    }
+    .techList li.tech-postgres .techIconLabel{background:#336791;color:#fff;border-color:#244865}
+    .techList li.tech-redis .techIconLabel{background:#dc382d;color:#fff;border-color:#a42922}
+    .techList li.tech-kafka .techIconLabel{background:#1f1f1f;color:#fff;border-color:#000}
+    .techList li.tech-rabbit .techIconLabel{background:#ff6600;color:#fff;border-color:#b84a00}
+    .techList li.tech-mongo .techIconLabel{background:#47a248;color:#fff;border-color:#327334}
+    .techList li.tech-docker .techIconLabel{background:#2496ed;color:#fff;border-color:#1a6fae}
+    .techList li.tech-k8s .techIconLabel{background:#326ce5;color:#fff;border-color:#2149a3}
+    .techList li.tech-terraform .techIconLabel{background:#844fba;color:#fff;border-color:#60398a}
+    .techList li.tech-gha .techIconLabel{background:#2088ff;color:#fff;border-color:#155dad}
+    .techList li.tech-prom .techIconLabel{background:#e6522c;color:#fff;border-color:#a73b20}
     .faqList{
       margin:0;
       display:grid;
@@ -1239,6 +1324,25 @@ footer{
       --line:rgba(0,0,0,.14);
     }
     body{background:#ffffff;color:#0b0b0b}
+    /* Soft matte only for text outside card-like blocks */
+    body.static-pcb main :is(h1,h2,h3,p,li,.sectionTitle,.sectionText,.lead,.sub,.hint,.stageTitle,.stageText,.stageResult):not(:where(
+      .card *,
+      .introCard *,
+      .stageCard *,
+      .faqItem *,
+      .fitCard *,
+      .caseCard *,
+      .processCard *,
+      .techCard *,
+      .partnerBlock *,
+      .review-card *,
+      .reviewsSlider *
+    )){
+      text-shadow:
+        0 0 10px rgba(255,255,255,.84),
+        0 0 18px rgba(255,255,255,.68),
+        0 0 28px rgba(255,255,255,.52);
+    }
     .bg-grid:before{background:radial-gradient(1200px 900px at 55% 22%, rgba(0,0,0,.035), transparent 70%)}
     header{
       background:rgba(255,255,255,.88);
@@ -1321,10 +1425,16 @@ footer{
       background:none !important;
       color:#0b0b0b !important;
       -webkit-text-fill-color:#0b0b0b !important;
-      text-shadow:none !important;
+      text-shadow:
+        0 1px 0 rgba(0,0,0,.46),
+        0 2px 0 rgba(0,0,0,.32),
+        0 3px 0 rgba(0,0,0,.24),
+        0 7px 12px rgba(0,0,0,.20),
+        0 14px 28px rgba(0,0,0,.12) !important;
+      -webkit-text-stroke:1px #000000 !important;
     }
     #brandWordSimple span:nth-child(-n+4){
-      -webkit-text-stroke:0.55px #000000;
+      -webkit-text-stroke:1.35px #000000;
       font-weight:900 !important;
     }
     #contactMenu .contactHead,
@@ -1409,8 +1519,7 @@ footer{
 <body class="bg-grid static-pcb">
   <div class="boot-splash" id="bootSplash" aria-hidden="true">
     <div class="boot-scene">
-      <img class="boot-image" src="assets/boot-bg.png" alt="" aria-hidden="true" />
-      <div class="boot-title">QUBYcore</div>
+      <div class="boot-title" id="bootTitle"><span class="boot-title-main">QUBYcore</span></div>
     </div>
   </div>
   <div class="pcb-layer" aria-hidden="true"></div>
@@ -1492,41 +1601,41 @@ footer{
           <article class="techCard">
             <h3>Backend</h3>
             <ul class="techList">
-              <li><span class="techIconLabel" aria-hidden="true">JS</span>Node.js</li>
-              <li><span class="techIconLabel" aria-hidden="true">PY</span>Python</li>
-              <li><span class="techIconLabel" aria-hidden="true">JV</span>Java</li>
-              <li><span class="techIconLabel" aria-hidden="true">NS</span>NestJS</li>
-              <li><span class="techIconLabel" aria-hidden="true">GQ</span>GraphQL</li>
+              <li class="tech-node"><span class="techIconLabel" aria-hidden="true">JS</span>Node.js</li>
+              <li class="tech-python"><span class="techIconLabel" aria-hidden="true">PY</span>Python</li>
+              <li class="tech-java"><span class="techIconLabel" aria-hidden="true">JV</span>Java</li>
+              <li class="tech-nest"><span class="techIconLabel" aria-hidden="true">NS</span>NestJS</li>
+              <li class="tech-graphql"><span class="techIconLabel" aria-hidden="true">GQ</span>GraphQL</li>
             </ul>
           </article>
           <article class="techCard">
             <h3>Frontend</h3>
             <ul class="techList">
-              <li><span class="techIconLabel" aria-hidden="true">RC</span>React</li>
-              <li><span class="techIconLabel" aria-hidden="true">NX</span>Next.js</li>
-              <li><span class="techIconLabel" aria-hidden="true">TS</span>TypeScript</li>
-              <li><span class="techIconLabel" aria-hidden="true">RX</span>Redux</li>
-              <li><span class="techIconLabel" aria-hidden="true">VT</span>Vite</li>
+              <li class="tech-react"><span class="techIconLabel" aria-hidden="true">RC</span>React</li>
+              <li class="tech-next"><span class="techIconLabel" aria-hidden="true">NX</span>Next.js</li>
+              <li class="tech-ts"><span class="techIconLabel" aria-hidden="true">TS</span>TypeScript</li>
+              <li class="tech-redux"><span class="techIconLabel" aria-hidden="true">RX</span>Redux</li>
+              <li class="tech-vite"><span class="techIconLabel" aria-hidden="true">VT</span>Vite</li>
             </ul>
           </article>
           <article class="techCard">
             <h3>Data</h3>
             <ul class="techList">
-              <li><span class="techIconLabel" aria-hidden="true">PG</span>PostgreSQL</li>
-              <li><span class="techIconLabel" aria-hidden="true">RD</span>Redis</li>
-              <li><span class="techIconLabel" aria-hidden="true">KF</span>Apache Kafka</li>
-              <li><span class="techIconLabel" aria-hidden="true">RM</span>RabbitMQ</li>
-              <li><span class="techIconLabel" aria-hidden="true">MG</span>MongoDB</li>
+              <li class="tech-postgres"><span class="techIconLabel" aria-hidden="true">PG</span>PostgreSQL</li>
+              <li class="tech-redis"><span class="techIconLabel" aria-hidden="true">RD</span>Redis</li>
+              <li class="tech-kafka"><span class="techIconLabel" aria-hidden="true">KF</span>Apache Kafka</li>
+              <li class="tech-rabbit"><span class="techIconLabel" aria-hidden="true">RM</span>RabbitMQ</li>
+              <li class="tech-mongo"><span class="techIconLabel" aria-hidden="true">MG</span>MongoDB</li>
             </ul>
           </article>
           <article class="techCard">
             <h3>Infrastructure</h3>
             <ul class="techList">
-              <li><span class="techIconLabel" aria-hidden="true">DK</span>Docker</li>
-              <li><span class="techIconLabel" aria-hidden="true">K8</span>Kubernetes</li>
-              <li><span class="techIconLabel" aria-hidden="true">TF</span>Terraform</li>
-              <li><span class="techIconLabel" aria-hidden="true">GH</span>GitHub Actions</li>
-              <li><span class="techIconLabel" aria-hidden="true">PM</span>Prometheus</li>
+              <li class="tech-docker"><span class="techIconLabel" aria-hidden="true">DK</span>Docker</li>
+              <li class="tech-k8s"><span class="techIconLabel" aria-hidden="true">K8</span>Kubernetes</li>
+              <li class="tech-terraform"><span class="techIconLabel" aria-hidden="true">TF</span>Terraform</li>
+              <li class="tech-gha"><span class="techIconLabel" aria-hidden="true">GH</span>GitHub Actions</li>
+              <li class="tech-prom"><span class="techIconLabel" aria-hidden="true">PM</span>Prometheus</li>
             </ul>
           </article>
         </div>
@@ -2026,6 +2135,10 @@ if(mobileMenuMode){
     (function initBootSplash(){
       const splash = document.getElementById('bootSplash');
       if(!splash) return;
+      const bootTitle = document.getElementById('bootTitle');
+      const bootTextNode = bootTitle ? bootTitle.querySelector('.boot-title-main') : null;
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
       const navEntry = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
       const navType = (navEntry && navEntry.type) ? navEntry.type : '';
       const isBackForward = navType === 'back_forward';
@@ -2044,11 +2157,77 @@ if(mobileMenuMode){
         return;
       }
 
+      const glyphPool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      const buildGlyphLoader = () => {
+        if(!bootTextNode || prefersReduced) return { run: () => Promise.resolve() };
+        const target = (bootTextNode.textContent || '').trim();
+        const chars = [...target];
+        bootTextNode.textContent = '';
+        const slots = chars.map((ch) => {
+          const span = document.createElement('span');
+          span.className = `boot-char${ch === ' ' ? ' is-space' : ''}`;
+          span.textContent = ch === ' ' ? '\u00A0' : glyphPool[Math.floor(Math.random() * glyphPool.length)];
+          span.style.setProperty('--slot-i', String(bootTextNode.children.length));
+          bootTextNode.appendChild(span);
+          return { el: span, target: ch, fixed: ch === ' ' };
+        });
+
+        return {
+          run(){
+            return new Promise((resolve) => {
+              if(!slots.length){ resolve(); return; }
+              let fixedCount = slots.filter(s => s.fixed).length;
+              const timers = [];
+              slots.forEach((slot, idx) => {
+                if(slot.fixed){
+                  slot.el.classList.add('is-fixed');
+                  return;
+                }
+                const settleAt = 720 + idx * 110 + Math.random() * 360;
+                const intervalMs = 26 + Math.floor(Math.random() * 30);
+                const started = performance.now();
+                const timer = setInterval(() => {
+                  const elapsed = performance.now() - started;
+                  if(elapsed >= settleAt){
+                    slot.el.textContent = slot.target;
+                    slot.el.classList.add('is-fixed');
+                    clearInterval(timer);
+                    fixedCount++;
+                    if(fixedCount >= slots.length){
+                      if(bootTitle) bootTitle.classList.add('is-settled');
+                      resolve();
+                    }
+                    return;
+                  }
+                  slot.el.textContent = glyphPool[Math.floor(Math.random() * glyphPool.length)];
+                }, intervalMs);
+                timers.push(timer);
+              });
+              if(fixedCount >= slots.length) resolve();
+              setTimeout(() => {
+                slots.forEach((slot) => {
+                  if(!slot.el.classList.contains('is-fixed')){
+                    slot.el.textContent = slot.target === ' ' ? '\u00A0' : slot.target;
+                    slot.el.classList.add('is-fixed');
+                  }
+                });
+                if(bootTitle) bootTitle.classList.add('is-settled');
+                timers.forEach(clearInterval);
+                resolve();
+              }, 2600);
+            });
+          }
+        };
+      };
+
+      const loader = buildGlyphLoader();
       document.body.classList.add('boot-lock');
       const minMs = 2500;
       const hardCapMs = 3000;
       const started = performance.now();
       let done = false;
+
+      loader.run();
 
       const hide = () => {
         if(done) return;
@@ -2068,59 +2247,64 @@ if(mobileMenuMode){
       else window.addEventListener('load', hide, { once:true });
       setTimeout(hide, hardCapMs);
     })();
-    // static grid + random line activity on selected square edges
+    // full-screen "IntelliJ-like" terminal with typed site code
     (function initGridLineActivity(){
       const c = document.getElementById('spark');
       if(!c) return;
       const ctx = c.getContext('2d', { alpha: true });
       if(!ctx) return;
 
-      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const isSmall = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
       const DPR = Math.max(1, Math.min(1.5, window.devicePixelRatio || 1));
-      const cellW = 64;
-      const cellH = 56;
-      const maxActive = isSmall ? 8 : 14;
-      const targetFps = prefersReduced ? 18 : 30;
-      const frameStep = 1000 / targetFps;
+      const charsPerSec = 92;
+      const holdAfterDoneMs = 3600;
+      const maxCodeLines = 1500;
+      const codeSeed = [
+        '<!doctype html>',
+        '<html lang="ru">',
+        '<head>',
+        '  <meta charset="utf-8" />',
+        '  <meta name="viewport" content="width=device-width,initial-scale=1" />',
+        '  <title>QUBYcore — IT-решения для вашего бизнеса</title>',
+        '  <style>',
+        '    :root { --bg:#fff; --text:#111; --line:rgba(0,0,0,.12); --accent:#0f172a; }',
+        '    body{ margin:0; background:var(--bg); color:var(--text); font-family:Inter,system-ui,sans-serif; }',
+        '    header{ position:sticky; top:0; z-index:200; border-bottom:1px solid var(--line); backdrop-filter:blur(8px); }',
+        '    .hero{ display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center; min-height:58vh; }',
+        '    .faqItem{ border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,.72); }',
+        '    .techTag{ display:inline-flex; align-items:center; padding:8px 12px; border-radius:12px; border:1px solid var(--line); }',
+        '  </style>',
+        '</head>',
+        '<body class="bg-grid static-pcb">',
+        '  <header><nav>ООО "КУБИКОР"</nav></header>',
+        '  <main id="top">',
+        '    <section class="hero">',
+        '      <h1>IT-решения для вашего бизнеса</h1>',
+        '      <p>Цифровые сервисы от идеи до запуска — кубик за кубиком.</p>',
+        '    </section>',
+        '    <section id="tech" class="techGrid"></section>',
+        '    <section id="faq" class="faqList"></section>',
+        '  </main>',
+        '  <script>',
+        '    const state = { page: "index", domain: "qubycore.ru", build: "static-html-css-js", version: "1.0.0" };',
+        '    function initBootSplash(){ /* splash only on index and only on hard navigation */ }',
+        '    function initHeaderSticky(){ /* keep header visible on scroll, no hide */ }',
+        '    function initFaqAccordion(){ /* only one answer open at a time */ }',
+        '    function initServicesStack(){ /* sticky card stack on services page */ }',
+        '    function initTypedCodeBackground(){ /* full-screen intellij terminal */ }',
+        '    window.addEventListener("pageshow", (e)=>{ if(e.persisted){ location.reload(); } });',
+        '  <\\/script>',
+        '</body>',
+        '</html>'
+      ];
+      const codeLines = Array.from({ length: maxCodeLines }, (_, i) => codeSeed[i % codeSeed.length]);
+      const fullText = codeLines.join('\n');
 
       let W = 0;
       let H = 0;
       let rafId = 0;
       let lastTs = 0;
-      let activeTarget = 4;
-      let nextTargetShift = 0;
-      const pulses = [];
-
-      const rand = (min, max) => min + Math.random() * (max - min);
-      const randInt = (min, max) => Math.floor(rand(min, max + 1));
-
-      const spawnPulse = () => {
-        const horizontal = Math.random() < 0.5;
-        if(horizontal){
-          const y = randInt(0, Math.ceil(H / cellH)) * cellH + 0.5;
-          pulses.push({
-            h: true,
-            x: rand(-180, W),
-            y,
-            speed: rand(42, 92),
-            len: rand(56, 170),
-            life: 0,
-            maxLife: rand(1200, 2600)
-          });
-        } else {
-          const x = randInt(0, Math.ceil(W / cellW)) * cellW + 0.5;
-          pulses.push({
-            h: false,
-            x,
-            y: rand(-180, H),
-            speed: rand(40, 88),
-            len: rand(56, 170),
-            life: 0,
-            maxLife: rand(1200, 2600)
-          });
-        }
-      };
+      let typedChars = 0;
+      let doneHoldMs = 0;
 
       const resize = () => {
         W = Math.floor(window.innerWidth);
@@ -2132,69 +2316,105 @@ if(mobileMenuMode){
         ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
       };
 
-      const tick = (ts) => {
-        if(ts - lastTs < frameStep){
-          rafId = requestAnimationFrame(tick);
-          return;
+      const draw = (ts) => {
+        ctx.clearRect(0, 0, W, H);
+
+        const termX = 0;
+        const termY = 0;
+        const termW = W;
+        const termH = H;
+        const headH = 38;
+        const padX = 16;
+        const padY = 12;
+        const lineH = 19;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(termX, termY, termW, termH);
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.rect(termX, termY, termW, termH);
+        ctx.strokeStyle = 'rgba(0,0,0,0.14)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.rect(termX, termY, termW, headH);
+        ctx.fillStyle = 'rgba(0,0,0,0.07)';
+        ctx.fill();
+
+        const dotY = termY + headH * 0.5;
+        const dots = ['#ff5f57', '#febc2e', '#28c840'];
+        for(let i = 0; i < 3; i++){
+          ctx.beginPath();
+          ctx.arc(termX + 14 + i * 14, dotY, 4, 0, Math.PI * 2);
+          ctx.fillStyle = dots[i];
+          ctx.fill();
         }
-        const dtMs = Math.min(60, ts - (lastTs || ts));
+
+        ctx.font = '700 11px Inter, sans-serif';
+        ctx.fillStyle = 'rgba(0,0,0,0.58)';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('IntelliJ IDEA • qubycore-site', termX + 64, dotY);
+
+        const codeTop = termY + headH + padY;
+        const codeLeft = termX + padX;
+        const codeBottom = termY + termH - padY;
+
+        ctx.beginPath();
+        ctx.rect(termX, termY + headH, termW, termH - headH);
+        ctx.clip();
+
+        const typedText = fullText.slice(0, Math.floor(typedChars));
+        const typedLines = typedText.split('\n');
+        const maxVisibleLines = Math.max(1, Math.floor((codeBottom - codeTop) / lineH));
+        const startLine = Math.max(0, typedLines.length - maxVisibleLines);
+
+        ctx.font = '700 14px "SFMono-Regular", Menlo, Consolas, Monaco, monospace';
+        ctx.textBaseline = 'top';
+        ctx.textAlign = 'left';
+
+        for(let i = startLine; i < typedLines.length; i++){
+          const y = codeTop + (i - startLine) * lineH;
+          const lineNo = String(i + 1).padStart(2, '0');
+          ctx.fillStyle = 'rgba(0,0,0,0.3)';
+          ctx.fillText(lineNo, codeLeft, y);
+          ctx.fillStyle = 'rgba(0,0,0,0.55)';
+          ctx.fillText(typedLines[i], codeLeft + 26, y);
+        }
+
+        const blinkOn = Math.floor(ts / 520) % 2 === 0;
+        if(blinkOn){
+          const lastLineText = typedLines[typedLines.length - 1] || '';
+          const y = codeTop + (typedLines.length - 1 - startLine) * lineH;
+          const cursorX = codeLeft + 26 + ctx.measureText(lastLineText).width + 1;
+          ctx.fillStyle = 'rgba(0,0,0,0.58)';
+          ctx.fillRect(cursorX, y + 1, 2, 12);
+        }
+
+        ctx.restore();
+      };
+
+      const tick = (ts) => {
+        const dtMs = Math.min(64, ts - (lastTs || ts));
         const dt = dtMs / 1000;
         lastTs = ts;
 
-        ctx.clearRect(0, 0, W, H);
-
-        if(ts >= nextTargetShift){
-          activeTarget = randInt(1, maxActive);
-          nextTargetShift = ts + rand(900, 1900);
-        }
-        while(pulses.length < activeTarget){
-          spawnPulse();
-        }
-
-        for(let i = pulses.length - 1; i >= 0; i--){
-          const p = pulses[i];
-          p.life += dtMs;
-          const t = p.life / p.maxLife;
-          const fade = t < 0.25 ? (t / 0.25) : (t > 0.8 ? ((1 - t) / 0.2) : 1);
-          const alpha = Math.max(0, fade) * 0.65;
-
-          if(p.h){
-            p.x += p.speed * dt;
-            const x1 = p.x;
-            const x2 = p.x + p.len;
-            const g = ctx.createLinearGradient(x1, p.y, x2, p.y);
-            g.addColorStop(0, 'rgba(0,0,0,0)');
-            g.addColorStop(0.3, `rgba(0,0,0,${(0.22 * alpha).toFixed(3)})`);
-            g.addColorStop(0.5, `rgba(0,0,0,${(0.5 * alpha).toFixed(3)})`);
-            g.addColorStop(0.7, `rgba(0,0,0,${(0.22 * alpha).toFixed(3)})`);
-            g.addColorStop(1, 'rgba(0,0,0,0)');
-            ctx.strokeStyle = g;
-            ctx.lineWidth = 1.1;
-            ctx.beginPath();
-            ctx.moveTo(x1, p.y);
-            ctx.lineTo(x2, p.y);
-            ctx.stroke();
-            if(p.life >= p.maxLife || p.x > W + 220) pulses.splice(i, 1);
-          } else {
-            p.y += p.speed * dt;
-            const y1 = p.y;
-            const y2 = p.y + p.len;
-            const g = ctx.createLinearGradient(p.x, y1, p.x, y2);
-            g.addColorStop(0, 'rgba(0,0,0,0)');
-            g.addColorStop(0.3, `rgba(0,0,0,${(0.2 * alpha).toFixed(3)})`);
-            g.addColorStop(0.5, `rgba(0,0,0,${(0.44 * alpha).toFixed(3)})`);
-            g.addColorStop(0.7, `rgba(0,0,0,${(0.2 * alpha).toFixed(3)})`);
-            g.addColorStop(1, 'rgba(0,0,0,0)');
-            ctx.strokeStyle = g;
-            ctx.lineWidth = 1.1;
-            ctx.beginPath();
-            ctx.moveTo(p.x, y1);
-            ctx.lineTo(p.x, y2);
-            ctx.stroke();
-            if(p.life >= p.maxLife || p.y > H + 220) pulses.splice(i, 1);
+        if(typedChars < fullText.length){
+          typedChars = Math.min(fullText.length, typedChars + charsPerSec * dt);
+          if(typedChars >= fullText.length) doneHoldMs = 0;
+        } else {
+          doneHoldMs += dtMs;
+          if(doneHoldMs >= holdAfterDoneMs){
+            typedChars = 0;
+            doneHoldMs = 0;
           }
         }
 
+        draw(ts);
         rafId = requestAnimationFrame(tick);
       };
 
@@ -2206,8 +2426,8 @@ if(mobileMenuMode){
         }
       };
 
-      window.addEventListener('resize', resize, { passive: true });
-      document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()), { passive: true });
+      window.addEventListener('resize', resize, { passive:true });
+      document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()), { passive:true });
 
       resize();
       start();
