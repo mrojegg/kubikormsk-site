@@ -31,6 +31,8 @@ jobs:
         run: |
           mkdir -p _site
           find . -maxdepth 1 -name '*.html' -exec cp {} _site/ \;
+          if [ -f robots.txt ]; then cp robots.txt _site/robots.txt; fi
+          if [ -f sitemap.xml ]; then cp sitemap.xml _site/sitemap.xml; fi
           if [ -d assets ]; then cp -R assets _site/assets; fi
           if [ -f CNAME ]; then cp CNAME _site/CNAME; fi
 
