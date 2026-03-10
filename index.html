@@ -3,11 +3,39 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260310c" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=20260310c" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=20260310c" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=20260310b" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<title>Кубикор — IT-решения для вашего бизнеса</title>
+  <title>Кубикор — IT-решения для вашего бизнеса</title>
   <meta name="description" content="Кубикор — IT-решения для бизнеса. Проектирование, разработка и программное обеспечение." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://qubycore.ru/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="Кубикор" />
+  <meta property="og:title" content="Кубикор — IT-решения для вашего бизнеса" />
+  <meta property="og:description" content="Проектирование, разработка и запуск цифровых сервисов для бизнеса." />
+  <meta property="og:url" content="https://qubycore.ru/" />
+  <meta property="og:image" content="https://qubycore.ru/assets/boot-bg.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Кубикор — IT-решения для вашего бизнеса" />
+  <meta name="twitter:description" content="Проектирование, разработка и запуск цифровых сервисов для бизнеса." />
+  <meta name="twitter:image" content="https://qubycore.ru/assets/boot-bg.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ООО \"КУБИКОР\"",
+      "url": "https://qubycore.ru/",
+      "sameAs": [
+        "https://qubycore.ru/"
+      ]
+    }
+  </script>
 
   <!-- Fonts (online). If offline, fallbacks will be used. -->
   <style>
@@ -373,7 +401,7 @@ footer{
       z-index:2;
       font-family:Space Grotesk, Inter, system-ui, sans-serif;
       font-size:clamp(54px, 9.4vw, 98px);
-      letter-spacing:.28em;
+      letter-spacing:.12em;
       font-weight:900;
       -webkit-text-stroke:1px #111111;
       color:#111111;
@@ -387,20 +415,22 @@ footer{
       text-align:center;
       transform-style:preserve-3d;
       perspective:1200px;
-      animation:bootTitleFloat 3.4s cubic-bezier(.42,0,.23,1) infinite;
     }
     .boot-title.is-settled{
-      animation:none;
       transform:translateY(-8px);
     }
     .boot-title-main{
       position:relative;
       z-index:2;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:.03em;
-      transition:opacity .28s ease, filter .28s ease, transform .28s ease;
+      display:inline-block;
+      min-width:8ch;
+      letter-spacing:.12em;
+      padding-right:.12em;
+      transition:opacity .22s ease;
+    }
+    .boot-title-main.is-typing{
+      border-right:3px solid #111111;
+      animation:bootCaretBlink .88s steps(1, end) infinite;
     }
     .boot-char{
       display:inline-block;
@@ -439,9 +469,9 @@ footer{
     .boot-title::after{
       content:none;
     }
-    @keyframes bootTitleFloat{
-      0%,100%{transform:translateY(-8px) rotateX(0deg) rotateY(0deg) scale(1)}
-      50%{transform:translateY(-12px) rotateX(9deg) rotateY(-8deg) scale(1.05)}
+    @keyframes bootCaretBlink{
+      0%,49%{border-right-color:#111111}
+      50%,100%{border-right-color:transparent}
     }
     @keyframes bootCharBounce{
       0%, 100%{
@@ -2157,64 +2187,61 @@ if(mobileMenuMode){
         return;
       }
 
-      const glyphPool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       const buildGlyphLoader = () => {
-        if(!bootTextNode || prefersReduced) return { run: () => Promise.resolve() };
-        const target = (bootTextNode.textContent || '').trim();
-        const chars = [...target];
-        bootTextNode.textContent = '';
-        const slots = chars.map((ch) => {
-          const span = document.createElement('span');
-          span.className = `boot-char${ch === ' ' ? ' is-space' : ''}`;
-          span.textContent = ch === ' ' ? '\u00A0' : glyphPool[Math.floor(Math.random() * glyphPool.length)];
-          span.style.setProperty('--slot-i', String(bootTextNode.children.length));
-          bootTextNode.appendChild(span);
-          return { el: span, target: ch, fixed: ch === ' ' };
-        });
+        if(!bootTextNode) return { run: () => Promise.resolve() };
+
+        if(prefersReduced){
+          return {
+            run(){
+              bootTextNode.textContent = 'QUBYcore';
+              bootTextNode.classList.remove('is-typing');
+              if(bootTitle) bootTitle.classList.add('is-settled');
+              return Promise.resolve();
+            }
+          };
+        }
 
         return {
           run(){
             return new Promise((resolve) => {
-              if(!slots.length){ resolve(); return; }
-              let fixedCount = slots.filter(s => s.fixed).length;
-              const timers = [];
-              slots.forEach((slot, idx) => {
-                if(slot.fixed){
-                  slot.el.classList.add('is-fixed');
-                  return;
-                }
-                const settleAt = 720 + idx * 110 + Math.random() * 360;
-                const intervalMs = 26 + Math.floor(Math.random() * 30);
-                const started = performance.now();
-                const timer = setInterval(() => {
-                  const elapsed = performance.now() - started;
-                  if(elapsed >= settleAt){
-                    slot.el.textContent = slot.target;
-                    slot.el.classList.add('is-fixed');
-                    clearInterval(timer);
-                    fixedCount++;
-                    if(fixedCount >= slots.length){
-                      if(bootTitle) bootTitle.classList.add('is-settled');
-                      resolve();
-                    }
-                    return;
-                  }
-                  slot.el.textContent = glyphPool[Math.floor(Math.random() * glyphPool.length)];
-                }, intervalMs);
-                timers.push(timer);
-              });
-              if(fixedCount >= slots.length) resolve();
-              setTimeout(() => {
-                slots.forEach((slot) => {
-                  if(!slot.el.classList.contains('is-fixed')){
-                    slot.el.textContent = slot.target === ' ' ? '\u00A0' : slot.target;
-                    slot.el.classList.add('is-fixed');
-                  }
-                });
+              const shortWord = 'core';
+              const fullWord = 'QUBYcore';
+              const typeStepMs = 90;
+              const eraseStepMs = 70;
+              const pauseAfterShortMs = 220;
+              const pauseAfterEraseMs = 140;
+              const pauseAfterFullMs = 360;
+
+              bootTextNode.textContent = '';
+              bootTextNode.classList.add('is-typing');
+
+              let timelineMs = 0;
+              const schedule = (fn, deltaMs) => {
+                timelineMs += deltaMs;
+                setTimeout(fn, timelineMs);
+              };
+
+              for(let i = 1; i <= shortWord.length; i++){
+                schedule(() => { bootTextNode.textContent = shortWord.slice(0, i); }, typeStepMs);
+              }
+
+              schedule(() => {}, pauseAfterShortMs);
+
+              for(let i = shortWord.length - 1; i >= 0; i--){
+                schedule(() => { bootTextNode.textContent = shortWord.slice(0, i); }, eraseStepMs);
+              }
+
+              schedule(() => {}, pauseAfterEraseMs);
+
+              for(let i = 1; i <= fullWord.length; i++){
+                schedule(() => { bootTextNode.textContent = fullWord.slice(0, i); }, typeStepMs);
+              }
+
+              schedule(() => {
+                bootTextNode.classList.remove('is-typing');
                 if(bootTitle) bootTitle.classList.add('is-settled');
-                timers.forEach(clearInterval);
                 resolve();
-              }, 2600);
+              }, pauseAfterFullMs);
             });
           }
         };
@@ -2298,6 +2325,34 @@ if(mobileMenuMode){
       ];
       const codeLines = Array.from({ length: maxCodeLines }, (_, i) => codeSeed[i % codeSeed.length]);
       const fullText = codeLines.join('\n');
+      const BG_STATE_KEY = 'qubycore.codebg.state.v1';
+
+      const navEntry = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
+      const navType = (navEntry && navEntry.type) ? navEntry.type : '';
+      if(navType === 'reload'){
+        try{ sessionStorage.removeItem(BG_STATE_KEY); }catch(_e){}
+      }
+
+      const readBgState = () => {
+        try{
+          const raw = sessionStorage.getItem(BG_STATE_KEY);
+          if(!raw) return null;
+          const parsed = JSON.parse(raw);
+          if(!parsed || typeof parsed !== 'object') return null;
+          return parsed;
+        }catch(_e){
+          return null;
+        }
+      };
+
+      const writeBgState = () => {
+        try{
+          sessionStorage.setItem(BG_STATE_KEY, JSON.stringify({
+            typedChars: Math.floor(typedChars),
+            doneHoldMs: Math.floor(doneHoldMs)
+          }));
+        }catch(_e){}
+      };
 
       let W = 0;
       let H = 0;
@@ -2305,6 +2360,17 @@ if(mobileMenuMode){
       let lastTs = 0;
       let typedChars = 0;
       let doneHoldMs = 0;
+      let saveAccumMs = 0;
+
+      const restored = readBgState();
+      if(restored){
+        if(Number.isFinite(restored.typedChars)){
+          typedChars = Math.max(0, Math.min(fullText.length, restored.typedChars));
+        }
+        if(Number.isFinite(restored.doneHoldMs)){
+          doneHoldMs = Math.max(0, restored.doneHoldMs);
+        }
+      }
 
       const resize = () => {
         W = Math.floor(window.innerWidth);
@@ -2414,6 +2480,12 @@ if(mobileMenuMode){
           }
         }
 
+        saveAccumMs += dtMs;
+        if(saveAccumMs >= 250){
+          saveAccumMs = 0;
+          writeBgState();
+        }
+
         draw(ts);
         rafId = requestAnimationFrame(tick);
       };
@@ -2428,6 +2500,7 @@ if(mobileMenuMode){
 
       window.addEventListener('resize', resize, { passive:true });
       document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()), { passive:true });
+      window.addEventListener('pagehide', writeBgState, { passive:true });
 
       resize();
       start();

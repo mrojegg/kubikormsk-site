@@ -3,10 +3,39 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="/favicon.ico?v=20260310c" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=20260310c" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=20260310c" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=20260310b" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <title>Услуги Кубикор</title>
+  <title>Услуги Кубикор — разработка и внедрение IT-решений</title>
+  <meta name="description" content="Услуги Кубикор: разработка программного обеспечения, проектирование архитектуры, интеграции и сопровождение." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://qubycore.ru/services.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="Кубикор" />
+  <meta property="og:title" content="Услуги Кубикор — разработка и внедрение IT-решений" />
+  <meta property="og:description" content="Разработка ПО, архитектура, интеграции и сопровождение продукта для бизнеса." />
+  <meta property="og:url" content="https://qubycore.ru/services.html" />
+  <meta property="og:image" content="https://qubycore.ru/assets/boot-bg.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Услуги Кубикор — разработка и внедрение IT-решений" />
+  <meta name="twitter:description" content="Разработка ПО, архитектура, интеграции и сопровождение продукта для бизнеса." />
+  <meta name="twitter:image" content="https://qubycore.ru/assets/boot-bg.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ООО \"КУБИКОР\"",
+      "url": "https://qubycore.ru/",
+      "sameAs": [
+        "https://qubycore.ru/"
+      ]
+    }
+  </script>
   <style>
     :root{
       --bg:#000000;
@@ -585,6 +614,34 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
       ];
       const codeLines = Array.from({ length: maxCodeLines }, (_, i) => codeSeed[i % codeSeed.length]);
       const fullText = codeLines.join('\n');
+      const BG_STATE_KEY = 'qubycore.codebg.state.v1';
+
+      const navEntry = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
+      const navType = (navEntry && navEntry.type) ? navEntry.type : '';
+      if(navType === 'reload'){
+        try{ sessionStorage.removeItem(BG_STATE_KEY); }catch(_e){}
+      }
+
+      const readBgState = () => {
+        try{
+          const raw = sessionStorage.getItem(BG_STATE_KEY);
+          if(!raw) return null;
+          const parsed = JSON.parse(raw);
+          if(!parsed || typeof parsed !== 'object') return null;
+          return parsed;
+        }catch(_e){
+          return null;
+        }
+      };
+
+      const writeBgState = () => {
+        try{
+          sessionStorage.setItem(BG_STATE_KEY, JSON.stringify({
+            typedChars: Math.floor(typedChars),
+            doneHoldMs: Math.floor(doneHoldMs)
+          }));
+        }catch(_e){}
+      };
 
       let W = 0;
       let H = 0;
@@ -592,6 +649,17 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
       let lastTs = 0;
       let typedChars = 0;
       let doneHoldMs = 0;
+      let saveAccumMs = 0;
+
+      const restored = readBgState();
+      if(restored){
+        if(Number.isFinite(restored.typedChars)){
+          typedChars = Math.max(0, Math.min(fullText.length, restored.typedChars));
+        }
+        if(Number.isFinite(restored.doneHoldMs)){
+          doneHoldMs = Math.max(0, restored.doneHoldMs);
+        }
+      }
 
       const resize = () => {
         W = Math.floor(window.innerWidth);
@@ -702,6 +770,12 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
           }
         }
 
+        saveAccumMs += dtMs;
+        if(saveAccumMs >= 250){
+          saveAccumMs = 0;
+          writeBgState();
+        }
+
         draw(ts);
         rafId = requestAnimationFrame(tick);
       };
@@ -716,6 +790,7 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
 
       window.addEventListener('resize', resize, { passive:true });
       document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()), { passive:true });
+      window.addEventListener('pagehide', writeBgState, { passive:true });
 
       resize();
       start();
