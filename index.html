@@ -40,38 +40,9 @@
   <!-- Fonts (online). If offline, fallbacks will be used. -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
-  
-.reviews-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:14px;
-}
-.review-card{
-  background: rgba(12,15,22,.70);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius: 18px;
-  padding:16px;
-  box-shadow: 0 16px 40px rgba(0,0,0,.25);
-}
-.review-card p{margin:0 0 10px; color: rgba(238,242,255,.92); line-height:1.55}
-.review-company{
-  font-weight:800;
-  color: rgba(143,233,255,.98);
-  font-family: Space Grotesk, Inter, system-ui, sans-serif;
-}
 .pill.ghost{
   background: transparent;
   border:1px solid rgba(69,199,255,.45);
-}
-
-
-.headerActions{
-  display:flex;
-  align-items:center;
-  gap:36px; /* ~1cm on typical screens */
-}
-@media (max-width: 920px){
-  .headerActions{gap:16px}
 }
 
 /* Request form */
@@ -171,12 +142,6 @@
     gap:8px;
   }
   header nav a{padding:10px 12px}
-  .headerActions{
-    width:100%;
-    justify-content:center;
-    gap:12px;
-  }
-  .headerActions .pill{flex:1 1 auto; text-align:center}
   .hero{padding:40px 0 12px}
   h1{font-size:32px; line-height:1.12}
   .sub{font-size:16px}
@@ -347,21 +312,25 @@ footer{
       overflow-x:hidden;
       padding-top:72px;
     }
-    h1,h2,h3,.sectionTitle,.brand,nav a,.navLabel,.contactHead,.footerCopy,.footerContactLabel,#brandWordSimple,.review-company{
+    h1,h2,h3,.sectionTitle,.brand,nav a,.navLabel,.contactHead,.footerCopy,.footerContactLabel,#brandWordSimple{
       font-family:Space Grotesk, Inter, system-ui, sans-serif;
     }
     input,textarea,button,select{font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif}
     a{color:inherit;text-decoration:none}
 
-    .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+    .wrap{
+      width:min(1760px, calc(100vw - 32px));
+      margin:0 auto;
+      padding:0 24px;
+    }
 
     /* subtle grid */
     .bg-grid:before{
       content:"";
       position:fixed; inset:0;
-      background: radial-gradient(1200px 900px at 55% 22%, rgba(255,255,255,.04), transparent 70%);
+      background: radial-gradient(1200px 900px at 55% 22%, rgba(255,255,255,.025), transparent 70%);
       pointer-events:none;
-      opacity:.35;
+      opacity:.24;
       z-index:-3;
     }
     .boot-lock{overflow:hidden}
@@ -514,13 +483,13 @@ footer{
       pointer-events:none;
       z-index:-2;
       background:
-        radial-gradient(circle at 12% 18%, rgba(0,0,0,.09) 0 1.4px, transparent 1.5px),
-        radial-gradient(circle at 74% 28%, rgba(0,0,0,.08) 0 1.6px, transparent 1.7px),
-        radial-gradient(circle at 36% 72%, rgba(0,0,0,.08) 0 1.3px, transparent 1.4px),
-        radial-gradient(circle at 88% 78%, rgba(0,0,0,.09) 0 1.5px, transparent 1.6px),
-        repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 1px, transparent 1px 64px),
-        repeating-linear-gradient(0deg, rgba(0,0,0,.035) 0 1px, transparent 1px 56px);
-      opacity:.36;
+        radial-gradient(circle at 12% 18%, rgba(0,0,0,.06) 0 1.4px, transparent 1.5px),
+        radial-gradient(circle at 74% 28%, rgba(0,0,0,.055) 0 1.6px, transparent 1.7px),
+        radial-gradient(circle at 36% 72%, rgba(0,0,0,.055) 0 1.3px, transparent 1.4px),
+        radial-gradient(circle at 88% 78%, rgba(0,0,0,.06) 0 1.5px, transparent 1.6px),
+        repeating-linear-gradient(90deg, rgba(0,0,0,.03) 0 1px, transparent 1px 64px),
+        repeating-linear-gradient(0deg, rgba(0,0,0,.02) 0 1px, transparent 1px 56px);
+      opacity:.24;
       background-position:0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
     }
 
@@ -676,135 +645,13 @@ footer{
       ;color:#ffffff;
       text-shadow: 0 0 10px rgba(255,255,255,.12);
     }
-    .cards{display:grid;grid-template-columns:repeat(2, 1fr); gap:14px}
-    .services3{grid-template-columns:repeat(3, minmax(0, 1fr));}
-    .services3 .card{
-      background:
-        linear-gradient(160deg, rgba(255,255,255,.55), rgba(255,255,255,0) 56%),
-        rgba(0,0,0,.02);
-      border:1px solid rgba(0,0,0,.14);
-      border-radius:14px;
-      padding:8px 12px;
-      overflow:hidden;
-      min-height:142px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:
-        0 12px 22px rgba(0,0,0,.09),
-        0 1px 0 rgba(255,255,255,.80) inset,
-        0 -8px 12px rgba(0,0,0,.05) inset;
-    }
-    .services3 .servicePrimaryBody{
-      width:100%;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-    }
-    .services3 .servicePrimaryBody .cardList{
-      margin:4px 0 0;
-      text-align:left;
-    }
-    .services3 .serviceKpiTitle{
-      margin:0;
-      font-family:Space Grotesk, Inter, system-ui, sans-serif;
-      font-size:20px;
-      line-height:1.2;
-      letter-spacing:-.2px;
-      color:#0b0b0b;
-      font-weight:800;
-    }
-    .services3 .serviceKpiValue{
-      margin:8px 0 0;
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:5px 10px;
-      border-radius:999px;
-      border:1px solid rgba(17,201,246,.38);
-      background:rgba(17,201,246,.12);
-      color:#0b0b0b;
-      font-family:Space Grotesk, Inter, system-ui, sans-serif;
-      font-size:14px;
-      font-weight:800;
-      letter-spacing:.1px;
-    }
-    .services3 .serviceKpiDesc{
-      margin:6px 0 0;
-      color:rgba(0,0,0,.70);
-      font-size:14px;
-      line-height:1.4;
-      font-weight:500;
-    }
-    .card{
-      background:
-        linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,0) 56%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0) 84%);
-      border:1px solid rgba(255,255,255,.11);
-      border-radius: 14px;
-      padding:14px 12px;
-      box-shadow:
-        0 16px 34px rgba(0,0,0,.24),
-        0 2px 0 rgba(255,255,255,.05) inset,
-        0 -10px 18px rgba(0,0,0,.10) inset;
-      position:relative;
-      overflow:hidden;
-    }
-    .card:before,
-    .card:after,
     .fitCard:before,.fitCard:after,
+    .insightCard:before,.insightCard:after,
     .caseCard:before,.caseCard:after,
     .processCard:before,.processCard:after,
     .techCard:before,.techCard:after{
       content:none !important;
     }
-    .card h3{
-      margin:0 0 8px; position:relative;
-      font-family: Space Grotesk, Inter, system-ui, sans-serif;
-      letter-spacing:-.2px;
-    }
-    .card p{margin:0; color:var(--muted); line-height:1.35; position:relative}
-
-    .cardList{margin:0; padding:0; list-style:none; display:grid; gap:6px}
-    .cardList li{color:#000000; line-height:1.3; font-weight:600}
-    .services3 .cardList li{
-      position:relative;
-      padding-left:16px;
-      font-size:16px;
-      font-weight:700;
-      line-height:1.35;
-    }
-    .services3 .cardList li::before{
-      content:"";
-      position:absolute;
-      left:0;
-      top:.5em;
-      width:7px;
-      height:7px;
-      border-radius:50%;
-      background:#11c9f6;
-      box-shadow:0 0 0 3px rgba(17,201,246,.16);
-      transform:translateY(-50%);
-    }
-    .serviceLogoWrap{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; margin:0; width:min(100%, 320px)}
-    .serviceLogoImg{width:132px; height:132px; object-fit:contain; object-position:center; display:block; filter: drop-shadow(0 8px 20px rgba(0,0,0,.35)); border-radius:12px;}
-    .serviceLogoImg.noAlpha{mix-blend-mode:multiply; filter: brightness(.78) contrast(1.35) saturate(1.2) drop-shadow(0 8px 20px rgba(0,0,0,.35));}
-    .servicePrimaryBody{display:flex; flex-direction:column; align-items:center; text-align:left; gap:2px; width:100%}
-    .servicePrimaryBody .cardList{margin:0 auto; width:max-content; max-width:100%; justify-items:start; align-self:center; text-align:left}
-    .servicePrimaryBody .cardList li{white-space:normal}
-    .servicesCtaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
-    .servicesCtaRow .pill{padding:10px 14px}
-
-    .panel{
-      background: transparent;
-      border:none;
-      border-radius: 18px;
-      padding:16px 14px;
-      box-shadow:none;
-      position:relative;
-      overflow:visible;
-    }
-    .panel:before{display:none}
     .reviewsTitle{
       color:#ffffff;
       text-shadow: 0 0 10px rgba(255,255,255,.12);
@@ -816,11 +663,18 @@ footer{
       grid-template-columns:repeat(2,minmax(0,1fr));
       gap:12px;
     }
+    .insightGrid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+    }
     .techGrid{
       grid-template-columns:repeat(4,minmax(0,1fr));
       gap:10px;
+      align-items:start;
+      overflow:visible;
     }
-    .fitCard,.caseCard,.processCard,.techCard{
+    .fitCard,.insightCard,.caseCard,.processCard,.techCard{
       border:1px solid rgba(0,0,0,.16);
       background:
         linear-gradient(180deg, #ffffff 0%, #f9f9f9 58%, #f1f1f1 100%),
@@ -836,7 +690,7 @@ footer{
         0 -1px 0 rgba(0,0,0,.14) inset;
       transition:transform .14s ease, box-shadow .14s ease;
     }
-    .fitCard:hover,.caseCard:hover,.processCard:hover,.techCard:hover{
+    .fitCard:hover,.insightCard:hover,.caseCard:hover,.processCard:hover,.techCard:hover{
       transform:translateY(2px);
       box-shadow:
         0 4px 0 rgba(0,0,0,.20),
@@ -844,7 +698,7 @@ footer{
         0 1px 0 rgba(255,255,255,.38) inset,
         0 -1px 0 rgba(0,0,0,.14) inset;
     }
-    .fitCard:active,.caseCard:active,.processCard:active,.techCard:active{
+    .fitCard:active,.insightCard:active,.caseCard:active,.processCard:active,.techCard:active{
       transform:translateY(4px);
       box-shadow:
         0 2px 0 rgba(0,0,0,.21),
@@ -852,7 +706,7 @@ footer{
         0 1px 0 rgba(255,255,255,.32) inset,
         0 -1px 0 rgba(0,0,0,.15) inset;
     }
-    .fitCard h3,.caseCard h3,.processCard h3,.techCard h3{
+    .fitCard h3,.insightCard h3,.caseCard h3,.processCard h3,.techCard h3{
       margin:0 0 8px;
       font-size:20px;
       line-height:1.2;
@@ -860,20 +714,31 @@ footer{
       text-shadow:0 0 10px rgba(255,255,255,.12);
     }
     .techCard{
-      padding:10px 12px;
+      padding:11px 11px 10px;
       border-radius:14px;
+      min-height:100%;
+      position:relative;
+      overflow:visible;
+      z-index:1;
+    }
+    .techCard:hover,
+    .techCard:focus-within{
+      z-index:20;
     }
     .techCard h3{
-      margin:0 0 6px;
+      margin:0 0 8px;
       font-size:17px;
+      line-height:1.15;
+      font-weight:800;
+      text-align:left;
     }
-    .fitCard p,.caseCard p,.processCard p,.techCard p{
+    .fitCard p,.insightCard p,.caseCard p,.processCard p,.techCard p{
       margin:0;
       color:var(--muted);
       line-height:1.58;
     }
     .caseMeta{margin-top:8px; display:grid; gap:6px}
-    .caseMeta b{color:#d9f7ff}
+    .caseMeta b{color:#0b0b0b}
     .processNum{
       display:inline-flex;
       align-items:center;
@@ -894,30 +759,43 @@ footer{
       font-size:13px;
     }
     .techList{
-      margin:4px 0 0;
+      margin:0;
       padding:0;
       list-style:none;
       display:grid;
-      gap:8px;
+      gap:7px;
       color:var(--muted);
       line-height:1.3;
-      font-size:14px;
+      font-size:13px;
+      justify-items:center;
+      overflow:visible;
     }
     .techList li{
       display:inline-flex;
       align-items:center;
-      gap:8px;
+      justify-content:flex-start;
+      gap:7px;
+      position:relative;
       white-space:normal;
-      padding:6px 8px;
-      border-radius:9px;
-      border:1px solid rgba(0,0,0,.14);
-      background:linear-gradient(180deg, #ffffff 0%, #f4f4f4 100%);
+      width:100%;
+      padding:7px 9px;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,.12);
+      background:linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
       box-shadow:
-        0 3px 0 rgba(0,0,0,.16),
-        0 5px 8px rgba(0,0,0,.10),
-        0 1px 0 rgba(255,255,255,.38) inset,
+        0 4px 0 rgba(0,0,0,.15),
+        0 8px 12px rgba(0,0,0,.10),
+        0 1px 0 rgba(255,255,255,.55) inset,
         0 -1px 0 rgba(0,0,0,.12) inset;
       transition:transform .12s ease, box-shadow .12s ease;
+      font-size:13px;
+      font-weight:500;
+      overflow:visible;
+      z-index:1;
+    }
+    .techList li:hover,
+    .techList li:focus-within{
+      z-index:40;
     }
     .techList li:hover{
       transform:translateY(1px);
@@ -935,16 +813,57 @@ footer{
         0 1px 0 rgba(255,255,255,.30) inset,
         0 -1px 0 rgba(0,0,0,.13) inset;
     }
+    .techTooltip{
+      position:absolute;
+      left:50%;
+      bottom:calc(100% + 12px);
+      transform:translateX(-50%) translateY(6px);
+      width:min(250px, calc(100vw - 40px));
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,.14);
+      background:rgba(255,255,255,.98);
+      box-shadow:
+        0 12px 24px rgba(0,0,0,.12),
+        0 1px 0 rgba(255,255,255,.7) inset;
+      color:#202020;
+      font-size:12px;
+      line-height:1.4;
+      font-weight:500;
+      text-align:left;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .16s ease, transform .16s ease;
+      z-index:60;
+    }
+    .techTooltip::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:100%;
+      transform:translateX(-50%);
+      width:10px;
+      height:10px;
+      background:rgba(255,255,255,.98);
+      border-right:1px solid rgba(0,0,0,.12);
+      border-bottom:1px solid rgba(0,0,0,.12);
+      rotate:45deg;
+    }
+    .techList li:hover .techTooltip,
+    .techList li:focus-within .techTooltip{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
     .techIconLabel{
-      width:18px;
-      height:18px;
-      min-width:18px;
-      border-radius:5px;
+      width:22px;
+      height:22px;
+      min-width:22px;
+      border-radius:7px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
       font-family:Space Grotesk, Inter, system-ui, sans-serif;
-      font-size:10px;
+      font-size:11px;
       font-weight:800;
       line-height:1;
       color:#0b0b0b;
@@ -986,7 +905,7 @@ footer{
     .techList li.tech-nest .techIconLabel{background:#e0234e;color:#fff;border-color:#a81b39}
     .techList li.tech-graphql .techIconLabel{background:#e10098;color:#fff;border-color:#9a0068}
     .techList li.tech-react .techIconLabel{background:#61dafb;color:#0b2230;border-color:#2f90ab}
-    .techList li.tech-next .techIconLabel{background:#111;color:#fff;border-color:#000}
+    .techList li.tech-next .techIconLabel{background:#111;color:#fff !important;-webkit-text-fill-color:#fff !important;border-color:#000}
     .techList li.tech-ts .techIconLabel{background:#3178c6;color:#fff;border-color:#235998}
     .techList li.tech-redux .techIconLabel{background:#764abc;color:#fff;border-color:#57368f}
     .techList li.tech-vite .techIconLabel{
@@ -996,7 +915,7 @@ footer{
     }
     .techList li.tech-postgres .techIconLabel{background:#336791;color:#fff;border-color:#244865}
     .techList li.tech-redis .techIconLabel{background:#dc382d;color:#fff;border-color:#a42922}
-    .techList li.tech-kafka .techIconLabel{background:#1f1f1f;color:#fff;border-color:#000}
+    .techList li.tech-kafka .techIconLabel{background:#1f1f1f;color:#fff !important;-webkit-text-fill-color:#fff !important;border-color:#000}
     .techList li.tech-rabbit .techIconLabel{background:#ff6600;color:#fff;border-color:#b84a00}
     .techList li.tech-mongo .techIconLabel{background:#47a248;color:#fff;border-color:#327334}
     .techList li.tech-docker .techIconLabel{background:#2496ed;color:#fff;border-color:#1a6fae}
@@ -1038,6 +957,7 @@ footer{
       margin:0;
       font-weight:700;
       line-height:1.45;
+      width:100%;
     }
     .faqPlus{
       width:20px;
@@ -1066,14 +986,11 @@ footer{
     .faqItem.open .faqAnswer{
       display:block;
     }
-    .metric{
-      font-family: Space Grotesk, Inter, system-ui, sans-serif;
-      font-weight:800; font-size:28px;
-      background: linear-gradient(135deg, rgba(143,233,255,.95), rgba(69,199,255,.85));
-      -webkit-background-clip: text; background-clip:text; color:transparent;
-      position:relative;
+    .sectionNote{
+      margin:0 0 14px;
+      color:rgba(238,242,255,.88);
+      line-height:1.62;
     }
-
     /* reveal */
     .reveal{opacity:0;transform: translateY(10px);transition: .6s ease}
     .reveal.on{opacity:1;transform: translateY(0)}
@@ -1355,17 +1272,13 @@ footer{
     }
     body{background:#ffffff;color:#0b0b0b}
     /* Soft matte only for text outside card-like blocks */
-    body.static-pcb main :is(h1,h2,h3,p,li,.sectionTitle,.sectionText,.lead,.sub,.hint,.stageTitle,.stageText,.stageResult):not(:where(
-      .card *,
-      .introCard *,
-      .stageCard *,
+    body.static-pcb main :is(h1,h2,h3,p,li,.sectionTitle,.sectionText,.lead,.sub,.hint):not(:where(
       .faqItem *,
       .fitCard *,
+      .insightCard *,
       .caseCard *,
       .processCard *,
       .techCard *,
-      .partnerBlock *,
-      .review-card *,
       .reviewsSlider *
     )){
       text-shadow:
@@ -1373,7 +1286,10 @@ footer{
         0 0 18px rgba(255,255,255,.68),
         0 0 28px rgba(255,255,255,.52);
     }
-    .bg-grid:before{background:radial-gradient(1200px 900px at 55% 22%, rgba(0,0,0,.035), transparent 70%)}
+    .bg-grid:before{
+      background:radial-gradient(1200px 900px at 55% 22%, rgba(0,0,0,.02), transparent 70%);
+      opacity:.18;
+    }
     header{
       background:rgba(255,255,255,.88);
       border-bottom:1px solid rgba(0,0,0,.14);
@@ -1381,60 +1297,15 @@ footer{
     .brand, nav a, .navLabel{color:#0b0b0b; text-shadow:none}
     nav a:hover{background:rgba(0,0,0,.05)}
     .hero h1, .sectionTitle, .reviewsTitle,
-    .fitCard h3, .caseCard h3, .processCard h3, .techCard h3,
+    .fitCard h3, .insightCard h3, .caseCard h3, .processCard h3, .techCard h3,
     .footerCopy, .footerContactLabel{color:#0b0b0b; text-shadow:none}
-    .sub, .hint, .contentLead, .cardList li,
-    .fitCard p, .caseCard p, .processCard p, .techCard p,
+    .sub, .hint, .contentLead,
+    .fitCard p, .insightCard p, .caseCard p, .processCard p, .techCard p,
     .faqAnswer, .reviewSlide p, .footerDetails{color:rgba(0,0,0,.78)}
-    .card{
-      border:1px solid rgba(0,0,0,.14);
-      background:
-        linear-gradient(160deg, rgba(255,255,255,.58), rgba(255,255,255,0) 58%),
-        linear-gradient(180deg, rgba(0,0,0,.035), rgba(0,0,0,0) 84%);
-      box-shadow:
-        0 14px 26px rgba(0,0,0,.10),
-        0 1px 0 rgba(255,255,255,.85) inset,
-        0 -8px 14px rgba(0,0,0,.06) inset;
-    }
-    .fitCard,.caseCard,.processCard,.techCard{
-      border:1px solid rgba(0,0,0,.16);
-      background:
-        linear-gradient(180deg, #ffffff 0%, #f9f9f9 58%, #f1f1f1 100%),
-        repeating-linear-gradient(45deg, rgba(0,0,0,.012) 0 2px, rgba(255,255,255,.012) 2px 4px);
-      box-shadow:
-        0 6px 0 rgba(0,0,0,.20),
-        0 12px 18px rgba(0,0,0,.12),
-        0 1px 0 rgba(255,255,255,.45) inset,
-        0 -1px 0 rgba(0,0,0,.14) inset;
-    }
-    .fitCard:hover,.caseCard:hover,.processCard:hover,.techCard:hover{
-      transform:translateY(2px);
-      box-shadow:
-        0 4px 0 rgba(0,0,0,.20),
-        0 8px 12px rgba(0,0,0,.10),
-        0 1px 0 rgba(255,255,255,.38) inset,
-        0 -1px 0 rgba(0,0,0,.14) inset;
-    }
-    .fitCard:active,.caseCard:active,.processCard:active,.techCard:active{
-      transform:translateY(4px);
-      box-shadow:
-        0 2px 0 rgba(0,0,0,.21),
-        0 4px 8px rgba(0,0,0,.10),
-        0 1px 0 rgba(255,255,255,.32) inset,
-        0 -1px 0 rgba(0,0,0,.15) inset;
-    }
-    .processNum{border-color:rgba(0,0,0,.28); color:#0b0b0b}
+    .fitCard,.insightCard,.caseCard,.processCard,.techCard,
+    .faqItem,.reviewsSlider,
     .techList li{
-      border-color:rgba(0,0,0,.14);
-      background:linear-gradient(180deg, #ffffff 0%, #f4f4f4 100%);
-      box-shadow:
-        0 3px 0 rgba(0,0,0,.16),
-        0 5px 8px rgba(0,0,0,.10),
-        0 1px 0 rgba(255,255,255,.38) inset,
-        0 -1px 0 rgba(0,0,0,.12) inset;
-    }
-    .faqItem{
-      border-color:rgba(0,0,0,.12);
+      border:1px solid rgba(0,0,0,.12);
       background:
         linear-gradient(160deg, rgba(255,255,255,.50), rgba(255,255,255,0) 58%),
         rgba(0,0,0,.02);
@@ -1442,6 +1313,23 @@ footer{
         0 10px 18px rgba(0,0,0,.09),
         0 1px 0 rgba(255,255,255,.78) inset;
     }
+    .fitCard:hover,.insightCard:hover,.caseCard:hover,.processCard:hover,.techCard:hover,
+    .faqItem:hover,.reviewsSlider:hover,
+    .techList li:hover{
+      transform:translateY(2px);
+      box-shadow:
+        0 7px 14px rgba(0,0,0,.08),
+        0 1px 0 rgba(255,255,255,.72) inset;
+    }
+    .fitCard:active,.insightCard:active,.caseCard:active,.processCard:active,.techCard:active,
+    .faqItem:active,.reviewsSlider:active,
+    .techList li:active{
+      transform:translateY(4px);
+      box-shadow:
+        0 4px 9px rgba(0,0,0,.08),
+        0 1px 0 rgba(255,255,255,.68) inset;
+    }
+    .processNum{border-color:rgba(0,0,0,.28); color:#0b0b0b}
     .faqPlus{border-color:rgba(0,0,0,.28)}
     .footerContactEmail a{color:#0b0b0b}
     .caseGrid .caseCard h3,
@@ -1489,6 +1377,19 @@ footer{
       backdrop-filter:none !important;
       -webkit-backdrop-filter:none !important;
     }
+    body :is(
+      h1,h2,h3,h4,h5,h6,p,a,span,li,b,strong,small,label,button,
+      .brand,.navLabel,.lead,.sub,.hint,.sectionTitle,.sectionText,.contentLead,
+      .footerCopy,.footerDetails,.footerContactLabel,.footerContactEmail a,
+      .reviewSlide p,.faqQuestionText,.faqPlus,
+      .processNum,.contactHead,.contactBody,.contactBody *,
+      .techList li,.techIconLabel,.pill,
+      .caseMeta *,.fitCard *,.insightCard *,.caseCard *,.processCard *,.techCard *
+    ){
+      color:#000000 !important;
+      -webkit-text-fill-color:#000000 !important;
+      text-shadow:none !important;
+    }
 
     .internalPage{
       padding:24px 0 20px;
@@ -1506,11 +1407,9 @@ footer{
 
     @media (max-width: 920px){
       .heroGrid{grid-template-columns:1fr; gap:18px}
-      .cards{grid-template-columns:1fr}
-      .services3{grid-template-columns:1fr}
       .fitGrid,.caseGrid,.processGrid,.techGrid{grid-template-columns:1fr}
+      .insightGrid{grid-template-columns:1fr}
       .techGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .servicesCtaRow{justify-content:flex-start}
       .split{grid-template-columns:1fr}
       h1{font-size:36px}
       .cubeStage{min-height:250px}
@@ -1537,10 +1436,8 @@ footer{
       .footerContact{text-align:left}
       .footerContactEmail a{font-size:14px}
       .techGrid{grid-template-columns:1fr}
-      .services3 .card{min-height:128px}
-      .services3 .serviceKpiTitle{font-size:18px}
-      .services3 .serviceKpiValue{font-size:13px}
-      .services3 .cardList li{font-size:15px}
+      .techCard{padding:10px 10px 9px}
+      .techCard h3{font-size:16px}
     }
 
   </style>
@@ -1603,69 +1500,69 @@ footer{
 
       <section class="reveal contentBlock">
         <h2 class="sectionTitle">Как мы работаем</h2>
-        <p class="contentLead">Работаем по прозрачной модели в 4 шага: фиксируем цели, синхронизируем решения, показываем результат на демо и двигаемся итерациями без хаоса.</p>
+        <p class="contentLead">Работаем по прозрачной модели в 4 шага: фиксируем цели, синхронизируем решения, показываем результат на демо и двигаемся итерациями без хаоса. Для бизнеса это означает понятное управление сроками, приоритетами и качеством результата на каждом этапе.</p>
         <div class="processGrid">
           <article class="processCard">
             <h3><span class="processNum">1</span>Анализ</h3>
-            <p>Проводим интервью со стейкхолдерами, разбираем текущие процессы и точки потерь. На выходе формируем scope MVP, карту рисков, KPI и приоритизированный roadmap запуска.</p>
+            <p>Проводим интервью со стейкхолдерами, разбираем текущие процессы и точки потерь. Формируем scope MVP, карту рисков, KPI и roadmap запуска. На этом шаге фиксируются приоритеты, ограничения и критерии готовности, чтобы проект не расползался по задачам без бизнес-эффекта.</p>
           </article>
           <article class="processCard">
             <h3><span class="processNum">2</span>Проектирование</h3>
-            <p>Проектируем архитектуру, пользовательские сценарии и интеграционные контуры. Вы получаете технический каркас решения, прототипы ключевых экранов и реалистичный план спринтов.</p>
+            <p>Проектируем архитектуру, пользовательские сценарии и интеграционные контуры. Заказчик получает технический каркас решения, прототипы ключевых экранов и реалистичный план спринтов. Это снижает количество переделок, упрощает согласование сложных точек и делает дальнейшую разработку управляемой.</p>
           </article>
           <article class="processCard">
             <h3><span class="processNum">3</span>Разработка</h3>
-            <p>Разрабатываем итерациями с регулярными демо, code review и тестированием критичных сценариев. Каждый релиз проходит quality-gates и выкатывается управляемо через CI/CD.</p>
+            <p>Разрабатываем итерациями с регулярными демо, code review и тестированием критичных сценариев. Каждый релиз проходит quality-gates и выкатывается через CI/CD. Заказчик видит реальный прогресс, а команда работает в предсказуемом ритме без накопления хаоса между релизами.</p>
           </article>
           <article class="processCard">
             <h3><span class="processNum">4</span>Поддержка</h3>
-            <p>После запуска обеспечиваем мониторинг, поддержку и развитие продукта по приоритетам бизнеса. Масштабируем функциональность и производительность без остановки операционных процессов.</p>
+            <p>После запуска обеспечиваем мониторинг, поддержку и развитие продукта по приоритетам бизнеса. Масштабируем функциональность и производительность без остановки операционных процессов. Система остаётся рабочим инструментом, а не “закрытым проектом” после первой версии.</p>
           </article>
         </div>
       </section>
 
       <section class="reveal contentBlock">
         <h2 class="sectionTitle">Технологии</h2>
-        <p class="contentLead">Подбираем стек под задачи бизнеса и сценарии роста, а не ради трендов.</p>
+        <p class="contentLead">Подбираем стек под задачи бизнеса и сценарии роста, а не ради трендов. Учитываем нагрузку, отказоустойчивость, состав команды и стоимость сопровождения, чтобы технология поддерживала бизнес, а не создавала лишние ограничения.</p>
         <div class="techGrid">
           <article class="techCard">
             <h3>Backend</h3>
             <ul class="techList">
-              <li class="tech-node"><span class="techIconLabel" aria-hidden="true">JS</span>Node.js</li>
-              <li class="tech-python"><span class="techIconLabel" aria-hidden="true">PY</span>Python</li>
-              <li class="tech-java"><span class="techIconLabel" aria-hidden="true">JV</span>Java</li>
-              <li class="tech-nest"><span class="techIconLabel" aria-hidden="true">NS</span>NestJS</li>
-              <li class="tech-graphql"><span class="techIconLabel" aria-hidden="true">GQ</span>GraphQL</li>
+              <li class="tech-node"><span class="techIconLabel" aria-hidden="true">JS</span>Node.js<span class="techTooltip">Серверная платформа для быстрых API, real-time сценариев и сервисов с большим количеством интеграций.</span></li>
+              <li class="tech-python"><span class="techIconLabel" aria-hidden="true">PY</span>Python<span class="techTooltip">Подходит для backend, автоматизации, аналитики и сервисов, где важны скорость разработки и богатая экосистема библиотек.</span></li>
+              <li class="tech-java"><span class="techIconLabel" aria-hidden="true">JV</span>Java<span class="techTooltip">Сильный выбор для нагруженных корпоративных систем, где критичны стабильность, масштабирование и долгий жизненный цикл решения.</span></li>
+              <li class="tech-nest"><span class="techIconLabel" aria-hidden="true">NS</span>NestJS<span class="techTooltip">Фреймворк для структурированного backend на TypeScript с понятной архитектурой модулей, сервисов и контроллеров.</span></li>
+              <li class="tech-graphql"><span class="techIconLabel" aria-hidden="true">GQ</span>GraphQL<span class="techTooltip">Позволяет гибко отдавать данные клиенту и уменьшать лишние запросы, особенно в сложных интерфейсах и интеграционных контурах.</span></li>
             </ul>
           </article>
           <article class="techCard">
             <h3>Frontend</h3>
             <ul class="techList">
-              <li class="tech-react"><span class="techIconLabel" aria-hidden="true">RC</span>React</li>
-              <li class="tech-next"><span class="techIconLabel" aria-hidden="true">NX</span>Next.js</li>
-              <li class="tech-ts"><span class="techIconLabel" aria-hidden="true">TS</span>TypeScript</li>
-              <li class="tech-redux"><span class="techIconLabel" aria-hidden="true">RX</span>Redux</li>
-              <li class="tech-vite"><span class="techIconLabel" aria-hidden="true">VT</span>Vite</li>
+              <li class="tech-react"><span class="techIconLabel" aria-hidden="true">RC</span>React<span class="techTooltip">Библиотека для интерфейсов с компонентной архитектурой, удобная для сложных пользовательских сценариев и масштабируемых фронтендов.</span></li>
+              <li class="tech-next"><span class="techIconLabel" aria-hidden="true">NX</span>Next.js<span class="techTooltip">Фреймворк для React-проектов с SSR, SEO-возможностями и удобной организацией маршрутов и серверной логики.</span></li>
+              <li class="tech-ts"><span class="techIconLabel" aria-hidden="true">TS</span>TypeScript<span class="techTooltip">Добавляет строгую типизацию в JavaScript и снижает количество ошибок при развитии больших frontend и backend кодовых баз.</span></li>
+              <li class="tech-redux"><span class="techIconLabel" aria-hidden="true">RX</span>Redux<span class="techTooltip">Подходит для централизованного управления состоянием там, где в интерфейсе много взаимосвязанных данных и сложных сценариев.</span></li>
+              <li class="tech-vite"><span class="techIconLabel" aria-hidden="true">VT</span>Vite<span class="techTooltip">Современный инструмент сборки, который ускоряет локальную разработку и делает frontend-пайплайн легче и удобнее в поддержке.</span></li>
             </ul>
           </article>
           <article class="techCard">
             <h3>Data</h3>
             <ul class="techList">
-              <li class="tech-postgres"><span class="techIconLabel" aria-hidden="true">PG</span>PostgreSQL</li>
-              <li class="tech-redis"><span class="techIconLabel" aria-hidden="true">RD</span>Redis</li>
-              <li class="tech-kafka"><span class="techIconLabel" aria-hidden="true">KF</span>Apache Kafka</li>
-              <li class="tech-rabbit"><span class="techIconLabel" aria-hidden="true">RM</span>RabbitMQ</li>
-              <li class="tech-mongo"><span class="techIconLabel" aria-hidden="true">MG</span>MongoDB</li>
+              <li class="tech-postgres"><span class="techIconLabel" aria-hidden="true">PG</span>PostgreSQL<span class="techTooltip">Надёжная реляционная СУБД для бизнес-критичных данных, транзакций, отчётности и систем с высокой требовательностью к целостности.</span></li>
+              <li class="tech-redis"><span class="techIconLabel" aria-hidden="true">RD</span>Redis<span class="techTooltip">Используется для кэша, очередей и быстрого доступа к горячим данным, когда важны скорость ответа и разгрузка основной базы.</span></li>
+              <li class="tech-kafka"><span class="techIconLabel" aria-hidden="true">KF</span>Apache Kafka<span class="techTooltip">Подходит для событийной архитектуры и потоковой обработки данных там, где много сообщений, интеграций и асинхронных процессов.</span></li>
+              <li class="tech-rabbit"><span class="techIconLabel" aria-hidden="true">RM</span>RabbitMQ<span class="techTooltip">Брокер сообщений для очередей и маршрутизации задач, удобный для надёжного обмена между сервисами и фоновыми обработчиками.</span></li>
+              <li class="tech-mongo"><span class="techIconLabel" aria-hidden="true">MG</span>MongoDB<span class="techTooltip">Документная база данных для гибких структур хранения, когда модель данных может быстро меняться и важна скорость адаптации.</span></li>
             </ul>
           </article>
           <article class="techCard">
             <h3>Infrastructure</h3>
             <ul class="techList">
-              <li class="tech-docker"><span class="techIconLabel" aria-hidden="true">DK</span>Docker</li>
-              <li class="tech-k8s"><span class="techIconLabel" aria-hidden="true">K8</span>Kubernetes</li>
-              <li class="tech-terraform"><span class="techIconLabel" aria-hidden="true">TF</span>Terraform</li>
-              <li class="tech-gha"><span class="techIconLabel" aria-hidden="true">GH</span>GitHub Actions</li>
-              <li class="tech-prom"><span class="techIconLabel" aria-hidden="true">PM</span>Prometheus</li>
+              <li class="tech-docker"><span class="techIconLabel" aria-hidden="true">DK</span>Docker<span class="techTooltip">Контейнеризация делает окружения воспроизводимыми и упрощает переносимость приложения между разработкой, тестированием и продакшеном.</span></li>
+              <li class="tech-k8s"><span class="techIconLabel" aria-hidden="true">K8</span>Kubernetes<span class="techTooltip">Оркестратор для управления контейнерами, масштабированием, отказоустойчивостью и стабильной эксплуатацией распределённых систем.</span></li>
+              <li class="tech-terraform"><span class="techIconLabel" aria-hidden="true">TF</span>Terraform<span class="techTooltip">Infrastructure as Code инструмент для описания и воспроизведения инфраструктуры без ручной настройки и дрейфа окружений.</span></li>
+              <li class="tech-gha"><span class="techIconLabel" aria-hidden="true">GH</span>GitHub Actions<span class="techTooltip">Подходит для CI/CD-процессов: сборки, тестирования, деплоя и автоматизации инженерных операций прямо из репозитория.</span></li>
+              <li class="tech-prom"><span class="techIconLabel" aria-hidden="true">PM</span>Prometheus<span class="techTooltip">Система мониторинга для метрик и алертов, которая помогает отслеживать состояние сервисов и быстрее реагировать на отклонения.</span></li>
             </ul>
           </article>
         </div>
@@ -1673,21 +1570,22 @@ footer{
 
       <section class="reveal contentBlock">
         <h2 class="sectionTitle">Что меняется после внедрения</h2>
+        <p class="sectionNote">Ниже типовые сценарии, в которых цифровизация даёт измеримый эффект: снижает ручную нагрузку, ускоряет операции, упрощает контроль и делает управленческие решения основанными на данных.</p>
         <div class="caseGrid">
           <article class="caseCard">
             <h3>Обработка заявок</h3>
             <div class="caseMeta">
               <p><b>Ситуация:</b> заявки обрабатывались вручную в нескольких таблицах, из-за чего терялись статусы и росло время ответа клиенту.</p>
-              <p><b>Что сделали:</b> собрали единый процесс обработки, настроили автоматические маршруты, SLA-триггеры и контрольные дашборды для команды.</p>
-              <p><b>Результат:</b> до -30% ручных действий, ускорение первичной обработки обращений и прозрачная загрузка по каждому этапу.</p>
+              <p><b>Что сделали:</b> собрали единый процесс обработки, настроили маршруты, SLA-триггеры и контрольные дашборды. Зафиксировали правила приоритизации и контрольные точки для руководителей.</p>
+              <p><b>Результат:</b> до -30% ручных действий, ускорение первичной обработки обращений и прозрачная загрузка по каждому этапу. Менеджмент получает понятную картину по скорости и качеству работы.</p>
             </div>
           </article>
           <article class="caseCard">
             <h3>Быстрый запуск сервиса</h3>
             <div class="caseMeta">
               <p><b>Ситуация:</b> бизнесу требовался быстрый выход на рынок, но без технического долга и «ручных» релизов.</p>
-              <p><b>Что сделали:</b> выделили критичный scope MVP, собрали архитектурный каркас, внедрили CI/CD и запускали функциональность поэтапно через короткие спринты.</p>
-              <p><b>Результат:</b> первый production-релиз за 6-8 недель, предсказуемый ритм поставки и понятный план развития продукта на следующие этапы.</p>
+              <p><b>Что сделали:</b> выделили критичный scope MVP, собрали архитектурный каркас, внедрили CI/CD и запускали функциональность короткими спринтами. Базовый стек сразу закладывался под последующее развитие.</p>
+              <p><b>Результат:</b> первый production-релиз за 6-8 недель, предсказуемый ритм поставки и понятный план следующего этапа. Бизнес быстрее проверяет гипотезы и опирается на реальные данные, а не на предположения.</p>
             </div>
           </article>
         </div>
@@ -1695,23 +1593,46 @@ footer{
 
       <section class="reveal contentBlock">
         <h2 class="sectionTitle">Кому мы подходим</h2>
-        <p class="contentLead">Работаем с бизнесом, где важны скорость запуска, прозрачные процессы и предсказуемый результат.</p>
+        <p class="contentLead">Работаем с бизнесом, где важны скорость запуска, прозрачные процессы и предсказуемый результат. Нам особенно близки проекты, в которых цифровой продукт должен поддерживать операционную модель компании и улучшать её показатели.</p>
         <div class="fitGrid">
           <article class="fitCard">
             <h3>Производство</h3>
-            <p>Автоматизация заявок, отчётности и внутренних процессов без перегруза команды.</p>
+            <p>Автоматизация заявок, отчётности и внутренних процессов без перегруза команды. Особенно важно там, где много ручных согласований, зависимостей между подразделениями и требований к прозрачности исполнения.</p>
           </article>
           <article class="fitCard">
             <h3>Сервисные компании</h3>
-            <p>Цифровизация операционных задач и снижение ручных действий на ежедневных этапах.</p>
+            <p>Цифровизация операционных задач и снижение ручных действий на ежедневных этапах. Выстраиваем стабильный контур обработки запросов, статусов, SLA и внутреннего контроля качества.</p>
           </article>
           <article class="fitCard">
             <h3>Логистика и дистрибуция</h3>
-            <p>Контроль потоков, статусов и SLA в едином рабочем контуре.</p>
+            <p>Контроль потоков, статусов и SLA в едином рабочем контуре. Это снижает потери на разрывах между системами и даёт точную картину происходящего в реальном времени.</p>
           </article>
           <article class="fitCard">
             <h3>Новые продукты</h3>
-            <p>Запуск MVP и поэтапное развитие платформы без потери темпа.</p>
+            <p>Запуск MVP и поэтапное развитие платформы без потери темпа. Подходит командам, которым важно быстро выйти в рынок и затем масштабироваться без регулярной смены архитектуры.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal contentBlock">
+        <h2 class="sectionTitle">Что получает команда заказчика в процессе работы</h2>
+        <p class="contentLead">Мы не прячем проект за “чёрным ящиком”. Чем сложнее продукт, тем важнее для заказчика видеть не только итог, но и движение проекта: где риски, что уже готово и какой следующий шаг.</p>
+        <div class="insightGrid">
+          <article class="insightCard">
+            <h3>Прозрачная коммуникация</h3>
+            <p>Регулярные демо, согласование ключевых решений и понятный язык без лишней терминологии помогают заказчику принимать решения быстрее и увереннее.</p>
+          </article>
+          <article class="insightCard">
+            <h3>Управляемые изменения</h3>
+            <p>Если по ходу проекта появляются новые вводные, мы оцениваем влияние на сроки и бюджет, фиксируем приоритет и принимаем решение совместно, без хаотичных изменений в середине этапа.</p>
+          </article>
+          <article class="insightCard">
+            <h3>Подготовка к росту</h3>
+            <p>Даже на раннем этапе закладываем основу для развития продукта: структуру данных, интеграции, мониторинг и сценарии дальнейшего масштабирования.</p>
+          </article>
+          <article class="insightCard">
+            <h3>Фиксация решений</h3>
+            <p>Ключевые договорённости по архитектуре, этапам и приоритетам фиксируются явно. Это снижает риск спорных трактовок и помогает команде двигаться по согласованному плану.</p>
           </article>
         </div>
       </section>
@@ -1761,6 +1682,34 @@ footer{
             </button>
             <div class="faqAnswer" hidden>Да. Мы подключаемся к вашей текущей архитектуре, процессам и инструментам, усиливаем команду и делаем внедрение поэтапно. Критичные процессы продолжают работать, пока новая функциональность вводится без операционного шока.</div>
           </div>
+          <div class="faqItem">
+            <button class="faqQuestion" type="button" aria-expanded="false">
+              <span class="faqQuestionText">Что нужно от нашей стороны, чтобы проект стартовал без затяжки?</span>
+              <span class="faqPlus" aria-hidden="true">+</span>
+            </button>
+            <div class="faqAnswer" hidden>Обычно достаточно одного ответственного лица со стороны бизнеса, доступа к ключевым вводным и возможности быстро согласовывать приоритеты. Чем лучше на старте определены цели, ограничения и критерии результата, тем быстрее команда выходит в продуктивную работу.</div>
+          </div>
+          <div class="faqItem">
+            <button class="faqQuestion" type="button" aria-expanded="false">
+              <span class="faqQuestionText">Если у нас уже есть часть системы или подрядчик, вы сможете продолжить без переделки всего с нуля?</span>
+              <span class="faqPlus" aria-hidden="true">+</span>
+            </button>
+            <div class="faqAnswer" hidden>Да, если текущая база позволяет безопасно развивать продукт. Сначала проводим техническую оценку: смотрим архитектуру, качество кода, инфраструктуру и точки риска. После этого предлагаем, что сохраняем, что усиливаем и что действительно лучше переработать.</div>
+          </div>
+          <div class="faqItem">
+            <button class="faqQuestion" type="button" aria-expanded="false">
+              <span class="faqQuestionText">Как вы подходите к поддержке после запуска и кто закрывает инциденты?</span>
+              <span class="faqPlus" aria-hidden="true">+</span>
+            </button>
+            <div class="faqAnswer" hidden>После релиза мы не оставляем команду один на один с системой. Настраиваем мониторинг, регламентируем обновления, определяем каналы реагирования и берём на себя устранение критичных проблем в согласованном контуре поддержки.</div>
+          </div>
+          <div class="faqItem">
+            <button class="faqQuestion" type="button" aria-expanded="false">
+              <span class="faqQuestionText">Как понять, что автоматизация действительно даст эффект, а не станет ещё одной сложной системой?</span>
+              <span class="faqPlus" aria-hidden="true">+</span>
+            </button>
+            <div class="faqAnswer" hidden>На старте мы считаем эффект не “в общем”, а по конкретным операциям: время обработки, число ручных действий, ошибки, SLA и загрузку команды. Это позволяет сразу видеть, где автоматизация окупается, а где решение лучше упростить, а не усложнять.</div>
+          </div>
         </div>
       </section>
 
@@ -1769,54 +1718,52 @@ footer{
 
   <div class="reviewsSlider" aria-label="Отзывы клиентов">
   <div class="reviewSlide is-active">
-    <p>«Обратились в Кубикор, когда стало ясно, что ручная обработка заявок тормозит продажи. Команда быстро разобрала наш процесс, предложила понятный план внедрения и не затягивала согласования. Уже в первый месяц после запуска мы сократили время обработки обращений и получили меньше ошибок в данных. Отдельно отмечу спокойную и деловую коммуникацию на каждом этапе.»</p>
+    <p>«Пришли с довольно простым запросом, а по факту оказалось, что проблема глубже, чем нам казалось. Ребята сначала нормально вникли в процесс, не стали сразу продавать “большое решение”, а помогли разобраться, что действительно мешает работать. После запуска команда перестала тратить по полдня на ручные проверки, и это мы почувствовали почти сразу.»</p>
   </div>
 
   <div class="reviewSlide">
-    <p>«Нужно было быстро запустить внутренний сервис, и команда собрала рабочий MVP в оговорённые сроки. Технические решения объясняли понятно, без перегруза деталями. После релиза помогли стабилизировать систему и закрыть приоритетные доработки.»</p>
+    <p>«Нам нужен был рабочий внутренний сервис без истории в духе “давайте ещё месяц доделаем”. Здесь понравилось, что сроки называли аккуратно и потом в них же и попадали. После релиза не пропали, а ещё несколько недель были рядом и помогли спокойно добить всё, что всплыло уже в живой работе.»</p>
   </div>
 
   <div class="reviewSlide">
-    <p>«До старта работ провели с нами подробную диагностику процессов и сразу показали, где мы теряем время. Предложенное решение оказалось практичным: без дорогих лишних модулей, но с заделом на масштабирование. В процессе разработки были промежуточные демонстрации, поэтому результат не стал сюрпризом в конце. Видно, что команда берёт ответственность и за код, и за конечный эффект для бизнеса.»</p>
+    <p>«Было ощущение, что нас действительно слушают, а не просто ведут по шаблону. На первой встрече задавали много точных вопросов, местами даже неудобных, но именно из-за этого довольно быстро стало понятно, где у нас реальные потери. В итоге собрали решение без лишнего объёма, но с нормальным запасом на рост.»</p>
   </div>
 
   <div class="reviewSlide">
-    <p>«У нас было много разрозненных таблиц и ручных операций, поэтому ошибки в отчётности повторялись каждый месяц. На этапе проектирования команда сначала описала целевой процесс и только потом предложила архитектуру ПО с понятным планом релизов и контрольных точек по срокам. Разработка шла итерациями: после каждого этапа мы получали рабочий результат, проверяли его на реальных данных и принимали решение о следующем шаге. После запуска подрядчик не исчез, а взял на себя поддержку, помог с регламентом обновлений и закрыл критичные вопросы в первые недели эксплуатации.»</p>
+    <p>«До проекта у нас всё держалось на таблицах, переписках и памяти нескольких сотрудников. Из-за этого в конце месяца каждый раз начинался один и тот же аврал. Кубикор сначала собрали целевой процесс, потом уже предложили, как это переводить в систему. Самое ценное для нас было то, что результат можно было проверять поэтапно, а не ждать финала вслепую.»</p>
   </div>
 
   <div class="reviewSlide">
-    <p>«Понравился подход к планированию: сначала сформировали чёткие этапы и критерии готовности, затем двигались по ним без постоянных переносов. Все ключевые решения обсуждались заранее, поэтому не возникало спорных моментов в финале. После запуска получили инструктаж для сотрудников и нормальную техническую поддержку. Проект окупил себя быстрее, чем мы изначально ожидали.»</p>
+    <p>«Понравилось, что по проекту всегда было понятно, где мы находимся. Не было ощущения тумана или бесконечного процесса без конца и края. Если что-то менялось, это обсуждали сразу: что двигаем, на что это влияет и стоит ли вообще это делать. Для нас такой спокойный и взрослый подход оказался даже важнее скорости.»</p>
   </div>
 
   <div class="reviewSlide">
-    <p>«Мы искали подрядчика, который не просто напишет код, а поймёт особенности нашей отрасли. Команда Кубикор внимательно отнеслась к деталям, предложила несколько сценариев реализации и помогла выбрать оптимальный по бюджету. Сроки соблюдены, качество интерфейса и логики на хорошем уровне. Сейчас продолжаем сотрудничество уже по следующему этапу развития продукта.»</p>
+    <p>«Искали не просто разработчиков, а команду, с которой можно разговаривать на человеческом языке. Здесь как раз это и получилось. Нам не пытались впечатлить сложными терминами, а объясняли нормально: вот проблема, вот варианты, вот риски. За счёт этого решения принимались быстро и без лишней нервозности.»</p>
   </div>
 
   <div class="reviewSlide">
-    <p>«На проекте было важно быстро интегрировать новую систему с уже действующей инфраструктурой. Кубикор аккуратно провели интеграцию, протестировали критичные сценарии и предусмотрели механизм отката на случай рисков. Запуск прошёл спокойно, без простоев для команды и клиентов. Отдельная благодарность за то, что всегда были на связи и оперативно закрывали вопросы.»</p>
+    <p>«У нас была самая большая тревога за интеграцию с тем, что уже работает, потому что останавливать процессы было нельзя. В этом месте команда сработала очень аккуратно: всё разложили по этапам, заранее проговорили риски и сделали запуск без лишней драмы. Для нас это был, наверное, главный показатель качества работы.»</p>
   </div>
 
   <div class="reviewSlide">
-    <p>«После неудачного прошлого опыта выбирали подрядчика очень внимательно. Здесь получили прозрачный план, понятные сроки и спокойную работу с изменениями требований. Итог совпал с тем, что согласовали на старте, без неожиданных сюрпризов.»</p>
+    <p>«После прошлого подрядчика мы, честно говоря, уже довольно скептически относились к новым обещаниям. Поэтому в этот раз смотрели не на презентации, а на то, как люди ведут проект в мелочах. В итоге всё оказалось ровно так, как и договаривались: без внезапных допработ, без исчезновений и без попытки переложить ответственность на заказчика.»</p>
   </div>
 
   <div class="reviewSlide">
-    <p>«Кубикор помогли навести порядок в процессе обработки клиентских запросов и автоматизировать повторяющиеся операции. После внедрения снизилась нагрузка на сотрудников поддержки, а скорость ответа клиентам заметно выросла. Во время проекта нам регулярно показывали промежуточные результаты, поэтому мы могли корректировать приоритеты без потери темпа. Получили практичное решение, которое легко развивать дальше.»</p>
+    <p>«После внедрения мы наконец перестали тушить пожары вручную. У сотрудников стало меньше рутинных действий, а у руководителя появилась нормальная картина по статусам и загрузке. И что важно, решение не выглядит как что-то хрупкое и временное, которое через полгода придётся выбрасывать и делать заново.»</p>
   </div>
 
   <div class="reviewSlide">
-    <p>«Сильная сторона команды - техническая экспертиза и понятная коммуникация. Статусы были прозрачными, сроки соблюдались, а после релиза быстро помогли с первыми вопросами по эксплуатации. Работают системно и по делу.»</p>
+    <p>«Сильнее всего запомнилось, что команда не суетилась и не делала вид, что всё идеально. Если где-то был риск или спорное решение, об этом говорили прямо. Для нас это большой плюс, потому что в итоге было проще принимать решения и не тратить время на лишние ожидания.»</p>
   </div>
 
   <div class="reviewSlide">
-    <p>«Проект стартовал с непростых вводных и ограниченного бюджета, поэтому для нас было важно не просто "написать код", а выстроить предсказуемый процесс разработки ПО. Команда предложила поэтапный план: сначала критичный функционал, затем расширение без риска для стабильности, и этот подход полностью себя оправдал по срокам. На каждом этапе были прозрачные оценки, демонстрации результата и фиксация договорённостей, что позволило держать бюджет под контролем и не терять темп. После релиза подрядчик продолжил сопровождение продукта: помог с мониторингом, приоритизацией доработок и планом дальнейшего развития на следующие кварталы.»</p>
+    <p>«Стартовали с ограниченным бюджетом и очень осторожно относились к каждому этапу. Здесь понравилось, что нам не предлагали сразу большой дорогой проект, а помогли собрать приоритетный объём и двигаться шаг за шагом. За счёт этого и бюджет не расползся, и результат появился достаточно быстро, чтобы команда внутри компании поверила в проект.»</p>
   </div>
 
   <div class="reviewDots"></div>
 </div>
 </section>
-
-
 
       <footer>
   <div class="footerRow">
@@ -2397,18 +2344,18 @@ if(mobileMenuMode){
         ctx.save();
         ctx.beginPath();
         ctx.rect(termX, termY, termW, termH);
-        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.fillStyle = 'rgba(255,255,255,0.76)';
         ctx.fill();
 
         ctx.beginPath();
         ctx.rect(termX, termY, termW, termH);
-        ctx.strokeStyle = 'rgba(0,0,0,0.14)';
+        ctx.strokeStyle = 'rgba(0,0,0,0.08)';
         ctx.lineWidth = 1;
         ctx.stroke();
 
         ctx.beginPath();
         ctx.rect(termX, termY, termW, headH);
-        ctx.fillStyle = 'rgba(0,0,0,0.07)';
+        ctx.fillStyle = 'rgba(0,0,0,0.04)';
         ctx.fill();
 
         const dotY = termY + headH * 0.5;
@@ -2421,7 +2368,7 @@ if(mobileMenuMode){
         }
 
         ctx.font = '700 11px Inter, sans-serif';
-        ctx.fillStyle = 'rgba(0,0,0,0.58)';
+        ctx.fillStyle = 'rgba(0,0,0,0.34)';
         ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
         ctx.fillText('IntelliJ IDEA • qubycore-site', termX + 64, dotY);
@@ -2446,9 +2393,9 @@ if(mobileMenuMode){
         for(let i = startLine; i < typedLines.length; i++){
           const y = codeTop + (i - startLine) * lineH;
           const lineNo = String(i + 1).padStart(2, '0');
-          ctx.fillStyle = 'rgba(0,0,0,0.3)';
+          ctx.fillStyle = 'rgba(0,0,0,0.14)';
           ctx.fillText(lineNo, codeLeft, y);
-          ctx.fillStyle = 'rgba(0,0,0,0.55)';
+          ctx.fillStyle = 'rgba(0,0,0,0.28)';
           ctx.fillText(typedLines[i], codeLeft + 26, y);
         }
 
@@ -2457,7 +2404,7 @@ if(mobileMenuMode){
           const lastLineText = typedLines[typedLines.length - 1] || '';
           const y = codeTop + (typedLines.length - 1 - startLine) * lineH;
           const cursorX = codeLeft + 26 + ctx.measureText(lastLineText).width + 1;
-          ctx.fillStyle = 'rgba(0,0,0,0.58)';
+          ctx.fillStyle = 'rgba(0,0,0,0.30)';
           ctx.fillRect(cursorX, y + 1, 2, 12);
         }
 

@@ -78,7 +78,11 @@
     }
     header, main{position:relative; z-index:1}
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+    .wrap{
+      width:min(1760px, calc(100vw - 32px));
+      margin:0 auto;
+      padding:0 24px;
+    }
 
     header{
       position:sticky; top:0; z-index:200;
@@ -249,6 +253,55 @@
 
     .valueList{margin:0 0 16px;padding-left:22px;color:var(--text);font-size:18px;line-height:1.6}
     .valueList li{margin:0 0 8px}
+    .detailGrid,.materialsGrid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-top:14px;
+    }
+    .detailCard,.materialCard{
+      border:1px solid rgba(0,0,0,.16);
+      border-radius:16px;
+      padding:18px;
+      background:
+        linear-gradient(180deg, #ffffff 0%, #f8f8f8 58%, #f0f0f0 100%),
+        repeating-linear-gradient(45deg, rgba(0,0,0,.012) 0 2px, rgba(255,255,255,.012) 2px 4px);
+      box-shadow:
+        0 6px 0 rgba(0,0,0,.20),
+        0 12px 18px rgba(0,0,0,.12),
+        0 1px 0 rgba(255,255,255,.42) inset,
+        0 -1px 0 rgba(0,0,0,.12) inset;
+    }
+    .detailCard h3,.materialCard h3{
+      margin:0 0 10px;
+      font-size:21px;
+      color:#0b0b0b;
+    }
+    .detailCard p,.materialCard p{
+      margin:0;
+      color:rgba(0,0,0,.76);
+      line-height:1.6;
+    }
+    .sectionLead{
+      margin:0 0 14px;
+      color:rgba(0,0,0,.76);
+      font-size:18px;
+      line-height:1.62;
+      max-width:1100px;
+    }
+    .materialTag{
+      display:inline-flex;
+      margin-bottom:12px;
+      padding:5px 10px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.14);
+      background:rgba(0,0,0,.04);
+      color:#0b0b0b;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
 
     .partnerBlock{
       margin-top:10px;
@@ -284,17 +337,11 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
     body{background:#ffffff;color:#0b0b0b}
     /* Soft matte only for text outside card-like blocks */
     body.static-pcb main :is(h1,h2,h3,p,li,.sectionTitle,.sectionText,.lead,.stageTitle,.stageText,.stageResult):not(:where(
-      .card *,
       .introCard *,
       .stageCard *,
-      .faqItem *,
-      .fitCard *,
-      .caseCard *,
-      .processCard *,
-      .techCard *,
-      .partnerBlock *,
-      .review-card *,
-      .reviewsSlider *
+      .detailCard *,
+      .materialCard *,
+      .partnerBlock *
     )){
       text-shadow:
         0 0 10px rgba(255,255,255,.84),
@@ -310,71 +357,52 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
     h1, .sectionTitle, .stageTitle, .stageResult{color:#0b0b0b; text-shadow:none}
     .lead, .sectionText, .stageText, .stageBullets, .valueList, .partnerBlock p,
     .footerDetails{color:rgba(0,0,0,.76)}
+    .introCard,
+    .stages .stageCard,
+    .detailCard,.materialCard,
     .partnerBlock{
-      border-color:rgba(0,0,0,.12);
-      background:linear-gradient(180deg, rgba(0,0,0,.045), rgba(0,0,0,0) 92%);
-    }
-    .introCard{
-      border-color:rgba(0,0,0,.12);
+      border:1px solid rgba(0,0,0,.12) !important;
       background:
-        linear-gradient(180deg, #ffffff 0%, #f9f9f9 58%, #f1f1f1 100%),
-        repeating-linear-gradient(45deg, rgba(0,0,0,.012) 0 2px, rgba(255,255,255,.012) 2px 4px);
+        linear-gradient(160deg, rgba(255,255,255,.50), rgba(255,255,255,0) 58%),
+        rgba(0,0,0,.02) !important;
       box-shadow:
-        0 6px 0 rgba(0,0,0,.20),
-        0 12px 18px rgba(0,0,0,.12),
-        0 1px 0 rgba(255,255,255,.45) inset,
-        0 -1px 0 rgba(0,0,0,.14) inset;
-      transition:transform .14s ease, box-shadow .14s ease;
-    }
-    .stages .stageCard{
-      border-color:rgba(0,0,0,.12) !important;
-      background:
-        linear-gradient(180deg, #ffffff 0%, #f9f9f9 58%, #f1f1f1 100%),
-        repeating-linear-gradient(45deg, rgba(0,0,0,.012) 0 2px, rgba(255,255,255,.012) 2px 4px) !important;
-      box-shadow:
-        0 6px 0 rgba(0,0,0,.20),
-        0 12px 18px rgba(0,0,0,.12),
-        0 1px 0 rgba(255,255,255,.45) inset,
-        0 -1px 0 rgba(0,0,0,.14) inset !important;
-      transition:transform .14s ease, box-shadow .14s ease;
-    }
-    .partnerBlock{
-      border-color:rgba(0,0,0,.16);
-      background:
-        linear-gradient(180deg, #ffffff 0%, #f8f8f8 58%, #f0f0f0 100%),
-        repeating-linear-gradient(45deg, rgba(0,0,0,.012) 0 2px, rgba(255,255,255,.012) 2px 4px);
-      box-shadow:
-        0 6px 0 rgba(0,0,0,.20),
-        0 12px 18px rgba(0,0,0,.12),
-        0 1px 0 rgba(255,255,255,.42) inset,
-        0 -1px 0 rgba(0,0,0,.12) inset;
+        0 10px 18px rgba(0,0,0,.09),
+        0 1px 0 rgba(255,255,255,.78) inset !important;
       transition:transform .14s ease, box-shadow .14s ease;
     }
     .introCard:hover,
     .stages .stageCard:hover,
+    .detailCard:hover,.materialCard:hover,
     .partnerBlock:hover{
       transform:translateY(2px);
       box-shadow:
-        0 4px 0 rgba(0,0,0,.20),
-        0 8px 12px rgba(0,0,0,.10),
-        0 1px 0 rgba(255,255,255,.38) inset,
-        0 -1px 0 rgba(0,0,0,.14) inset !important;
+        0 7px 14px rgba(0,0,0,.08),
+        0 1px 0 rgba(255,255,255,.72) inset !important;
     }
     .introCard:active,
     .stages .stageCard:active,
+    .detailCard:active,.materialCard:active,
     .partnerBlock:active{
       transform:translateY(4px);
       box-shadow:
-        0 2px 0 rgba(0,0,0,.21),
-        0 4px 8px rgba(0,0,0,.10),
-        0 1px 0 rgba(255,255,255,.32) inset,
-        0 -1px 0 rgba(0,0,0,.15) inset !important;
+        0 4px 9px rgba(0,0,0,.08),
+        0 1px 0 rgba(255,255,255,.68) inset !important;
     }
     .footerCopy, .footerContactLabel, .footerContactEmail a{color:#0b0b0b; text-shadow:none}
+    body :is(
+      h1,h2,h3,h4,h5,h6,p,a,span,li,b,strong,small,label,button,
+      .brand,.navLabel,.lead,.sectionTitle,.sectionText,.stageTitle,.stageText,
+      .stageResult,.footerCopy,.footerDetails,.footerContactLabel,.footerContactEmail a,
+      .plainBullets,.valueList,.stageBullets,.partnerBlock *
+    ){
+      color:#000000 !important;
+      -webkit-text-fill-color:#000000 !important;
+      text-shadow:none !important;
+    }
 
     @media (max-width: 920px){
-      .grid{grid-template-columns:1fr}
       h1{font-size:34px}
+      .detailGrid,.materialsGrid{grid-template-columns:1fr}
     }
 
     @media (max-width:560px){
@@ -413,12 +441,13 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
 
           <section class="serviceIntro" aria-label="Введение">
             <p>Мы берём ответственность за весь жизненный цикл продукта — от идеи до стабильной работы в продакшене.</p>
+            <p>Для нас разработка — это не только код. Это работа с бизнес-логикой, рисками, пользовательскими сценариями, внутренними процессами команды и будущей эксплуатацией системы. На старте мы фиксируем контекст, ограничения и критерии результата, чтобы проект сразу двигался в рабочем направлении.</p>
           </section>
         </article>
 
         <article class="introCard">
           <h2 class="sectionTitle">Комплексный подход к разработке</h2>
-          <p class="sectionText">Разработка ПО — это системная работа, а не набор отдельных задач. Мы выстраиваем процесс так, чтобы каждый этап усиливал бизнес-результат.</p>
+          <p class="sectionText">Разработка ПО — это системная работа, а не набор отдельных задач. Мы выстраиваем процесс так, чтобы каждый этап усиливал бизнес-результат. Это снижает риск хаотичных изменений, переделок и потери управляемости по мере роста проекта.</p>
           <p class="sectionText">Ключевые принципы:</p>
           <ul class="plainBullets">
             <li>Архитектура с расчётом на масштабирование</li>
@@ -442,7 +471,7 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
             <li>Матрица рисков с приоритизацией критичных сценариев</li>
             <li>Roadmap развития продукта по этапам внедрения</li>
           </ul>
-          <p class="stageResult">Результат: структурированная модель проекта, прозрачные ожидания по срокам и реалистичная траектория релиза.</p>
+          <p class="stageResult">Результат: структурированная модель проекта, прозрачные ожидания по срокам и реалистичная траектория релиза. Бизнес понимает, какие цели действительно закрываются в первой очереди, а команда получает рабочую основу для дальнейших решений.</p>
         </article>
 
         <article class="stageCard">
@@ -454,7 +483,7 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
             <li>Модель данных, интеграционные контуры и API-контракты</li>
             <li>Заложенные механизмы безопасности и отказоустойчивости</li>
           </ul>
-          <p class="stageResult">Результат: архитектура, готовая к промышленной нагрузке, масштабированию и долгосрочной поддержке.</p>
+          <p class="stageResult">Результат: архитектура, готовая к промышленной нагрузке, масштабированию и долгосрочной поддержке. Это снижает вероятность дорогих переделок уже после первых релизов и делает рост продукта более управляемым.</p>
         </article>
 
         <article class="stageCard">
@@ -466,7 +495,7 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
             <li>Оптимизация точек трения в интерфейсе</li>
             <li>Повышение конверсии и управляемости пользовательского пути</li>
           </ul>
-          <p class="stageResult">Результат: интерфейс, который поддерживает бизнес-метрики и снижает операционную нагрузку на команду.</p>
+          <p class="stageResult">Результат: интерфейс, который поддерживает бизнес-метрики и снижает операционную нагрузку на команду. Пользователи тратят меньше времени на рутинные действия, а ключевые сценарии становятся проще и понятнее.</p>
         </article>
 
         <article class="stageCard">
@@ -478,7 +507,7 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
             <li>Регулярные демо и фиксация решений</li>
             <li>CI/CD-конвейер и автоматизированные релизы</li>
           </ul>
-          <p class="stageResult">Результат: поддерживаемый production-ready код, готовый к развитию, интеграциям и росту продукта.</p>
+          <p class="stageResult">Результат: поддерживаемый production-ready код, готовый к развитию, интеграциям и росту продукта. Заказчик получает не “разовый релиз”, а основу для стабильной поставки изменений и дальнейшего масштабирования.</p>
         </article>
 
         <article class="stageCard">
@@ -490,7 +519,7 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
             <li>Платёжные, финансовые и документооборотные модули</li>
             <li>Контуры аналитики, отчётности и аудита данных</li>
           </ul>
-          <p class="stageResult">Результат: стабильная интеграционная среда, в которой критичные бизнес-процессы работают без сбоев.</p>
+          <p class="stageResult">Результат: стабильная интеграционная среда, в которой критичные бизнес-процессы работают без сбоев. Это особенно важно там, где потери на ошибках синхронизации напрямую влияют на скорость операций и качество сервиса.</p>
         </article>
 
         <article class="stageCard">
@@ -502,7 +531,7 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
             <li>Security-проверки и контроль уязвимостей</li>
             <li>Code review и инженерные quality-gates</li>
           </ul>
-          <p class="stageResult">Результат: устойчивый релизный процесс и стабильная эксплуатация без неожиданных регрессий.</p>
+          <p class="stageResult">Результат: устойчивый релизный процесс и стабильная эксплуатация без неожиданных регрессий. Качество становится частью инженерной культуры проекта, а не отдельной задачей “в конце перед запуском”.</p>
         </article>
 
         <article class="stageCard">
@@ -514,7 +543,7 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
             <li>Мониторинг, логирование и алертинг</li>
             <li>Контроль SLA/SLO и производительности под нагрузкой</li>
           </ul>
-          <p class="stageResult">Результат: предсказуемый запуск в промышленную эксплуатацию без критичных простоев.</p>
+          <p class="stageResult">Результат: предсказуемый запуск в промышленную эксплуатацию без критичных простоев. Команда понимает, что происходит в день релиза, как отследить состояние системы и как действовать при отклонениях.</p>
         </article>
 
         <article class="stageCard">
@@ -526,8 +555,27 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
             <li>Оптимизация производительности и стоимости владения</li>
             <li>Масштабирование под рост нагрузки и команды</li>
           </ul>
-          <p class="stageResult">Результат: продукт остаётся стабильным, управляемым и готовым к дальнейшей трансформации бизнеса.</p>
+          <p class="stageResult">Результат: продукт остаётся стабильным, управляемым и готовым к дальнейшей трансформации бизнеса. Это значит, что система продолжает приносить пользу после запуска, а не превращается в “замороженный” проект без плана развития.</p>
         </article>
+      </section>
+
+      <section aria-label="Формат работы">
+        <h2 class="sectionTitle">Как выглядит работа с нашей командой</h2>
+        <p class="sectionLead">Для заказчика важен не только конечный результат, но и сам процесс: насколько он прозрачен, управляем и понятен на каждом этапе. Мы строим взаимодействие так, чтобы решения принимались вовремя, а проект не терял темп из-за разрыва между бизнесом и разработкой.</p>
+        <div class="detailGrid">
+          <article class="detailCard">
+            <h3>Общая картина проекта</h3>
+            <p>У заказчика есть понимание текущего статуса, ближайших этапов, рисков и точек согласования. Это помогает управлять ожиданиями внутри бизнеса и не терять контроль по мере роста проекта и числа заинтересованных сторон.</p>
+          </article>
+          <article class="detailCard">
+            <h3>Регулярная синхронизация</h3>
+            <p>Мы не уходим “писать код в тишине”. Показываем промежуточный результат, обсуждаем изменения и фиксируем решения, чтобы итог не оказался неожиданностью в финале и не потребовал дорогостоящего возврата назад.</p>
+          </article>
+          <article class="detailCard">
+            <h3>Ориентация на эффект</h3>
+            <p>Каждый этап соотносится с задачами бизнеса: ускорить операцию, сократить ручную нагрузку, подготовить систему к масштабированию или повысить устойчивость релизов. Приоритет отдаётся тому, что влияет на эффективность и управляемость, а не на декоративные улучшения.</p>
+          </article>
+        </div>
       </section>
 
       <h2 class="sectionTitle">Что получает бизнес</h2>
@@ -537,12 +585,37 @@ footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);color:v
         <li>Архитектуру, готовую к масштабированию</li>
         <li>Снижение технических рисков</li>
         <li>Продукт, готовый к промышленной эксплуатации</li>
+        <li>Прозрачность статусов, решений и следующего этапа развития</li>
+        <li>Понятную основу для дальнейших интеграций и улучшений</li>
       </ul>
 
       <h2 class="sectionTitle">Подход к партнёрству</h2>
       <div class="partnerBlock">
         <p>Мы работаем как технологический партнёр, а не как подрядчик на короткий срок. Наша задача — выстроить систему, которая будет работать стабильно сегодня и поддерживать рост завтра.</p>
+        <p>Это означает честную оценку ограничений, аккуратное управление изменениями, инженерную дисциплину и ориентацию на практический результат. Мы включаемся в контекст клиента, потому что без этого невозможно собрать сильное и жизнеспособное решение.</p>
       </div>
+
+      <section aria-label="Полезные материалы">
+        <h2 class="sectionTitle">Полезные материалы перед стартом разработки</h2>
+        <p class="sectionLead">Эти темы чаще всего обсуждаются с заказчиками до начала работ. Они помогают заранее понять, какие ожидания нужно выровнять, какие риски учесть и как подготовить проект так, чтобы разработка шла быстрее и спокойнее.</p>
+        <div class="materialsGrid">
+          <article class="materialCard">
+            <div class="materialTag">Подготовка</div>
+            <h3>Что стоит собрать до старта проекта</h3>
+            <p>Цели, ограничения, внутренние процессы, список критичных сценариев, метрики успеха и текущие проблемы — этот набор позволяет быстрее перейти от обсуждений к рабочему плану действий и приоритизации первого этапа.</p>
+          </article>
+          <article class="materialCard">
+            <div class="materialTag">MVP</div>
+            <h3>Как определить разумный первый релиз</h3>
+            <p>Важно не просто сократить объём, а выбрать функциональность, которая уже приносит бизнес-ценность, позволяет проверить гипотезы и не ломает архитектуру будущего продукта. Первый релиз должен быть полезным, а не демонстрационным.</p>
+          </article>
+          <article class="materialCard">
+            <div class="materialTag">Эксплуатация</div>
+            <h3>Почему поддержка начинается ещё до запуска</h3>
+            <p>Мониторинг, логирование, роли доступа, сценарии обновлений и план действий на первые недели после релиза стоит продумать заранее, чтобы запуск не превратился в стресс и не перегрузил команду ручными действиями.</p>
+          </article>
+        </div>
+      </section>
 
 
       <footer>
